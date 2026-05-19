@@ -3,37 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Movies - Luna</title>
+<title>Music - Luna</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #070510; --surface2: rgba(255,255,255,0.07);
-  --border: rgba(255,255,255,0.08); --accent3: #00e5ff;
-  --text: #f0eeff; --muted: #8a85a8;
-}
+:root { --bg: #070510; --surface2: rgba(255,255,255,0.07); --border: rgba(255,255,255,0.08); --accent2: #7b5fff; --accent: #ff3d7f; --text: #f0eeff; --muted: #8a85a8; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 a { text-decoration: none; color: inherit; }
 nav { display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 64px; background: rgba(7,5,16,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); flex-shrink: 0; z-index: 10; }
-.nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 2px; background: linear-gradient(135deg, #fff, var(--accent3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 2px; background: linear-gradient(135deg, #fff, #00e5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .nav-links { display: flex; gap: 4px; }
 .nav-links a { padding: 7px 14px; border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--muted); transition: all 0.2s; }
 .nav-links a:hover { color: #fff; background: var(--surface2); }
-.nav-links a.active { color: var(--accent3); }
+.nav-links a.active { color: #00e5ff; }
 .topbar { display: flex; align-items: center; padding: 10px 24px; background: rgba(7,5,16,0.85); border-bottom: 1px solid var(--border); flex-shrink: 0; gap: 10px; }
-.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent3); box-shadow: 0 0 8px var(--accent3); animation: blink 2s ease-in-out infinite; }
-@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+.music-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 8px var(--accent2); animation: pulse 1s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.6; } }
 .topbar-title { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: #fff; letter-spacing: 1px; }
 .topbar-tip { font-size: 12px; color: var(--muted); }
 .frame-wrap { flex: 1; position: relative; overflow: hidden; }
 .frame-wrap iframe { width: 100%; height: 100%; border: none; display: block; background: #000; }
 .loader { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--bg); z-index: 5; gap: 16px; transition: opacity 0.3s; }
 .loader.hidden { opacity: 0; pointer-events: none; }
-.loader-orb { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #7b5fff, var(--accent3)); position: relative; animation: spin 2s linear infinite; }
-.loader-orb::after { content: ''; position: absolute; inset: 6px; border-radius: 50%; background: var(--bg); }
-@keyframes spin { to { transform: rotate(360deg); } }
 .loader-text { font-size: 14px; color: var(--muted); font-weight: 600; }
 @media (max-width: 700px) { nav { padding: 0 16px; height: 52px; } .nav-links a { padding: 5px 8px; font-size: 12px; } .topbar-tip { display: none; } }
 </style>
@@ -44,38 +37,27 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
   <div class="nav-links">
     <a href="index.html">home</a>
     <a href="singlefile.html">games</a>
-    <a href="movies.html" class="active">movies</a>
-    <a href="music.html">music</a>
+    <a href="movies.html">movies</a>
+    <a href="music.html" class="active">music</a>
     <a href="settings.html">settings</a>
   </div>
 </nav>
 <div class="topbar">
-  <div class="live-dot"></div>
-  <div class="topbar-title">🎬 Movies</div>
-  <div class="topbar-tip">opens in a hidden tab</div>
+  <div class="music-dot"></div>
+  <div class="topbar-title">🎵 Music</div>
+  <div class="topbar-tip">Vibe out to your favorites</div>
 </div>
-<div class="frame-wrap" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;">
-  <div style="text-align:center;">
-    <div style="font-family:'Space Mono',monospace;font-size:11px;color:#7090ff;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;">// movies & tv</div>
-    <div style="font-size:28px;font-weight:700;color:#e8eeff;margin-bottom:8px;">watch anything</div>
-    <div style="font-size:14px;color:#606880;margin-bottom:28px;">opens in a stealth tab — URL stays hidden</div>
-    <button onclick="openHidden()" style="
-      padding:14px 32px;border-radius:10px;background:#7090ff;
-      border:none;color:#fff;font-size:15px;font-weight:600;
-      cursor:pointer;font-family:'Space Grotesk',sans-serif;
-      transition:all 0.2s;letter-spacing:0.3px;
-    " onmouseover="this.style.background='#5070ee'" onmouseout="this.style.background='#7090ff'">
-      🎬 open movies
-    </button>
-    <div style="font-size:12px;color:#303848;margin-top:12px;font-family:'Space Mono',monospace;">tab will show as about:blank</div>
+<div class="frame-wrap">
+  <div class="loader" id="loader">
+    <div class="loader-text">Loading Music...</div>
   </div>
+  <iframe id="frame" src="https://cdn.calculra.store/" allow="autoplay; fullscreen" allowfullscreen></iframe>
 </div>
 <script>
-function openHidden() {
-  const w = window.open('about:blank', '_blank');
-  if (!w) { alert('allow popups for this site!'); return; }
-  w.location.href = 'https://blaysmp.xyz/';
-}
+const frame = document.getElementById("frame");
+const loader = document.getElementById("loader");
+frame.onload = () => loader.classList.add("hidden");
+setTimeout(() => loader.classList.add("hidden"), 5000);
 document.addEventListener('keydown', e => { if (e.key === 'F1') { e.preventDefault(); window.location.href = 'https://google.com'; } });
 </script>
 </body>

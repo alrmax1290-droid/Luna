@@ -1140,16 +1140,46 @@ function openZone(file) {
     // Fetch and write into iframe so it renders as HTML regardless of CDN content-type
     const loadingDiv = document.createElement('div');
     loadingDiv.id = 'zoneLoading';
-    loadingDiv.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#04040a;z-index:10;font-family:Space Mono,monospace;color:#7090ff;font-size:14px;letter-spacing:2px;';
-    loadingDiv.textContent = 'loading...';
+    loadingDiv.style.cssText = 'position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#04040a;z-index:10;font-family:Space Mono,monospace;color:#7090ff;font-size:14px;letter-spacing:2px;gap:16px;';
+    loadingDiv.innerHTML = `
+      <div id="zoneLoadingText">loading...</div>
+      <button id="zoneFallbackBtn" onclick="document.getElementById('zoneFrame').src='${url}';document.getElementById('zoneLoading').remove();" style="
+        display:none;padding:10px 20px;border-radius:8px;
+        border:1px solid rgba(112,144,255,0.3);background:rgba(112,144,255,0.1);
+        color:#a0b8ff;font-size:13px;cursor:pointer;font-family:inherit;
+      ">taking too long — click to load anyway</button>
+    `;
     zoneViewer.appendChild(loadingDiv);
 
-    fetch(url + "?t=" + Date.now())
+    // Show fallback button after 5s
+    const fallbackTimer = setTimeout(() => {
+      const btn = document.getElementById('zoneFallbackBtn');
+      const txt = document.getElementById('zoneLoadingText');
+      if (btn) btn.style.display = 'block';
+      if (txt) txt.textContent = 'still loading...';
+    }, 5000);
+
+    // Auto-fallback after 10s
+    const autoFallback = setTimeout(() => {
+      const div = document.getElementById('zoneLoading');
+      if (div) {
+        zoneFrame.src = url;
+        div.remove();
+      }
+    }, 10000);
+
+    const controller = new AbortController();
+    const fetchTimeout = setTimeout(() => controller.abort(), 9000);
+
+    fetch(url + "?t=" + Date.now(), { signal: controller.signal })
         .then(r => r.text())
         .then(html => {
+            clearTimeout(fetchTimeout);
+            clearTimeout(fallbackTimer);
+            clearTimeout(autoFallback);
             zoneFrame.srcdoc = html;
-            loadingDiv.remove();
-            // track recently played
+            const div = document.getElementById('zoneLoading');
+            if (div) div.remove();
             try {
                 let recent = JSON.parse(localStorage.getItem('luna_recent') || '[]');
                 recent = recent.filter(r => r.id !== file.id);
@@ -1159,8 +1189,12 @@ function openZone(file) {
             } catch(e) {}
         })
         .catch(() => {
+            clearTimeout(fetchTimeout);
+            clearTimeout(fallbackTimer);
+            clearTimeout(autoFallback);
             zoneFrame.src = url;
-            loadingDiv.remove();
+            const div = document.getElementById('zoneLoading');
+            if (div) div.remove();
         });
 
     try {
@@ -1183,7 +1217,18 @@ function aboutBlank() {
     const zone = zones.find(z => z.id + '' === id);
     if (!zone) return;
     const url = zone.url.replace("{COVER_URL}", coverURL).replace("{HTML_URL}", htmlURL);
-    window.open(url, "_blank");
+    fetch(url + "?t=" + Date.now())
+        .then(r => r.text())
+        .then(html => {
+            const w = window.open('about:blank', '_blank');
+            if (!w) return;
+            w.document.open();
+            w.document.write(html);
+            w.document.close();
+        })
+        .catch(() => {
+            window.open(url, "_blank");
+        });
 }
 
 function closeZone() {

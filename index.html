@@ -36,6 +36,13 @@ body {
 
 a { text-decoration: none; color: inherit; }
 
+/* AI button pulse */
+@keyframes aiPulse {
+  0%, 100% { box-shadow: -4px 0 20px rgba(112,144,255,0.3); }
+  50% { box-shadow: -4px 0 30px rgba(112,144,255,0.6); }
+}
+#aiToggleBtn { animation: aiPulse 2s ease-in-out infinite; }
+
 /* Constellation background */
 #constellationCanvas {
   position: fixed;
@@ -708,24 +715,35 @@ body.alt-theme {
     <div style="font-size:22px; font-weight:700; color:#e8eeff; margin-bottom:20px;">Luna Updates</div>
     <div style="display:flex; flex-direction:column; gap:16px;">
       <div style="border-left:2px solid #7090ff; padding-left:16px;">
-        <div style="font-size:11px; color:#7090ff; font-family:'Space Mono',monospace; margin-bottom:6px;">v2.0 — TODAY</div>
+        <div style="font-size:11px; color:#7090ff; font-family:'Space Mono',monospace; margin-bottom:6px;">v3.0 — NEW SCHOOL YEAR 🎒</div>
         <div style="font-size:14px; color:#d0d8f0; line-height:1.6;">
-          ✦ 800+ games now available<br>
-          ✦ Tab cloak — look like google classroom<br>
-          ✦ Camo mode added<br>
-          ✦ Lo-fi background music<br>
-          ✦ Recently played tracking<br>
-          ✦ Escape key closes games<br>
-          ✦ PWA — install as app on chromebook
+          ✦ luna ai — ask for game tips, homework help, anything<br>
+          ✦ interactive constellation background<br>
+          ✦ space debris particles<br>
+          ✦ game search on homepage<br>
+          ✦ favorites system in games<br>
+          ✦ notes widget + class timer<br>
+          ✦ page transitions on all pages<br>
+          ✦ settings page overhauled<br>
+          ✦ movies + music updated<br>
+          ✦ people online counter
         </div>
       </div>
       <div style="border-left:2px solid rgba(112,144,255,0.3); padding-left:16px;">
-        <div style="font-size:11px; color:#606880; font-family:'Space Mono',monospace; margin-bottom:6px;">v1.0 — LAUNCH</div>
+        <div style="font-size:11px; color:#606880; font-family:'Space Mono',monospace; margin-bottom:6px;">v2.0 — LAST YEAR</div>
         <div style="font-size:14px; color:#606880; line-height:1.6;">
-          ✦ Luna launched<br>
-          ✦ Games, movies, music<br>
-          ✦ Moon theme, custom cursor<br>
-          ✦ Easter egg (type "lunar")
+          ✦ 800+ games via gn-math zones<br>
+          ✦ tab cloak + camo mode<br>
+          ✦ lo-fi music, recently played<br>
+          ✦ PWA installable on chromebook
+        </div>
+      </div>
+      <div style="border-left:2px solid rgba(112,144,255,0.15); padding-left:16px;">
+        <div style="font-size:11px; color:#404858; font-family:'Space Mono',monospace; margin-bottom:6px;">v1.0 — THE BEGINNING</div>
+        <div style="font-size:14px; color:#404858; line-height:1.6;">
+          ✦ luna launched<br>
+          ✦ games, movies, music<br>
+          ✦ easter egg (type "lunar")
         </div>
       </div>
     </div>
@@ -823,29 +841,29 @@ body.alt-theme {
   <!-- POPULAR GAMES -->
   <div class="section-label">these ones go hard</div>
   <div class="games-grid">
-    <a href="play.html?game=geometrydash" class="game-card">
+    <a href="singlefile.html" class="game-card">
       <img class="game-img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322170/capsule_616x353.jpg?t=1703006148" alt="Geometry Dash">
       <div class="game-info"><div class="game-name">Geometry Dash</div><div class="game-tag">arcade</div></div>
     </a>
-    <a href="play.html?game=ovo" class="game-card">
-      <img class="game-img" src="https://www.coolmathgames.com/sites/default/files/OvO_OG-logo.jpg" alt="OVO">
-      <div class="game-info"><div class="game-name">OVO</div><div class="game-tag">parkour</div></div>
-    </a>
-    <a href="play.html?game=retrobowl" class="game-card">
-      <img class="game-img" src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000048336/e3c1297d2ec30fe72a657af60c416d10c68a784bc874cf28e19cdf9261956919" alt="Retro Bowl">
-      <div class="game-info"><div class="game-name">Retro Bowl</div><div class="game-tag">sports</div></div>
-    </a>
-    <a href="play.html?game=fnaf1" class="game-card">
-      <img class="game-img" src="https://cdn.jsdelivr.net/gh/%67%6e%2d%6d%61%74%68/covers@main/38.png" alt="FNAF 1">
-      <div class="game-info"><div class="game-name">FNAF 1</div><div class="game-tag">horror</div></div>
-    </a>
-    <a href="play.html?game=brotato" class="game-card">
+    <a href="singlefile.html" class="game-card">
       <img class="game-img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1942280/capsule_616x353.jpg" alt="Brotato">
       <div class="game-info"><div class="game-name">Brotato</div><div class="game-tag">survival</div></div>
     </a>
-    <a href="play.html?game=survivorio" class="game-card">
-      <img class="game-img" src="https://play-lh.googleusercontent.com/0Y0E_ij7a5KlxmZrHfHxxYgJDcfm5LKUODCWRi78-1_AV1YNiGH26gIhHLRwJrOTdg" alt="Survivor IO">
-      <div class="game-info"><div class="game-name">Survivor IO</div><div class="game-tag">action</div></div>
+    <a href="singlefile.html" class="game-card">
+      <img class="game-img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1649890/capsule_616x353.jpg" alt="Cuphead">
+      <div class="game-info"><div class="game-name">Cuphead</div><div class="game-tag">action</div></div>
+    </a>
+    <a href="singlefile.html" class="game-card">
+      <img class="game-img" src="https://cdn.jsdelivr.net/gh/gn-math/covers@main/38.png" alt="FNAF 1">
+      <div class="game-info"><div class="game-name">FNAF 1</div><div class="game-tag">horror</div></div>
+    </a>
+    <a href="singlefile.html" class="game-card">
+      <img class="game-img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1966720/capsule_616x353.jpg" alt="Hollow Knight">
+      <div class="game-info"><div class="game-name">Hollow Knight</div><div class="game-tag">adventure</div></div>
+    </a>
+    <a href="singlefile.html" class="game-card">
+      <img class="game-img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/capsule_616x353.jpg" alt="Hades">
+      <div class="game-info"><div class="game-name">Celeste</div><div class="game-tag">platformer</div></div>
     </a>
   </div>
 
@@ -1376,10 +1394,10 @@ changelogBtn.addEventListener('click', () => {
   document.getElementById('changelogModal').style.display = 'flex';
 });
 // Show changelog on first visit
-if (!localStorage.getItem('luna_changelog_v2')) {
+if (!localStorage.getItem('luna_changelog_v3')) {
   setTimeout(() => {
     document.getElementById('changelogModal').style.display = 'flex';
-    localStorage.setItem('luna_changelog_v2', '1');
+    localStorage.setItem('luna_changelog_v3', '1');
   }, 2000);
 }
 
@@ -1490,14 +1508,17 @@ loadCount();
 
 <!-- AI TOGGLE BUTTON -->
 <button onclick="toggleAI()" id="aiToggleBtn" style="
-  position:fixed; right:20px; top:50%; transform:translateY(-50%);
-  width:44px; height:80px; border-radius:12px;
-  background:#080812; border:1px solid rgba(112,144,255,0.2);
-  color:#7090ff; cursor:pointer; z-index:9989;
+  position:fixed; right:0; top:50%; transform:translateY(-50%);
+  width:48px; height:100px; border-radius:12px 0 0 12px;
+  background:linear-gradient(135deg, #7090ff, #5050cc);
+  border:none; border-right:none;
+  color:#fff; cursor:pointer; z-index:9989;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:4px; transition:all 0.2s; writing-mode:vertical-rl;
-  font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px;
-" title="Luna AI">🤖</button>
+  gap:6px; transition:all 0.2s; box-shadow:-4px 0 20px rgba(112,144,255,0.3);
+" title="Luna AI">
+  <span style="font-size:20px;">🤖</span>
+  <span style="font-family:'Space Mono',monospace; font-size:8px; letter-spacing:1px; writing-mode:vertical-rl; color:rgba(255,255,255,0.8);">AI</span>
+</button>
 
 <script>
 // CONSTELLATION BACKGROUND
@@ -1613,7 +1634,7 @@ function toggleAI() {
   const panel = document.getElementById('aiPanel');
   const btn = document.getElementById('aiToggleBtn');
   panel.style.right = aiOpen ? '0' : '-400px';
-  btn.style.right = aiOpen ? '396px' : '20px';
+  btn.style.right = aiOpen ? '380px' : '0';
   if (aiOpen) document.getElementById('aiInput').focus();
 }
 
@@ -1650,7 +1671,7 @@ async function sendAI() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-6',
         max_tokens: 1000,
         system: `You are Luna AI, a helpful assistant built into Luna — an unblocked games site for students. You help with:
 - Game tips, cheats, walkthroughs, and recommendations

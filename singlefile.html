@@ -762,8 +762,7 @@ footer {
   <div class="luna-nav-links">
     <a href="index.html">home</a>
     <a href="singlefile.html" class="active">games</a>
-    <a href="movies.html">movies</a>
-    <a href="music.html">music</a>
+    <a href="browse.html">browse</a>
   </div>
 </nav>
 
@@ -1596,6 +1595,19 @@ function closePopup() {
     document.getElementById('popupOverlay').style.display = "none";
 }
 listZones();
+
+// Auto-search if coming from homepage search or GOTD
+const pendingSearch = localStorage.getItem('luna_gotd_search');
+if (pendingSearch) {
+  localStorage.removeItem('luna_gotd_search');
+  setTimeout(() => {
+    const searchBar = document.getElementById('searchBar');
+    if (searchBar) {
+      searchBar.value = pendingSearch;
+      filterZones();
+    }
+  }, 1500);
+}
 
 // Favorites
 let favorites = JSON.parse(localStorage.getItem('luna_favorites') || '[]');

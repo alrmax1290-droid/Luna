@@ -1343,12 +1343,12 @@ if (!localStorage.getItem('luna_changelog_v3')) {
 // LO-FI MUSIC - multiple tracks
 // LO-FI MUSIC - multiple tracks with selector
 const TRACKS = [
-  { name: 'chill beats 🎵', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_01_-_Night_Owl.mp3' },
+  { name: 'chill beats 🎵', url: 'https://cdn.pixabay.com/audio/2022/10/25/audio_946f8a8b01.mp3' },
   { name: 'rainy day 🌧️', url: 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3' },
-  { name: 'something elated ✨', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_04_-_Something_Elated.mp3' },
-  { name: 'interlude 🌙', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kai_Engel/Satin/Kai_Engel_-_08_-_Interlude.mp3' },
-  { name: 'spring gang 🌸', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_02_-_Enthusiast.mp3' },
-  { name: 'day bird 🐦', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_05_-_Day_Bird.mp3' },
+  { name: 'lofi study 📚', url: 'https://cdn.pixabay.com/audio/2024/02/28/audio_b5a0c7e6b9.mp3' },
+  { name: 'night vibes 🌙', url: 'https://cdn.pixabay.com/audio/2023/11/13/audio_9a6d5c3b2e.mp3' },
+  { name: 'focus mode 🎯', url: 'https://cdn.pixabay.com/audio/2022/08/04/audio_2dde668d05.mp3' },
+  { name: 'calm piano 🎹', url: 'https://cdn.pixabay.com/audio/2024/01/15/audio_3f4e5b6c7d.mp3' },
 ];
 let trackIndex = 0;
 const musicBtn = document.getElementById('musicBtn');
@@ -1373,13 +1373,35 @@ trackPicker.innerHTML = `
       font-size:13px;cursor:pointer;text-align:left;transition:all 0.15s;
       font-family:'Space Grotesk',sans-serif;
     " onmouseover="this.style.background='rgba(112,144,255,0.1)'"
-       onmouseout="this.style.background=trackIndex===${i}?'rgba(112,144,255,0.15)':'transparent'">
-      <span id="trackIcon${i}" style="font-size:14px;">${i===0?'▶':'  '}</span>
+       onmouseout="this.style.background=trackIndex===${i}&&musicPlaying?'rgba(112,144,255,0.15)':'transparent'">
+      <span id="trackIcon${i}" style="font-size:14px;">  </span>
       <span>${t.name}</span>
     </button>
   `).join('')}
+  <div style="border-top:1px solid rgba(255,255,255,0.06);margin-top:4px;padding-top:4px;">
+    <button onclick="stopMusic()" style="
+      display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;
+      border-radius:6px;border:none;background:transparent;color:#606880;
+      font-size:13px;cursor:pointer;text-align:left;transition:all 0.15s;
+      font-family:'Space Grotesk',sans-serif;
+    " onmouseover="this.style.background='rgba(255,80,80,0.1)';this.style.color='#ff6060'"
+       onmouseout="this.style.background='transparent';this.style.color='#606880'">
+      <span style="font-size:14px;">⏹</span>
+      <span>stop music</span>
+    </button>
+  </div>
 `;
 document.body.appendChild(trackPicker);
+
+function stopMusic() {
+  lofiAudio.pause();
+  lofiAudio.currentTime = 0;
+  musicBtn.textContent = '🎵';
+  musicBtn.style.color = '';
+  musicPlaying = false;
+  updateTrackUI();
+  trackPicker.style.display = 'none';
+}
 
 function selectTrack(idx) {
   trackIndex = idx;
@@ -1414,20 +1436,7 @@ loadTrack(0);
 musicBtn.addEventListener('click', () => {
   if (trackPicker.style.display === 'none') {
     trackPicker.style.display = 'block';
-  } else if (!musicPlaying) {
-    lofiAudio.volume = 0.3;
-    lofiAudio.play().catch(() => {});
-    musicBtn.textContent = '🔊';
-    musicBtn.style.color = '#7090ff';
-    musicPlaying = true;
-    updateTrackUI();
-    trackPicker.style.display = 'none';
   } else {
-    lofiAudio.pause();
-    musicBtn.textContent = '🎵';
-    musicBtn.style.color = '';
-    musicPlaying = false;
-    updateTrackUI();
     trackPicker.style.display = 'none';
   }
 });

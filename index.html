@@ -672,16 +672,18 @@ body.alt-theme {
       <div style="border-left:2px solid #7090ff; padding-left:16px;">
         <div style="font-size:11px; color:#7090ff; font-family:'Space Mono',monospace; margin-bottom:6px;">v3.0 — NEW SCHOOL YEAR 🎒</div>
         <div style="font-size:14px; color:#d0d8f0; line-height:1.6;">
-          ✦ luna ai — ask for game tips, homework help, anything<br>
           ✦ interactive constellation background<br>
           ✦ space debris particles<br>
           ✦ game search on homepage<br>
           ✦ favorites system in games<br>
           ✦ notes widget + class timer<br>
           ✦ page transitions on all pages<br>
+          ✦ fake chromebook update screen 💻<br>
+          ✦ game roulette wheel 🎰<br>
+          ✦ suggestions page added<br>
+          ✦ visitor counter<br>
           ✦ settings page overhauled<br>
-          ✦ movies + music updated<br>
-          ✦ people online counter
+          ✦ browse page replaces movies + music
         </div>
       </div>
       <div style="border-left:2px solid rgba(112,144,255,0.3); padding-left:16px;">
@@ -751,6 +753,24 @@ body.alt-theme {
 <div class="divider"></div>
 
 <div class="section">
+
+  <!-- SPEED DIAL -->
+  <div id="speedDialSection" style="margin-bottom:48px;">
+    <div class="section-label" style="display:flex;align-items:center;justify-content:space-between;">
+      <span style="display:flex;align-items:center;gap:10px;"><span style="color:var(--dim);">//</span> speed dial</span>
+      <button onclick="toggleSpeedDialEdit()" id="sdEditBtn" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);background:none;border:none;cursor:pointer;text-transform:uppercase;">edit</button>
+    </div>
+    <div id="speedDial" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;"></div>
+    <div id="speedDialEdit" style="display:none;margin-top:12px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px;">search a game to pin it</div>
+      <input type="text" id="sdSearch" placeholder="search games..." oninput="sdSearchGames(this.value)" style="
+        width:100%;padding:9px 14px;background:rgba(255,255,255,0.04);
+        border:1px solid var(--border);border-radius:8px;color:var(--text);
+        font-size:13px;font-family:'Space Grotesk',sans-serif;outline:none;margin-bottom:8px;
+      ">
+      <div id="sdResults" style="display:flex;flex-direction:column;gap:4px;max-height:160px;overflow-y:auto;"></div>
+    </div>
+  </div>
 
   <!-- RECENTLY PLAYED -->
   <div id="recentSection" class="recently-played">
@@ -1094,7 +1114,10 @@ if (sessionStorage.getItem('luna_visited')) {
 const gotd = GAMES[Math.floor(Date.now() / 86400000) % GAMES.length];
 document.getElementById('gotdTitle').textContent = gotd.title;
 document.getElementById('gotdDesc').textContent = gotd.desc;
-document.getElementById('gotdCard').href = `play.html?game=${gotd.key}`;
+document.getElementById('gotdCard').href = `singlefile.html`;
+document.getElementById('gotdCard').onclick = () => {
+  localStorage.setItem('luna_gotd_search', gotd.title);
+};
 
 // RECENTLY PLAYED
 function renderRecent() {
@@ -1227,6 +1250,102 @@ function triggerEasterEgg() {
   }, 3500);
 }
 
+// SPEED DIAL
+let speedDial = JSON.parse(localStorage.getItem('luna_speeddial') || '[]');
+let sdEditMode = false;
+
+function renderSpeedDial() {
+  const container = document.getElementById('speedDial');
+  if (!container) return;
+  const slots = 4;
+  let html = '';
+  for (let i = 0; i < slots; i++) {
+    const game = speedDial[i];
+    if (game) {
+      html += `
+        <div style="position:relative;">
+          <a href="singlefile.html" onclick="localStorage.setItem('luna_gotd_search','${game.title.replace(/'/g,"\\'")}');" style="
+            display:flex;flex-direction:column;align-items:center;justify-content:center;
+            gap:8px;padding:16px 8px;border-radius:12px;
+            background:var(--bg2);border:1px solid var(--border);
+            text-decoration:none;transition:all 0.2s;
+          " onmouseover="this.style.borderColor='rgba(112,144,255,0.3)';this.style.transform='translateY(-2px)'"
+             onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.transform='none'">
+            <span style="font-size:28px;">${game.emoji}</span>
+            <span style="font-size:11px;font-weight:600;color:var(--text);text-align:center;line-height:1.3;">${game.title}</span>
+          </a>
+          ${sdEditMode ? `<button onclick="removeSpeedDial(${i})" style="
+            position:absolute;top:-6px;right:-6px;width:20px;height:20px;
+            border-radius:50%;background:#ff4060;border:none;color:#fff;
+            font-size:12px;cursor:pointer;line-height:1;
+          ">×</button>` : ''}
+        </div>`;
+    } else {
+      html += `
+        <div onclick="${sdEditMode ? 'focusSdSearch()' : 'toggleSpeedDialEdit()'}" style="
+          display:flex;flex-direction:column;align-items:center;justify-content:center;
+          gap:8px;padding:16px 8px;border-radius:12px;
+          background:var(--bg2);border:1px dashed var(--border);
+          cursor:pointer;transition:all 0.2s;min-height:90px;
+        " onmouseover="this.style.borderColor='rgba(112,144,255,0.3)'"
+           onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
+          <span style="font-size:24px;color:var(--dim);">+</span>
+          <span style="font-size:11px;color:var(--dim);">pin a game</span>
+        </div>`;
+    }
+  }
+  container.innerHTML = html;
+}
+
+function toggleSpeedDialEdit() {
+  sdEditMode = !sdEditMode;
+  const editPanel = document.getElementById('speedDialEdit');
+  const btn = document.getElementById('sdEditBtn');
+  editPanel.style.display = sdEditMode ? 'block' : 'none';
+  btn.textContent = sdEditMode ? 'done' : 'edit';
+  btn.style.color = sdEditMode ? 'var(--accent3)' : 'var(--muted)';
+  renderSpeedDial();
+}
+
+function focusSdSearch() {
+  document.getElementById('sdSearch').focus();
+}
+
+function sdSearchGames(query) {
+  const results = document.getElementById('sdResults');
+  if (!query.trim()) { results.innerHTML = ''; return; }
+  const matches = GAMES.filter(g => g.title.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
+  results.innerHTML = matches.map(g => `
+    <button onclick="addSpeedDial('${g.key}','${g.title.replace(/'/g,"\\'")}','${g.emoji}')" style="
+      display:flex;align-items:center;gap:10px;padding:8px 12px;
+      border-radius:6px;border:none;background:rgba(255,255,255,0.03);
+      color:var(--text);font-size:13px;cursor:pointer;text-align:left;
+      font-family:'Space Grotesk',sans-serif;transition:all 0.15s;width:100%;
+    " onmouseover="this.style.background='rgba(112,144,255,0.1)'"
+       onmouseout="this.style.background='rgba(255,255,255,0.03)'">
+      <span>${g.emoji}</span><span>${g.title}</span>
+    </button>
+  `).join('');
+}
+
+function addSpeedDial(key, title, emoji) {
+  if (speedDial.length >= 4) speedDial.pop();
+  if (speedDial.find(g => g.key === key)) return;
+  speedDial.push({ key, title, emoji });
+  localStorage.setItem('luna_speeddial', JSON.stringify(speedDial));
+  document.getElementById('sdSearch').value = '';
+  document.getElementById('sdResults').innerHTML = '';
+  renderSpeedDial();
+}
+
+function removeSpeedDial(idx) {
+  speedDial.splice(idx, 1);
+  localStorage.setItem('luna_speeddial', JSON.stringify(speedDial));
+  renderSpeedDial();
+}
+
+renderSpeedDial();
+
 // HERO SEARCH
 function heroSearchGames(query) {
   const results = document.getElementById('heroSearchResults');
@@ -1235,13 +1354,12 @@ function heroSearchGames(query) {
   if (!matches.length) { results.style.display = 'none'; return; }
   results.style.display = 'block';
   results.innerHTML = matches.map(g => `
-    <a href="singlefile.html" onclick="localStorage.setItem('luna_search','${g.title}')" style="
+    <a href="singlefile.html" onclick="localStorage.setItem('luna_gotd_search','${g.title.replace(/'/g,"\\'")}');" style="
       display:flex; align-items:center; gap:10px; padding:10px 14px;
       color:#d0d8f0; font-size:13px; border-bottom:1px solid rgba(255,255,255,0.04);
       transition:background 0.15s; text-decoration:none;
     " onmouseover="this.style.background='rgba(112,144,255,0.08)'" onmouseout="this.style.background='none'">
       <span>${g.emoji}</span><span>${g.title}</span>
-      <span style="margin-left:auto;font-size:10px;color:#606880;font-family:'Space Mono',monospace;">${g.tags ? g.tags[0] : ''}</span>
     </a>
   `).join('');
 }
@@ -1928,7 +2046,8 @@ function spinRoulette() {
       emojiEl.style.transform = 'rotate(0deg)';
       document.getElementById('roulettePlay').style.display = 'block';
       document.getElementById('roulettePlay').onclick = () => {
-        window.location.href = `singlefile.html`;
+        localStorage.setItem('luna_gotd_search', final.title);
+        window.location.href = 'singlefile.html';
         modal.style.display = 'none';
       };
     }

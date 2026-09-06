@@ -1341,6 +1341,7 @@ if (!localStorage.getItem('luna_changelog_v3')) {
 }
 
 // LO-FI MUSIC - multiple tracks
+// LO-FI MUSIC - multiple tracks with selector
 const TRACKS = [
   { name: 'chill beats', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_01_-_Night_Owl.mp3' },
   { name: 'lofi study', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kai_Engel/Satin/Kai_Engel_-_08_-_Interlude.mp3' },
@@ -1353,37 +1354,93 @@ const musicBtn = document.getElementById('musicBtn');
 const lofiAudio = document.getElementById('lofiAudio');
 let musicPlaying = false;
 
+// Create track picker popup
+const trackPicker = document.createElement('div');
+trackPicker.style.cssText = `
+  position:fixed; top:68px; right:20px; z-index:9999;
+  background:#080812; border:1px solid rgba(112,144,255,0.2);
+  border-radius:10px; padding:8px; min-width:180px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.5); display:none;
+  font-family:'Space Grotesk',sans-serif;
+`;
+trackPicker.innerHTML = `
+  <div style="font-family:'Space Mono',monospace;font-size:9px;color:#606880;letter-spacing:2px;text-transform:uppercase;padding:4px 8px 8px;">// pick a vibe</div>
+  ${TRACKS.map((t,i) => `
+    <button onclick="selectTrack(${i})" id="trackBtn${i}" style="
+      display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;
+      border-radius:6px;border:none;background:transparent;color:#d0d8f0;
+      font-size:13px;cursor:pointer;text-align:left;transition:all 0.15s;
+      font-family:'Space Grotesk',sans-serif;
+    " onmouseover="this.style.background='rgba(112,144,255,0.1)'"
+       onmouseout="this.style.background=trackIndex===${i}?'rgba(112,144,255,0.15)':'transparent'">
+      <span id="trackIcon${i}" style="font-size:14px;">${i===0?'▶':'  '}</span>
+      <span>${t.name}</span>
+    </button>
+  `).join('')}
+`;
+document.body.appendChild(trackPicker);
+
+function selectTrack(idx) {
+  trackIndex = idx;
+  lofiAudio.src = TRACKS[idx].url;
+  lofiAudio.volume = 0.3;
+  lofiAudio.play().catch(() => {});
+  musicPlaying = true;
+  musicBtn.textContent = '🔊';
+  musicBtn.style.color = '#7090ff';
+  updateTrackUI();
+  trackPicker.style.display = 'none';
+}
+
+function updateTrackUI() {
+  TRACKS.forEach((_, i) => {
+    const icon = document.getElementById(`trackIcon${i}`);
+    const btn = document.getElementById(`trackBtn${i}`);
+    if (icon) icon.textContent = i === trackIndex && musicPlaying ? '▶' : '  ';
+    if (btn) btn.style.background = i === trackIndex ? 'rgba(112,144,255,0.15)' : 'transparent';
+  });
+}
+
 function loadTrack(idx) {
   trackIndex = ((idx % TRACKS.length) + TRACKS.length) % TRACKS.length;
   lofiAudio.src = TRACKS[trackIndex].url;
   if (musicPlaying) lofiAudio.play().catch(() => {});
-  musicBtn.title = TRACKS[trackIndex].name;
+  updateTrackUI();
 }
 
 loadTrack(0);
 
 musicBtn.addEventListener('click', () => {
-  if (musicPlaying) {
-    lofiAudio.pause();
-    musicBtn.textContent = '🎵';
-    musicBtn.style.color = '';
-    musicPlaying = false;
-  } else {
+  if (trackPicker.style.display === 'none') {
+    trackPicker.style.display = 'block';
+  } else if (!musicPlaying) {
     lofiAudio.volume = 0.3;
     lofiAudio.play().catch(() => {});
     musicBtn.textContent = '🔊';
     musicBtn.style.color = '#7090ff';
     musicPlaying = true;
+    updateTrackUI();
+    trackPicker.style.display = 'none';
+  } else {
+    lofiAudio.pause();
+    musicBtn.textContent = '🎵';
+    musicBtn.style.color = '';
+    musicPlaying = false;
+    updateTrackUI();
+    trackPicker.style.display = 'none';
   }
 });
 
-// Right-click music button to skip track
+// Close picker when clicking outside
+document.addEventListener('click', e => {
+  if (!e.target.closest('#musicBtn') && !e.target.closest(trackPicker.tagName + '[style]')) {
+    trackPicker.style.display = 'none';
+  }
+});
+
 musicBtn.addEventListener('contextmenu', e => {
   e.preventDefault();
   loadTrack(trackIndex + 1);
-  if (musicPlaying) {
-    musicBtn.title = TRACKS[trackIndex].name;
-  }
 });
 
 
@@ -1639,25 +1696,10 @@ async function sendAI() {
   thinking.style.opacity = '0.5';
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('https://tight-mode-41d6.alrmax1290.workers.dev/ai', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': 'placeholder',
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true',
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        system: `You are Luna AI, a chill helpful assistant built into Luna — an unblocked games site for students. Keep responses short and casual. You help with:
-- Game tips, cheats, walkthroughs for any game
-- Game recommendations from Luna's library (800+ games: OvO, Retro Bowl, FNAF series, Brotato, Geometry Dash, Iron Lung, Cuphead, Hollow Knight, Celeste, and hundreds more)
-- Homework help (math, science, english, history)
-- General questions and casual chat
-Never be preachy. You're talking to students who are probably supposed to be doing something else right now. Keep it fun.`,
-        messages: aiHistory,
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: aiHistory }),
     });
     const data = await res.json();
     const reply = data.content?.[0]?.text || "something went wrong, try again";

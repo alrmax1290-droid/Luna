@@ -1270,7 +1270,7 @@ document.addEventListener('click', e => {
 // VISITOR COUNTER
 async function loadCount() {
   try {
-    const res = await fetch('https://cosmos-hub.alrmax1290.workers.dev/count');
+    const res = await fetch('https://cosmoshub.alrmax1290.workers.dev/count');
     const data = await res.json();
     const el = document.getElementById('visitorCount');
     if (el && data.count) {

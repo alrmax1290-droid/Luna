@@ -1928,7 +1928,63 @@ function drawSeason() {
 }
 drawSeason();
 
-// NOTES WIDGET
+// FLOATING ASTRONAUT
+(function() {
+  const astronaut = document.createElement('div');
+  astronaut.style.cssText = `
+    position:fixed; z-index:2; pointer-events:none;
+    font-size:36px; opacity:0; transition:opacity 1s ease;
+    filter: drop-shadow(0 0 8px rgba(112,144,255,0.4));
+  `;
+  astronaut.textContent = '👨‍🚀';
+  document.body.appendChild(astronaut);
+
+  function launchAstronaut() {
+    const h = window.innerHeight;
+    const w = window.innerWidth;
+
+    // Pick a random direction to cross the screen
+    const fromLeft = Math.random() > 0.5;
+    const startX = fromLeft ? -80 : w + 80;
+    const endX = fromLeft ? w + 80 : -80;
+    const startY = 80 + Math.random() * (h - 160);
+    const drift = (Math.random() - 0.5) * 200; // vertical drift
+    const duration = 12000 + Math.random() * 8000;
+    const rotation = fromLeft ? 
+      -15 + Math.random() * 30 : 
+      165 + Math.random() * 30;
+
+    astronaut.style.left = startX + 'px';
+    astronaut.style.top = startY + 'px';
+    astronaut.style.transform = `rotate(${rotation}deg)`;
+    astronaut.style.opacity = '0';
+
+    // Fade in
+    setTimeout(() => { astronaut.style.opacity = '0.85'; }, 100);
+
+    const start = performance.now();
+    function animate(now) {
+      const pct = Math.min((now - start) / duration, 1);
+      const ease = pct; // linear drift through space
+      const x = startX + (endX - startX) * ease;
+      const y = startY + drift * Math.sin(pct * Math.PI);
+      astronaut.style.left = x + 'px';
+      astronaut.style.top = y + 'px';
+
+      if (pct < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        astronaut.style.opacity = '0';
+        // Schedule next appearance: 30-90 seconds
+        setTimeout(launchAstronaut, 30000 + Math.random() * 60000);
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  // First appearance after 10-25 seconds
+  setTimeout(launchAstronaut, 10000 + Math.random() * 15000);
+})();
 const notesArea = document.getElementById('notesArea');
 if (notesArea) {
   notesArea.value = localStorage.getItem('luna_notes') || '';

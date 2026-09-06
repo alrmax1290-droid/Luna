@@ -636,11 +636,9 @@ body.alt-theme {
     <div class="nav-links">
       <a href="index.html" class="active">home</a>
       <a href="singlefile.html">games</a>
-      <a href="movies.html">movies</a>
-      <a href="music.html">music</a>
+      <a href="browse.html">browse</a>
       <a href="settings.html">settings</a>
     </div>
-    <button class="theme-btn" id="camoBtn" title="camo mode">🎭</button>
     <button class="theme-btn" id="musicBtn" title="lo-fi music">🎵</button>
     <button class="theme-btn" id="changelogBtn" title="whats new">📋</button>
     <button class="theme-btn" id="cloakBtn" title="tab cloak">🔒</button>
@@ -669,43 +667,6 @@ body.alt-theme {
     background: none; border: none; color: #7090ff; cursor: pointer;
     font-size: 14px; position: absolute; right: 12px; opacity: 0.6;
   ">×</button>
-</div>
-
-<!-- CAMO OVERLAY -->
-<div id="camoOverlay" style="display:none; position:fixed; inset:0; z-index:99999; background:#fff; overflow:auto;">
-  <div style="max-width:900px; margin:0 auto; padding:20px; font-family:Google Sans,Arial,sans-serif;">
-    <div style="display:flex; align-items:center; gap:16px; padding:12px 0; border-bottom:1px solid #e0e0e0; margin-bottom:20px;">
-      <img src="https://ssl.gstatic.com/classroom/favicon.png" width="32" height="32">
-      <span style="font-size:22px; color:#1a73e8; font-weight:500;">Google Classroom</span>
-      <button onclick="exitCamo()" style="margin-left:auto; background:#1a73e8; color:#fff; border:none; border-radius:4px; padding:8px 16px; cursor:pointer; font-size:14px;">Exit Camo</button>
-    </div>
-    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px;">
-      <div style="border:1px solid #e0e0e0; border-radius:8px; overflow:hidden; cursor:pointer;">
-        <div style="height:100px; background:linear-gradient(135deg,#1a73e8,#0d47a1); display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px;">📐</div>
-        <div style="padding:12px;"><div style="font-weight:500; font-size:14px;">Math - Period 3</div><div style="font-size:12px; color:#666; margin-top:4px;">Mr. Johnson</div></div>
-      </div>
-      <div style="border:1px solid #e0e0e0; border-radius:8px; overflow:hidden; cursor:pointer;">
-        <div style="height:100px; background:linear-gradient(135deg,#34a853,#1e8e3e); display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px;">📚</div>
-        <div style="padding:12px;"><div style="font-weight:500; font-size:14px;">English - Period 4</div><div style="font-size:12px; color:#666; margin-top:4px;">Mrs. Smith</div></div>
-      </div>
-      <div style="border:1px solid #e0e0e0; border-radius:8px; overflow:hidden; cursor:pointer;">
-        <div style="height:100px; background:linear-gradient(135deg,#ea4335,#c5221f); display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px;">🔬</div>
-        <div style="padding:12px;"><div style="font-weight:500; font-size:14px;">Science - Period 5</div><div style="font-size:12px; color:#666; margin-top:4px;">Mr. Davis</div></div>
-      </div>
-      <div style="border:1px solid #e0e0e0; border-radius:8px; overflow:hidden; cursor:pointer;">
-        <div style="height:100px; background:linear-gradient(135deg,#fbbc04,#e37400); display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px;">🌍</div>
-        <div style="padding:12px;"><div style="font-weight:500; font-size:14px;">History - Period 6</div><div style="font-size:12px; color:#666; margin-top:4px;">Ms. Wilson</div></div>
-      </div>
-    </div>
-    <div style="margin-top:30px; padding:20px; background:#f8f9fa; border-radius:8px;">
-      <div style="font-weight:500; margin-bottom:12px; color:#3c4043;">📋 Upcoming Assignments</div>
-      <div style="font-size:14px; color:#5f6368; display:flex; flex-direction:column; gap:8px;">
-        <div style="display:flex; justify-content:space-between;"><span>Math Worksheet Ch. 7</span><span style="color:#1a73e8;">Due Tomorrow</span></div>
-        <div style="display:flex; justify-content:space-between;"><span>English Essay Draft</span><span style="color:#ea4335;">Due Today</span></div>
-        <div style="display:flex; justify-content:space-between;"><span>Science Lab Report</span><span style="color:#5f6368;">Due Friday</span></div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- CHANGELOG MODAL -->
@@ -752,11 +713,7 @@ body.alt-theme {
 </div>
 
 <!-- LO-FI MUSIC -->
-<audio id="lofiAudio" loop style="display:none">
-  <source src="lofi.mp3" type="audio/mpeg">
-  <source src="https://cdn.pixabay.com/audio/2024/11/13/audio_a5310c1455.mp3" type="audio/mpeg">
-  <source src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
-</audio>
+<audio id="lofiAudio" loop style="display:none"></audio>
 
 <section class="hero">
   <div class="hero-left">
@@ -826,15 +783,15 @@ body.alt-theme {
       <div class="qc-title">games</div>
       <div class="qc-desc">800+ games on here. search what u want</div>
     </a>
-    <a href="movies.html" class="quick-card">
-      <span class="qc-icon">🎬</span>
-      <div class="qc-title">movies</div>
-      <div class="qc-desc">watch stuff</div>
+    <a href="browse.html" class="quick-card">
+      <span class="qc-icon">🌐</span>
+      <div class="qc-title">browse</div>
+      <div class="qc-desc">movies, music, and anything else</div>
     </a>
-    <a href="music.html" class="quick-card">
-      <span class="qc-icon">🎵</span>
-      <div class="qc-title">music</div>
-      <div class="qc-desc">listen to music</div>
+    <a href="settings.html" class="quick-card">
+      <span class="qc-icon">⚙️</span>
+      <div class="qc-title">settings</div>
+      <div class="qc-desc">tab cloak, themes, panic button and more</div>
     </a>
   </div>
 
@@ -1333,29 +1290,6 @@ const announcements = [
 const announcementEl = document.getElementById('announcementText');
 announcementEl.textContent = announcements[Math.floor(Math.random() * announcements.length)];
 
-// CAMO MODE
-const camoBtn = document.getElementById('camoBtn');
-function exitCamo() {
-  document.getElementById('camoOverlay').style.display = 'none';
-  document.title = 'Luna';
-  // restore favicon
-  applyCloak(cloakIndex);
-}
-camoBtn.addEventListener('click', () => {
-  document.getElementById('camoOverlay').style.display = 'block';
-  document.title = 'Google Classroom';
-  let link = document.querySelector("link[rel~='icon']");
-  if (!link) { link = document.createElement('link'); link.rel = 'icon'; document.head.appendChild(link); }
-  link.href = 'https://ssl.gstatic.com/classroom/favicon.png';
-});
-// Escape exits camo too
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    exitCamo();
-    closeChangelog();
-  }
-});
-
 // CHANGELOG
 const changelogBtn = document.getElementById('changelogBtn');
 function closeChangelog() {
@@ -1372,10 +1306,28 @@ if (!localStorage.getItem('luna_changelog_v3')) {
   }, 2000);
 }
 
-// LO-FI MUSIC
+// LO-FI MUSIC - multiple tracks
+const TRACKS = [
+  { name: 'chill beats', url: 'https://cdn.pixabay.com/audio/2024/11/13/audio_a5310c1455.mp3' },
+  { name: 'lofi study', url: 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3' },
+  { name: 'night vibes', url: 'https://cdn.pixabay.com/audio/2023/06/22/audio_a4e5a25a2d.mp3' },
+  { name: 'focus mode', url: 'https://cdn.pixabay.com/audio/2022/10/25/audio_946f8a8b01.mp3' },
+  { name: 'rainy day', url: 'https://cdn.pixabay.com/audio/2023/09/26/audio_b9eea29f6a.mp3' },
+];
+let trackIndex = 0;
 const musicBtn = document.getElementById('musicBtn');
 const lofiAudio = document.getElementById('lofiAudio');
 let musicPlaying = false;
+
+function loadTrack(idx) {
+  trackIndex = ((idx % TRACKS.length) + TRACKS.length) % TRACKS.length;
+  lofiAudio.src = TRACKS[trackIndex].url;
+  if (musicPlaying) lofiAudio.play().catch(() => {});
+  musicBtn.title = TRACKS[trackIndex].name;
+}
+
+loadTrack(0);
+
 musicBtn.addEventListener('click', () => {
   if (musicPlaying) {
     lofiAudio.pause();
@@ -1388,6 +1340,15 @@ musicBtn.addEventListener('click', () => {
     musicBtn.textContent = '🔊';
     musicBtn.style.color = '#7090ff';
     musicPlaying = true;
+  }
+});
+
+// Right-click music button to skip track
+musicBtn.addEventListener('contextmenu', e => {
+  e.preventDefault();
+  loadTrack(trackIndex + 1);
+  if (musicPlaying) {
+    musicBtn.title = TRACKS[trackIndex].name;
   }
 });
 
@@ -1631,37 +1592,47 @@ async function sendAI() {
   const text = input.value.trim();
   if (!text) return;
   input.value = '';
+  input.disabled = true;
 
   addMessage(text, true);
   aiHistory.push({ role: 'user', content: text });
 
-  const thinking = addMessage('...', false);
+  const thinking = addMessage('thinking...', false);
+  thinking.style.opacity = '0.5';
 
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': 'placeholder',
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
         max_tokens: 1000,
-        system: `You are Luna AI, a helpful assistant built into Luna — an unblocked games site for students. You help with:
-- Game tips, cheats, walkthroughs, and recommendations
-- Homework help (math, science, english, history, etc.)
+        system: `You are Luna AI, a chill helpful assistant built into Luna — an unblocked games site for students. Keep responses short and casual. You help with:
+- Game tips, cheats, walkthroughs for any game
+- Game recommendations from Luna's library (800+ games: OvO, Retro Bowl, FNAF series, Brotato, Geometry Dash, Iron Lung, Cuphead, Hollow Knight, Celeste, and hundreds more)
+- Homework help (math, science, english, history)
 - General questions and casual chat
-- Recommending games from the Luna library (800+ games including OvO, Retro Bowl, FNAF, Brotato, Geometry Dash, Iron Lung, Cuphead, etc.)
-
-Keep responses concise, friendly, and slightly casual. Use short paragraphs. Never be preachy. You're talking to students who are probably supposed to be doing something else.`,
+Never be preachy. You're talking to students who are probably supposed to be doing something else right now. Keep it fun.`,
         messages: aiHistory,
       })
     });
     const data = await res.json();
-    const reply = data.content?.[0]?.text || "sorry something went wrong, try again";
+    const reply = data.content?.[0]?.text || "something went wrong, try again";
     thinking.textContent = reply;
+    thinking.style.opacity = '1';
     aiHistory.push({ role: 'assistant', content: reply });
     if (aiHistory.length > 20) aiHistory = aiHistory.slice(-20);
   } catch(e) {
-    thinking.textContent = "couldn't connect rn, try again in a sec";
+    thinking.textContent = "couldn't connect — try again in a sec";
+    thinking.style.opacity = '1';
   }
+  input.disabled = false;
+  input.focus();
 }
 </script>
 <div id="pageTransition" style="

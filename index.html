@@ -734,7 +734,9 @@ body.alt-theme {
         max-height:200px; overflow-y:auto;
       "></div>
     </div>
-    <span id="visitorCount">...</span> ppl been here
+    <div style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-family:'Space Mono',monospace;font-size:11px;color:#606880;letter-spacing:1px;">
+      <div style="width:5px;height:5px;border-radius:50%;background:#7090ff;animation:blink 2s ease-in-out infinite;"></div>
+      <span id="visitorCount">...</span> ppl been here
     </div>
   </div>
   <div class="hero-right">
@@ -1263,6 +1265,28 @@ document.addEventListener('click', e => {
   update();
 })();
 
+// VISITOR COUNTER
+async function loadCount() {
+  try {
+    const res = await fetch('https://cosmos-hub.alrmax1290.workers.dev/count');
+    const data = await res.json();
+    const el = document.getElementById('visitorCount');
+    if (el && data.count) {
+      let c = 0;
+      const step = Math.max(1, Math.ceil(data.count / 40));
+      const t = setInterval(() => {
+        c = Math.min(c + step, data.count);
+        el.textContent = c.toLocaleString();
+        if (c >= data.count) clearInterval(t);
+      }, 30);
+    }
+  } catch(e) {
+    const el = document.getElementById('visitorCount');
+    if (el) el.parentElement.style.display = 'none';
+  }
+}
+loadCount();
+
 // MOBILE MENU
 function toggleMobileMenu() {
   const menu = document.getElementById('mobileMenu');
@@ -1272,11 +1296,16 @@ function closeMobileMenu() {
   document.getElementById('mobileMenu').style.display = 'none';
 }
 
-// PANIC BUTTON
+// PANIC + ESCAPE
 document.addEventListener('keydown', e => {
   if (e.key === 'F1' && localStorage.getItem('luna_panic') !== 'false') {
     e.preventDefault();
     window.location.href = 'https://google.com';
+  }
+  if (e.key === 'Escape') {
+    hideChromeUpdate();
+    closeChangelog();
+    document.getElementById('rouletteModal').style.display = 'none';
   }
 });
 
@@ -1316,6 +1345,10 @@ if (!localStorage.getItem('luna_changelog_v3')) {
 const TRACKS = [
   { name: 'chill beats 🎵', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_01_-_Night_Owl.mp3' },
   { name: 'rainy day 🌧️', url: 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3' },
+  { name: 'something elated ✨', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_04_-_Something_Elated.mp3' },
+  { name: 'interlude 🌙', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kai_Engel/Satin/Kai_Engel_-_08_-_Interlude.mp3' },
+  { name: 'spring gang 🌸', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_02_-_Enthusiast.mp3' },
+  { name: 'day bird 🐦', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_05_-_Day_Bird.mp3' },
 ];
 let trackIndex = 0;
 const musicBtn = document.getElementById('musicBtn');
@@ -1766,20 +1799,24 @@ drawSeason();
 
 // NOTES WIDGET
 const notesArea = document.getElementById('notesArea');
-notesArea.value = localStorage.getItem('luna_notes') || '';
-notesArea.addEventListener('input', () => {
-  localStorage.setItem('luna_notes', notesArea.value);
-});
+if (notesArea) {
+  notesArea.value = localStorage.getItem('luna_notes') || '';
+  notesArea.addEventListener('input', () => {
+    localStorage.setItem('luna_notes', notesArea.value);
+  });
+}
 
 function toggleNotes() {
   const w = document.getElementById('notesWidget');
-  w.style.display = w.style.display === 'flex' ? 'none' : 'flex';
+  const isVisible = w.style.display === 'flex';
+  w.style.display = isVisible ? 'none' : 'flex';
 }
 
 // Drag notes widget
 (function() {
   const widget = document.getElementById('notesWidget');
   const handle = document.getElementById('notesDrag');
+  if (!handle) return;
   let dragging = false, ox = 0, oy = 0;
   handle.addEventListener('mousedown', e => {
     dragging = true;
@@ -1799,7 +1836,8 @@ function toggleNotes() {
 // TIMER WIDGET
 function toggleTimer() {
   const w = document.getElementById('timerWidget');
-  w.style.display = w.style.display === 'flex' ? 'none' : 'flex';
+  const isVisible = w.style.display === 'flex';
+  w.style.display = isVisible ? 'none' : 'flex';
 }
 
 let timerInterval = null;
@@ -1826,32 +1864,30 @@ function startTimer() {
   }
   update();
   timerInterval = setInterval(update, 1000);
+}
+
 // FAKE CHROMEBOOK UPDATE SCREEN
+let chromeUpdateTimer = null;
 function showChromeUpdate() {
   const overlay = document.getElementById('chromeUpdateOverlay');
   overlay.style.display = 'flex';
   let pct = 0;
   const bar = document.getElementById('chromeUpdateBar');
   const pctEl = document.getElementById('chromeUpdatePct');
-  const interval = setInterval(() => {
-    pct += Math.random() * 2;
+  bar.style.width = '0%';
+  pctEl.textContent = '0%';
+  if (chromeUpdateTimer) clearInterval(chromeUpdateTimer);
+  chromeUpdateTimer = setInterval(() => {
+    pct += Math.random() * 1.5;
     if (pct > 99) pct = 99;
     bar.style.width = pct + '%';
     pctEl.textContent = Math.floor(pct) + '%';
   }, 200);
-  document.getElementById('chromeUpdateInterval').value = interval;
 }
-
-document.addEventListener('keydown', e => {
-  const overlay = document.getElementById('chromeUpdateOverlay');
-  if (overlay && overlay.style.display !== 'none') {
-    if (e.key === 'Escape' || e.key === 'F1') {
-      clearInterval(parseInt(document.getElementById('chromeUpdateInterval').value));
-      overlay.style.display = 'none';
-      e.preventDefault();
-    }
-  }
-});
+function hideChromeUpdate() {
+  if (chromeUpdateTimer) clearInterval(chromeUpdateTimer);
+  document.getElementById('chromeUpdateOverlay').style.display = 'none';
+}
 
 // GAME ROULETTE
 function spinRoulette() {
@@ -1888,16 +1924,19 @@ function spinRoulette() {
 </script>
 
 <!-- CHROMEBOOK UPDATE OVERLAY -->
-<div id="chromeUpdateOverlay" style="display:none; position:fixed; inset:0; z-index:999999; background:#fff; flex-direction:column; align-items:center; justify-content:center; font-family:Google Sans,Arial,sans-serif;">
-  <input type="hidden" id="chromeUpdateInterval" value="0">
-  <img src="https://www.google.com/images/chrome/chrome_setasdefault_bar_icon_256x256.png" width="80" style="margin-bottom:24px; opacity:0.8;">
-  <div style="font-size:22px; color:#202124; font-weight:400; margin-bottom:8px;">Updating your Chromebook</div>
-  <div style="font-size:14px; color:#5f6368; margin-bottom:32px;">Don't turn off your Chromebook</div>
-  <div style="width:320px; height:4px; background:#e0e0e0; border-radius:2px; overflow:hidden; margin-bottom:12px;">
-    <div id="chromeUpdateBar" style="height:100%; width:0%; background:#1a73e8; border-radius:2px; transition:width 0.3s;"></div>
+<div id="chromeUpdateOverlay" style="display:none; position:fixed; inset:0; z-index:999999; background:#f1f3f4; flex-direction:column; align-items:center; justify-content:center; font-family:'Google Sans',Arial,sans-serif;">
+  <div style="text-align:center; max-width:400px;">
+    <div style="width:72px; height:72px; margin:0 auto 24px; background:#1a73e8; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+    </div>
+    <div style="font-size:24px; color:#202124; font-weight:400; margin-bottom:8px;">Updating your Chromebook</div>
+    <div style="font-size:14px; color:#5f6368; margin-bottom:40px;">Don't turn off your Chromebook. This will take a few minutes.</div>
+    <div style="width:100%; height:4px; background:#dadce0; border-radius:2px; overflow:hidden; margin-bottom:12px;">
+      <div id="chromeUpdateBar" style="height:100%; width:0%; background:#1a73e8; border-radius:2px; transition:width 0.3s ease;"></div>
+    </div>
+    <div id="chromeUpdatePct" style="font-size:13px; color:#5f6368;">0%</div>
   </div>
-  <div id="chromeUpdatePct" style="font-size:13px; color:#5f6368;">0%</div>
-  <div style="position:absolute; bottom:20px; font-size:11px; color:#bbb;">Press Escape to exit</div>
+  <div style="position:absolute; bottom:20px; font-size:12px; color:#9aa0a6; font-family:Arial,sans-serif;">Press Escape to exit</div>
 </div>
 
 <!-- ROULETTE MODAL -->

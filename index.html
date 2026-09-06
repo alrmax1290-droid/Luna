@@ -1345,10 +1345,9 @@ if (!localStorage.getItem('luna_changelog_v3')) {
 const TRACKS = [
   { name: 'chill beats 🎵', url: 'https://cdn.pixabay.com/audio/2022/10/25/audio_946f8a8b01.mp3' },
   { name: 'rainy day 🌧️', url: 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3' },
-  { name: 'lofi study 📚', url: 'https://cdn.pixabay.com/audio/2024/02/28/audio_b5a0c7e6b9.mp3' },
-  { name: 'night vibes 🌙', url: 'https://cdn.pixabay.com/audio/2023/11/13/audio_9a6d5c3b2e.mp3' },
   { name: 'focus mode 🎯', url: 'https://cdn.pixabay.com/audio/2022/08/04/audio_2dde668d05.mp3' },
-  { name: 'calm piano 🎹', url: 'https://cdn.pixabay.com/audio/2024/01/15/audio_3f4e5b6c7d.mp3' },
+  { name: 'lofi hip hop 🎧', url: 'https://cdn.pixabay.com/audio/2022/11/22/audio_febc508520.mp3' },
+  { name: 'late night 🌃', url: 'https://cdn.pixabay.com/audio/2023/01/24/audio_24c820776b.mp3' },
 ];
 let trackIndex = 0;
 const musicBtn = document.getElementById('musicBtn');
@@ -1407,7 +1406,10 @@ function selectTrack(idx) {
   trackIndex = idx;
   lofiAudio.src = TRACKS[idx].url;
   lofiAudio.volume = 0.3;
-  lofiAudio.play().catch(() => {});
+  lofiAudio.play().catch(() => {
+    // track failed, skip to next
+    selectTrack((idx + 1) % TRACKS.length);
+  });
   musicPlaying = true;
   musicBtn.textContent = '🔊';
   musicBtn.style.color = '#7090ff';

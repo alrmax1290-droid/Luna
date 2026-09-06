@@ -427,27 +427,6 @@ nav {
 
 .stat-l { font-size: 12px; color: var(--muted); letter-spacing: 0.5px; }
 
-/* VISITOR */
-.typing-cursor {
-  display: inline-block;
-  color: var(--accent2);
-  animation: blink 1s step-end infinite;
-  font-weight: 300;
-}
-
-.visitor-tag {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: 'Space Mono', monospace; font-size: 11px;
-  color: var(--muted); margin-top: 20px;
-  letter-spacing: 1px;
-}
-
-.visitor-dot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--accent2);
-  animation: blink 2s ease-in-out infinite;
-}
-
 @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.2; } }
 
 /* FOOTER */
@@ -646,6 +625,7 @@ body.alt-theme {
     </div>
     <button class="theme-btn menu-toggle" id="menuToggle" onclick="toggleMobileMenu()" title="menu">☰</button>
     <button class="theme-btn" id="musicBtn" title="lo-fi music">🎵</button>
+    <button class="theme-btn" onclick="showChromeUpdate()" title="fake chromebook update">💻</button>
     <button class="theme-btn" id="changelogBtn" title="whats new">📋</button>
     <button class="theme-btn" id="cloakBtn" title="tab cloak">🔒</button>
     <button class="theme-btn" id="themeBtn" title="switch theme">🌙</button>
@@ -737,7 +717,7 @@ body.alt-theme {
     <p class="hero-desc"><span id="typing-quote"></span><span class="typing-cursor">|</span></p>
     <div class="hero-btns">
       <a href="singlefile.html" class="btn-main">games</a>
-      <button onclick="surpriseMe()" class="btn-sec">random game</button>
+      <button onclick="spinRoulette()" class="btn-sec">🎰 spin roulette</button>
     </div>
     <div style="margin-top:16px; position:relative; max-width:340px;">
       <input id="heroSearch" type="text" placeholder="search games..." style="
@@ -754,9 +734,7 @@ body.alt-theme {
         max-height:200px; overflow-y:auto;
       "></div>
     </div>
-    <div class="visitor-tag">
-      <div class="visitor-dot"></div>
-      <span id="visitorCount">...</span> ppl been here
+    <span id="visitorCount">...</span> ppl been here
     </div>
   </div>
   <div class="hero-right">
@@ -811,7 +789,7 @@ body.alt-theme {
   <div class="stats-row">
     <div class="stat"><div class="stat-n">800+</div><div class="stat-l">games</div></div>
     <div class="stat"><div class="stat-n" id="onlineCount">--</div><div class="stat-l">playing right now</div></div>
-    <div class="stat"><div class="stat-n" id="visitorCountStat">...</div><div class="stat-l">total visitors</div></div>
+    <div class="stat"><div class="stat-n">🔒</div><div class="stat-l">no tracking</div></div>
     <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">always up</div></div>
   </div>
 
@@ -829,7 +807,7 @@ body.alt-theme {
 <script>
 // TYPING QUOTES
 const TYPING_QUOTES = [
-  "games, movies, music. pick something.",
+  "games. browse. vibe. pick something.",
   "Cmon we all know that Marval Rivals is overrated",
   "Everyone knows ur a furry buddy",
   "For the love of god go touch some grass",
@@ -1117,7 +1095,7 @@ document.getElementById('gotdCard').href = `play.html?game=${gotd.key}`;
 // RECENTLY PLAYED
 function renderRecent() {
   try {
-    const recent = JSON.parse(localStorage.getItem('cosmos_recent') || '[]');
+    const recent = JSON.parse(localStorage.getItem('luna_recent') || '[]');
     if (!recent.length) return;
     document.getElementById('recentSection').style.display = 'block';
     const grid = document.getElementById('recentGrid');
@@ -1336,11 +1314,8 @@ if (!localStorage.getItem('luna_changelog_v3')) {
 // LO-FI MUSIC - multiple tracks
 // LO-FI MUSIC - multiple tracks with selector
 const TRACKS = [
-  { name: 'chill beats', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_01_-_Night_Owl.mp3' },
-  { name: 'lofi study', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kai_Engel/Satin/Kai_Engel_-_08_-_Interlude.mp3' },
-  { name: 'night vibes', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_04_-_Something_Elated.mp3' },
-  { name: 'focus mode', url: 'https://cdn.pixabay.com/audio/2022/10/25/audio_946f8a8b01.mp3' },
-  { name: 'rainy day', url: 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3' },
+  { name: 'chill beats 🎵', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_01_-_Night_Owl.mp3' },
+  { name: 'rainy day 🌧️', url: 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3' },
 ];
 let trackIndex = 0;
 const musicBtn = document.getElementById('musicBtn');
@@ -1465,30 +1440,7 @@ cloakBtn.addEventListener('click', () => {
 applyCloak(cloakIndex);
 
 
-async function loadCount() {
-  try {
-    const res = await fetch('https://cosmos-hub.alrmax1290.workers.dev/count');
-    const data = await res.json();
-    const el = document.getElementById('visitorCount');
-    const el2 = document.getElementById('visitorCountStat');
-    if (data.count) {
-      let c = 0;
-      const step = Math.max(1, Math.ceil(data.count / 40));
-      const t = setInterval(() => {
-        c = Math.min(c + step, data.count);
-        if (el) el.textContent = c.toLocaleString();
-        if (el2) el2.textContent = c.toLocaleString();
-        if (c >= data.count) clearInterval(t);
-      }, 30);
-    }
-  } catch(e) {
-    const el = document.getElementById('visitorCount');
-    if (el) el.parentElement.style.display = 'none';
-    const el2 = document.getElementById('visitorCountStat');
-    if (el2) el2.textContent = '?';
-  }
-}
-loadCount();
+
 </script>
 
 
@@ -1874,7 +1826,92 @@ function startTimer() {
   }
   update();
   timerInterval = setInterval(update, 1000);
+// FAKE CHROMEBOOK UPDATE SCREEN
+function showChromeUpdate() {
+  const overlay = document.getElementById('chromeUpdateOverlay');
+  overlay.style.display = 'flex';
+  let pct = 0;
+  const bar = document.getElementById('chromeUpdateBar');
+  const pctEl = document.getElementById('chromeUpdatePct');
+  const interval = setInterval(() => {
+    pct += Math.random() * 2;
+    if (pct > 99) pct = 99;
+    bar.style.width = pct + '%';
+    pctEl.textContent = Math.floor(pct) + '%';
+  }, 200);
+  document.getElementById('chromeUpdateInterval').value = interval;
+}
+
+document.addEventListener('keydown', e => {
+  const overlay = document.getElementById('chromeUpdateOverlay');
+  if (overlay && overlay.style.display !== 'none') {
+    if (e.key === 'Escape' || e.key === 'F1') {
+      clearInterval(parseInt(document.getElementById('chromeUpdateInterval').value));
+      overlay.style.display = 'none';
+      e.preventDefault();
+    }
+  }
+});
+
+// GAME ROULETTE
+function spinRoulette() {
+  const modal = document.getElementById('rouletteModal');
+  const nameEl = document.getElementById('rouletteName');
+  const descEl = document.getElementById('rouletteDesc');
+  const emojiEl = document.getElementById('rouletteEmoji');
+  modal.style.display = 'flex';
+  
+  let spins = 0;
+  const maxSpins = 20;
+  const interval = setInterval(() => {
+    const pick = GAMES[Math.floor(Math.random() * GAMES.length)];
+    nameEl.textContent = pick.title;
+    descEl.textContent = pick.desc;
+    emojiEl.textContent = pick.emoji;
+    emojiEl.style.transform = `rotate(${Math.random()*360}deg)`;
+    spins++;
+    if (spins >= maxSpins) {
+      clearInterval(interval);
+      const final = GAMES[Math.floor(Math.random() * GAMES.length)];
+      nameEl.textContent = final.title;
+      descEl.textContent = final.desc;
+      emojiEl.textContent = final.emoji;
+      emojiEl.style.transform = 'rotate(0deg)';
+      document.getElementById('roulettePlay').style.display = 'block';
+      document.getElementById('roulettePlay').onclick = () => {
+        window.location.href = `singlefile.html`;
+        modal.style.display = 'none';
+      };
+    }
+  }, spins < 5 ? 80 : spins < 15 ? 120 : 200);
 }
 </script>
+
+<!-- CHROMEBOOK UPDATE OVERLAY -->
+<div id="chromeUpdateOverlay" style="display:none; position:fixed; inset:0; z-index:999999; background:#fff; flex-direction:column; align-items:center; justify-content:center; font-family:Google Sans,Arial,sans-serif;">
+  <input type="hidden" id="chromeUpdateInterval" value="0">
+  <img src="https://www.google.com/images/chrome/chrome_setasdefault_bar_icon_256x256.png" width="80" style="margin-bottom:24px; opacity:0.8;">
+  <div style="font-size:22px; color:#202124; font-weight:400; margin-bottom:8px;">Updating your Chromebook</div>
+  <div style="font-size:14px; color:#5f6368; margin-bottom:32px;">Don't turn off your Chromebook</div>
+  <div style="width:320px; height:4px; background:#e0e0e0; border-radius:2px; overflow:hidden; margin-bottom:12px;">
+    <div id="chromeUpdateBar" style="height:100%; width:0%; background:#1a73e8; border-radius:2px; transition:width 0.3s;"></div>
+  </div>
+  <div id="chromeUpdatePct" style="font-size:13px; color:#5f6368;">0%</div>
+  <div style="position:absolute; bottom:20px; font-size:11px; color:#bbb;">Press Escape to exit</div>
+</div>
+
+<!-- ROULETTE MODAL -->
+<div id="rouletteModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.8); backdrop-filter:blur(8px); flex-direction:column; align-items:center; justify-content:center; gap:20px;">
+  <div style="background:#080812; border:1px solid rgba(112,144,255,0.2); border-radius:20px; padding:40px; text-align:center; max-width:380px; width:90%;">
+    <div style="font-family:'Space Mono',monospace; font-size:10px; color:#7090ff; letter-spacing:3px; margin-bottom:20px;">// spinning...</div>
+    <div id="rouletteEmoji" style="font-size:64px; margin-bottom:16px; transition:transform 0.1s; display:block;">🎮</div>
+    <div id="rouletteName" style="font-size:22px; font-weight:700; color:#e8eeff; margin-bottom:8px;">...</div>
+    <div id="rouletteDesc" style="font-size:13px; color:#606880; margin-bottom:24px;">...</div>
+    <button id="roulettePlay" style="display:none; padding:12px 28px; border-radius:8px; background:#7090ff; border:none; color:#fff; font-size:14px; font-weight:600; cursor:pointer; font-family:'Space Grotesk',sans-serif; margin-bottom:12px;">play this one →</button>
+    <br>
+    <button onclick="document.getElementById('rouletteModal').style.display='none'" style="background:none; border:none; color:#606880; cursor:pointer; font-size:13px; font-family:'Space Grotesk',sans-serif;">close</button>
+  </div>
+</div>
+
 </body>
 </html>

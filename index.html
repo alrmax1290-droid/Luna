@@ -73,29 +73,27 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 0 36px;
-  height: 58px;
-  background: rgba(4,4,10,0.9);
-  backdrop-filter: blur(12px);
+  height: 60px;
+  background: rgba(4,4,10,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 0 rgba(112,144,255,0.05);
 }
 
 .nav-logo {
   font-family: 'Space Mono', monospace;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--moon);
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
+  transition: opacity 0.2s;
 }
+.nav-logo:hover { opacity: 0.8; }
+.nav-logo span { color: var(--accent2); }
 
-.nav-logo span {
-  color: var(--accent2);
-}
-
-.nav-links {
-  display: flex;
-  gap: 2px;
-}
+.nav-links { display: flex; gap: 2px; }
 
 .nav-links a {
   padding: 6px 14px;
@@ -103,28 +101,36 @@ nav {
   font-size: 13px;
   font-weight: 500;
   color: var(--muted);
-  transition: all 0.2s;
+  transition: all 0.15s;
   letter-spacing: 0.3px;
+  position: relative;
 }
-
 .nav-links a:hover { color: var(--text); background: var(--surface2); }
 .nav-links a.active { color: var(--accent3); }
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 50%; transform: translateX(-50%);
+  width: 16px; height: 2px;
+  background: var(--accent2); border-radius: 2px;
+}
 
-.nav-right { display: flex; align-items: center; gap: 8px; }
+.nav-right { display: flex; align-items: center; gap: 6px; }
 
 .theme-btn {
-  width: 32px; height: 32px; border-radius: 6px;
-  border: 1px solid var(--border); background: var(--surface);
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid var(--border); background: transparent;
   color: var(--muted); font-size: 14px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
 }
-.theme-btn:hover { color: var(--text); background: var(--surface2); }
+.theme-btn:hover { color: var(--text); background: var(--surface2); border-color: var(--dim); }
 
 /* HERO */
 .hero {
   position: relative;
   z-index: 1;
-  min-height: 90vh;
+  min-height: 88vh;
   display: flex;
   align-items: center;
   padding: 0 36px;
@@ -137,48 +143,46 @@ nav {
 
 .hero-tag {
   font-family: 'Space Mono', monospace;
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
 .hero-tag::before {
   content: '';
-  width: 24px;
-  height: 1px;
-  background: var(--dim);
+  width: 20px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--dim));
 }
 
 .hero-title {
   font-family: 'Space Mono', monospace;
-  font-size: clamp(42px, 6vw, 80px);
+  font-size: clamp(40px, 5.5vw, 76px);
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.08;
   color: var(--moon);
   margin-bottom: 20px;
-  letter-spacing: -1px;
+  letter-spacing: -2px;
 }
-
 .hero-title .dim { color: var(--dim); }
+.hero-title .accent { color: var(--accent2); }
 
 .hero-desc {
   font-size: 15px;
   color: var(--muted);
-  line-height: 1.7;
-  max-width: 400px;
-  margin-bottom: 36px;
+  line-height: 1.8;
+  max-width: 380px;
+  margin-bottom: 32px;
   font-weight: 400;
 }
 
-.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 0; }
 
 .btn-main {
-  padding: 11px 22px;
+  padding: 11px 24px;
   border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
@@ -189,12 +193,13 @@ nav {
   border: none;
   cursor: pointer;
   font-family: 'Space Grotesk', sans-serif;
+  box-shadow: 0 4px 16px rgba(112,144,255,0.25);
 }
-
-.btn-main:hover { background: #5070ee; transform: translateY(-1px); }
+.btn-main:hover { background: #5070ee; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(112,144,255,0.35); }
+.btn-main:active { transform: translateY(0); }
 
 .btn-sec {
-  padding: 11px 22px;
+  padding: 11px 24px;
   border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
@@ -205,8 +210,7 @@ nav {
   cursor: pointer;
   font-family: 'Space Grotesk', sans-serif;
 }
-
-.btn-sec:hover { color: var(--text); border-color: var(--dim); }
+.btn-sec:hover { color: var(--text); border-color: var(--dim); background: var(--surface); }
 
 /* MOON */
 .hero-right {
@@ -319,67 +323,35 @@ nav {
 .quick-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 60px;
+  gap: 12px;
+  margin-bottom: 56px;
 }
 
 .quick-card {
   background: var(--bg2);
   padding: 28px 24px;
-  transition: all 0.2s;
+  transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
   cursor: pointer;
   display: block;
-}
-
-.quick-card:hover { background: var(--surface2); }
-
-.qc-icon { font-size: 24px; margin-bottom: 14px; display: block; }
-.qc-title { font-size: 16px; font-weight: 600; color: var(--moon); margin-bottom: 6px; }
-.qc-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-/* GAMES */
-.games-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1px;
+  border-radius: 14px;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  position: relative;
   overflow: hidden;
 }
-
-.game-card {
-  background: var(--bg2);
-  transition: all 0.2s;
-  cursor: pointer;
-  display: block;
-  overflow: hidden;
+.quick-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(112,144,255,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.25s;
 }
+.quick-card:hover { border-color: rgba(112,144,255,0.25); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+.quick-card:hover::before { opacity: 1; }
 
-.game-card:hover { background: var(--surface2); }
-
-.game-img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  display: block;
-  filter: brightness(0.7);
-  transition: all 0.3s;
-}
-
-.game-card:hover .game-img { filter: brightness(0.9); transform: scale(1.03); }
-
-.game-info { padding: 12px; }
-.game-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
-.game-tag {
-  font-size: 10px;
-  font-family: 'Space Mono', monospace;
-  color: var(--muted);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
+.qc-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+.qc-title { font-size: 17px; font-weight: 600; color: var(--moon); margin-bottom: 8px; }
+.qc-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
 /* RECENTLY PLAYED */
 .recently-played { margin-bottom: 48px; display: none; }
@@ -387,62 +359,79 @@ nav {
 
 .recent-chip {
   display: flex; align-items: center; gap: 8px;
-  padding: 8px 14px; border-radius: 6px;
+  padding: 8px 14px; border-radius: 8px;
   border: 1px solid var(--border); background: var(--bg2);
   font-size: 13px; color: var(--muted);
   transition: all 0.2s; cursor: pointer;
 }
-.recent-chip:hover { color: var(--text); border-color: var(--dim); }
+.recent-chip:hover { color: var(--text); border-color: rgba(112,144,255,0.3); background: var(--surface2); }
 .recent-chip-emoji { font-size: 16px; }
 
 /* GOTD */
 .gotd {
   display: flex; align-items: center; gap: 20px;
-  padding: 20px 24px; border-radius: 10px;
+  padding: 24px 28px; border-radius: 14px;
   border: 1px solid var(--border); background: var(--bg2);
-  margin-bottom: 48px; transition: all 0.2s;
+  margin-bottom: 48px; transition: all 0.25s;
   text-decoration: none; color: inherit;
+  position: relative; overflow: hidden;
 }
-.gotd:hover { border-color: var(--dim); background: var(--surface); }
-.gotd-left { flex: 1; }
+.gotd::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(112,144,255,0.05) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.25s;
+}
+.gotd:hover { border-color: rgba(112,144,255,0.25); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+.gotd:hover::before { opacity: 1; }
+.gotd-left { flex: 1; position: relative; z-index: 1; }
 .gotd-tag {
   font-family: 'Space Mono', monospace; font-size: 10px;
-  color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;
+  color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
 }
-.gotd-name { font-size: 18px; font-weight: 600; color: var(--moon); margin-bottom: 4px; }
+.gotd-name { font-size: 20px; font-weight: 700; color: var(--moon); margin-bottom: 6px; }
 .gotd-desc { font-size: 13px; color: var(--muted); }
 .gotd-play {
-  padding: 9px 18px; border-radius: 7px; background: var(--accent2);
+  padding: 10px 20px; border-radius: 8px; background: var(--accent2);
   color: #fff; font-size: 13px; font-weight: 600; white-space: nowrap;
-  flex-shrink: 0;
+  flex-shrink: 0; position: relative; z-index: 1;
+  box-shadow: 0 4px 12px rgba(112,144,255,0.3);
+  transition: all 0.2s;
 }
+.gotd:hover .gotd-play { background: #5070ee; box-shadow: 0 6px 16px rgba(112,144,255,0.4); }
 
 /* STATS */
 .stats-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
+  gap: 12px;
   margin-top: 48px;
 }
 
 .stat {
   background: var(--bg2);
-  padding: 20px;
+  padding: 24px 20px;
   text-align: center;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
 }
+.stat:hover { border-color: rgba(112,144,255,0.2); }
 
 .stat-n {
   font-family: 'Space Mono', monospace;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
   color: var(--moon);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  background: linear-gradient(135deg, var(--moon), var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.stat-l { font-size: 12px; color: var(--muted); }
+.stat-l { font-size: 12px; color: var(--muted); letter-spacing: 0.5px; }
 
 /* VISITOR */
 .typing-cursor {
@@ -471,7 +460,7 @@ nav {
 footer {
   position: relative; z-index: 1;
   border-top: 1px solid var(--border);
-  padding: 24px 36px;
+  padding: 28px 36px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -582,30 +571,52 @@ body.alt-theme {
 @media (max-width: 900px) {
   .hero { flex-direction: column; padding: 40px 24px; min-height: unset; text-align: center; }
   .hero-tag { justify-content: center; }
-  .hero-desc { margin: 0 auto 36px; }
+  .hero-desc { margin: 0 auto 32px; }
   .hero-btns { justify-content: center; }
-  .hero-right { width: 240px; height: 240px; }
-  .moon { width: 180px; height: 180px; }
-  .quick-grid { grid-template-columns: 1fr; }
+  .hero-right { width: 220px; height: 220px; }
+  .moon { width: 170px; height: 170px; }
+  .quick-grid { grid-template-columns: 1fr; gap: 8px; }
   .stats-row { grid-template-columns: repeat(2, 1fr); }
   .gotd { flex-direction: column; }
+  #heroSearch { max-width: 100%; }
 }
 
 @media (max-width: 600px) {
-  nav { padding: 0 18px; }
-  .nav-links a { padding: 5px 8px; font-size: 11px; }
-  .theme-btn { width: 28px; height: 28px; font-size: 12px; }
-  .section { padding: 40px 18px; }
-  footer { flex-direction: column; gap: 8px; text-align: center; }
-  .hero { padding: 30px 18px; gap: 30px; }
-  .hero-title { font-size: clamp(32px, 10vw, 60px); }
-  .quick-grid { grid-template-columns: 1fr; }
-  .stats-row { grid-template-columns: repeat(2, 1fr); }
-  .games-grid { grid-template-columns: repeat(2, 1fr); }
+  nav { padding: 0 16px; height: 54px; }
+  .nav-links { display: none; }
+  .theme-btn { width: 30px; height: 30px; font-size: 13px; }
+  .section { padding: 36px 16px; }
+  footer { flex-direction: column; gap: 10px; text-align: center; padding: 20px 16px; }
+  .hero { padding: 28px 16px; gap: 24px; }
+  .hero-title { font-size: clamp(30px, 10vw, 56px); letter-spacing: -1px; }
+  .quick-grid { grid-template-columns: 1fr; gap: 8px; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .nav-right { gap: 4px; }
-  .gotd { flex-direction: column; gap: 12px; }
+  .gotd { flex-direction: column; gap: 12px; padding: 18px; }
   .gotd-play { width: 100%; text-align: center; }
+  #aiPanel { width: 100vw !important; }
 }
+
+/* Mobile nav overlay */
+@media (max-width: 600px) {
+  .nav-mobile-menu {
+    display: flex; position: fixed; inset: 0; top: 54px;
+    background: rgba(4,4,10,0.97); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; z-index: 99; padding: 24px;
+  }
+  .nav-mobile-menu a {
+    font-size: 18px; padding: 12px 24px; border-radius: 10px;
+    color: var(--muted); font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; width: 100%; text-align: center;
+    border: 1px solid var(--border);
+  }
+  .nav-mobile-menu a:hover { color: var(--text); background: var(--surface2); }
+  .menu-toggle {
+    display: flex !important;
+  }
+}
+.menu-toggle { display: none; }
 </style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#04040a">
@@ -639,12 +650,19 @@ body.alt-theme {
       <a href="browse.html">browse</a>
       <a href="settings.html">settings</a>
     </div>
+    <button class="theme-btn menu-toggle" id="menuToggle" onclick="toggleMobileMenu()" title="menu">☰</button>
     <button class="theme-btn" id="musicBtn" title="lo-fi music">🎵</button>
     <button class="theme-btn" id="changelogBtn" title="whats new">📋</button>
     <button class="theme-btn" id="cloakBtn" title="tab cloak">🔒</button>
     <button class="theme-btn" id="themeBtn" title="switch theme">🌙</button>
   </div>
 </nav>
+<div class="nav-mobile-menu" id="mobileMenu" style="display:none;">
+  <a href="index.html" onclick="closeMobileMenu()">home</a>
+  <a href="singlefile.html" onclick="closeMobileMenu()">games</a>
+  <a href="browse.html" onclick="closeMobileMenu()">browse</a>
+  <a href="settings.html" onclick="closeMobileMenu()">settings</a>
+</div>
 
 <!-- ANNOUNCEMENT BAR -->
 <div id="announcementBar" style="
@@ -717,7 +735,7 @@ body.alt-theme {
 
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-tag">games / movies / music</div>
+    <div class="hero-tag">games / browse / ai</div>
     <h1 class="hero-title">
       welcome to<br>
       <span class="dim">luna</span>
@@ -797,17 +815,21 @@ body.alt-theme {
 
   <!-- STATS -->
   <div class="stats-row">
-    <div class="stat"><div class="stat-n">800+</div><div class="stat-l">games on here</div></div>
-    <div class="stat"><div class="stat-n">3</div><div class="stat-l">things to do</div></div>
+    <div class="stat"><div class="stat-n">800+</div><div class="stat-l">games</div></div>
     <div class="stat"><div class="stat-n" id="onlineCount">--</div><div class="stat-l">playing right now</div></div>
+    <div class="stat"><div class="stat-n" id="visitorCountStat">...</div><div class="stat-l">total visitors</div></div>
     <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">always up</div></div>
   </div>
 
 </div>
 
 <footer>
-  <span>// luna</span>
-  <span style="color:var(--dim)">made this myself</span>
+  <span style="font-family:'Space Mono',monospace; font-size:12px; color:var(--muted);">// luna <span style="color:var(--dim)">v3.0</span></span>
+  <div style="display:flex; gap:16px; align-items:center;">
+    <a href="secret.html" style="font-size:12px; color:var(--dim); font-family:'Space Mono',monospace; transition:color 0.2s;" onmouseover="this.style.color='var(--muted)'" onmouseout="this.style.color='var(--dim)'">secret</a>
+    <a href="settings.html" style="font-size:12px; color:var(--dim); font-family:'Space Mono',monospace; transition:color 0.2s;" onmouseover="this.style.color='var(--muted)'" onmouseout="this.style.color='var(--dim)'">settings</a>
+    <span style="color:var(--dim); font-size:12px; font-family:'Space Mono',monospace;">made this myself</span>
+  </div>
 </footer>
 
 <script>
@@ -1269,6 +1291,15 @@ document.addEventListener('click', e => {
   update();
 })();
 
+// MOBILE MENU
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.style.display = menu.style.display === 'none' ? 'flex' : 'none';
+}
+function closeMobileMenu() {
+  document.getElementById('mobileMenu').style.display = 'none';
+}
+
 // PANIC BUTTON
 document.addEventListener('keydown', e => {
   if (e.key === 'F1' && localStorage.getItem('luna_panic') !== 'false') {
@@ -1279,13 +1310,16 @@ document.addEventListener('keydown', e => {
 
 // ANNOUNCEMENT BAR
 const announcements = [
-  "🌙 welcome to luna — 800+ games and counting",
+  "🌙 welcome to luna v3.0 — new school year update",
   "💡 tip: press escape to close a game",
-  "🎭 try camo mode if a teacher walks by",
   "🔒 tab cloak cycles through google classroom, docs, and more",
   "🎮 type 'lunar' on the homepage for a surprise",
   "📲 install luna as an app — look for the install button in your address bar",
-  "🎵 lo-fi music now available — click the 🎵 button",
+  "🎵 lo-fi music available — right-click 🎵 to switch tracks",
+  "🤖 luna ai is here — ask for game tips, cheats, or homework help",
+  "⏱️ use the timer widget to track when class ends",
+  "📝 notes widget saves automatically — click 📝 to open",
+  "🌐 browse page for movies, music and more",
 ];
 const announcementEl = document.getElementById('announcementText');
 announcementEl.textContent = announcements[Math.floor(Math.random() * announcements.length)];
@@ -1386,18 +1420,22 @@ async function loadCount() {
     const res = await fetch('https://cosmos-hub.alrmax1290.workers.dev/count');
     const data = await res.json();
     const el = document.getElementById('visitorCount');
-    if (el && data.count) {
+    const el2 = document.getElementById('visitorCountStat');
+    if (data.count) {
       let c = 0;
       const step = Math.max(1, Math.ceil(data.count / 40));
       const t = setInterval(() => {
         c = Math.min(c + step, data.count);
-        el.textContent = c.toLocaleString();
+        if (el) el.textContent = c.toLocaleString();
+        if (el2) el2.textContent = c.toLocaleString();
         if (c >= data.count) clearInterval(t);
       }, 30);
     }
   } catch(e) {
     const el = document.getElementById('visitorCount');
     if (el) el.parentElement.style.display = 'none';
+    const el2 = document.getElementById('visitorCountStat');
+    if (el2) el2.textContent = '?';
   }
 }
 loadCount();

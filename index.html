@@ -1537,12 +1537,10 @@ if (!localStorage.getItem('luna_changelog_v3')) {
 const TRACKS = [
   { name: 'rainy day 🌧️', url: 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3' },
   { name: 'focus mode 🎯', url: 'https://cdn.pixabay.com/audio/2022/08/04/audio_2dde668d05.mp3' },
-  { name: 'night owl 🦉', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_01_-_Night_Owl.mp3' },
-  { name: 'something elated ✨', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_04_-_Something_Elated.mp3' },
-  { name: 'enthusiast 🎸', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_02_-_Enthusiast.mp3' },
-  { name: 'day bird 🐦', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_05_-_Day_Bird.mp3' },
-  { name: 'interlude 🌙', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kai_Engel/Satin/Kai_Engel_-_08_-_Interlude.mp3' },
-  { name: 'spectre 👻', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kai_Engel/Satin/Kai_Engel_-_04_-_Spectre.mp3' },
+  { name: 'lofi vibes 🎵', url: 'https://cdn.pixabay.com/audio/2022/10/25/audio_946f8a8b01.mp3' },
+  { name: 'mellow 🎹', url: 'https://cdn.pixabay.com/audio/2021/11/01/audio_cb31e9b07d.mp3' },
+  { name: 'chill hop 🎧', url: 'https://cdn.pixabay.com/audio/2022/01/20/audio_d0c6ff1bcc.mp3' },
+  { name: 'late night 🌃', url: 'https://cdn.pixabay.com/audio/2022/03/15/audio_8cb27a5c27.mp3' },
 ];
 let trackIndex = 0;
 const musicBtn = document.getElementById('musicBtn');
@@ -1596,6 +1594,16 @@ trackPicker.innerHTML = `
   </div>
 `;
 document.body.appendChild(trackPicker);
+
+function openPopularMusic() {
+  const w = window.open('', '_blank');
+  if (!w) { window.location.href = 'browse.html'; return; }
+  w.document.write(`<!DOCTYPE html><html><head><title>New Tab</title>
+  <style>*{margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden}iframe{width:100%;height:100%;border:none}</style>
+  </head><body><iframe src="https://jsdelivr.b-cdn.net/npm/opiumbest/index.svg" allow="autoplay;fullscreen;encrypted-media" allowfullscreen></iframe></body></html>`);
+  w.document.close();
+  trackPicker.style.display = 'none';
+}
 
 function stopMusic() {
   lofiAudio.pause();

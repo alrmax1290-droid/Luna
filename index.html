@@ -1580,6 +1580,16 @@ trackPicker.innerHTML = `
       <span style="font-size:14px;">⏹</span>
       <span>stop music</span>
     </button>
+    <a href="browse.html" style="
+      display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;
+      border-radius:6px;border:none;background:transparent;color:#606880;
+      font-size:13px;cursor:pointer;text-align:left;transition:all 0.15s;
+      font-family:'Space Grotesk',sans-serif;text-decoration:none;
+    " onmouseover="this.style.background='rgba(112,144,255,0.1)';this.style.color='#a0b8ff'"
+       onmouseout="this.style.background='transparent';this.style.color='#606880'">
+      <span style="font-size:14px;">🌐</span>
+      <span>popular music →</span>
+    </a>
   </div>
 `;
 document.body.appendChild(trackPicker);

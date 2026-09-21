@@ -1606,8 +1606,8 @@ function openPopularMusic() {
 }
 
 function stopMusic() {
-  lofiAudio.pause();
-  lofiAudio.currentTime = 0;
+  const audio = window.lofiAudio || document.getElementById('lofiAudio');
+  if (audio) { audio.pause(); audio.src = ''; }
   musicBtn.textContent = '🎵';
   musicBtn.style.color = '';
   musicPlaying = false;
@@ -1617,26 +1617,44 @@ function stopMusic() {
 
 function selectTrack(idx) {
   trackIndex = idx;
-  lofiAudio.src = TRACKS[idx].url;
-  lofiAudio.volume = 0.3;
-  lofiAudio.onerror = () => {
-    // mark as broken and try next
+  
+  // Remove old audio element and create fresh one
+  const old = document.getElementById('lofiAudio');
+  if (old) old.remove();
+  const audio = document.createElement('audio');
+  audio.id = 'lofiAudio';
+  audio.loop = true;
+  audio.volume = 0.3;
+  document.body.appendChild(audio);
+  
+  // Reassign reference
+  window.lofiAudio = audio;
+
+  audio.src = TRACKS[idx].url;
+  
+  audio.onerror = () => {
     const icon = document.getElementById(`trackIcon${idx}`);
-    const btn = document.getElementById(`trackBtn${idx}`);
     if (icon) icon.textContent = '✗';
-    if (btn) btn.style.color = '#606880';
-    const next = (idx + 1) % TRACKS.length;
-    if (next !== trackIndex) selectTrack(next);
+    musicBtn.textContent = '🎵';
+    musicBtn.style.color = '';
+    musicPlaying = false;
   };
-  lofiAudio.play().catch(() => {
-    const next = (idx + 1) % TRACKS.length;
-    if (next !== idx) selectTrack(next);
+
+  audio.play().then(() => {
+    musicPlaying = true;
+    musicBtn.textContent = '🔊';
+    musicBtn.style.color = '#7090ff';
+    updateTrackUI();
+  }).catch(() => {
+    const icon = document.getElementById(`trackIcon${idx}`);
+    if (icon) icon.textContent = '✗';
+    musicBtn.textContent = '🎵';
+    musicBtn.style.color = '';
+    musicPlaying = false;
   });
-  musicPlaying = true;
-  musicBtn.textContent = '🔊';
-  musicBtn.style.color = '#7090ff';
-  updateTrackUI();
+
   trackPicker.style.display = 'none';
+  updateTrackUI();
 }
 
 function updateTrackUI() {

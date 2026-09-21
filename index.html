@@ -2140,7 +2140,7 @@ function showChromeUpdate() {
     pct += Math.random() * 1.5;
     if (pct > 99) pct = 99;
     bar.style.width = pct + '%';
-    pctEl.textContent = Math.floor(pct) + '%';
+    pctEl.textContent = `Downloading... ${Math.floor(pct)}%`;
   }, 200);
 }
 function hideChromeUpdate() {
@@ -2183,20 +2183,22 @@ function spinRoulette() {
 }
 </script>
 
-<!-- CHROMEBOOK UPDATE OVERLAY -->
-<div id="chromeUpdateOverlay" style="display:none; position:fixed; inset:0; z-index:999999; background:#f1f3f4; flex-direction:column; align-items:center; justify-content:center; font-family:'Google Sans',Arial,sans-serif;">
-  <div style="text-align:center; max-width:400px;">
-    <div style="width:72px; height:72px; margin:0 auto 24px; background:#1a73e8; border-radius:50%; display:flex; align-items:center; justify-content:center;">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+<!-- MACBOOK UPDATE OVERLAY -->
+<div id="chromeUpdateOverlay" style="display:none; position:fixed; inset:0; z-index:999999; background:#1e1e1e; flex-direction:column; align-items:center; justify-content:center; font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;">
+  <div style="text-align:center; max-width:420px;">
+    <div style="width:80px; height:80px; margin:0 auto 24px; background:linear-gradient(135deg,#1a73e8,#34a4f5); border-radius:20px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
     </div>
-    <div style="font-size:24px; color:#202124; font-weight:400; margin-bottom:8px;">Updating your Chromebook</div>
-    <div style="font-size:14px; color:#5f6368; margin-bottom:40px;">Don't turn off your Chromebook. This will take a few minutes.</div>
-    <div style="width:100%; height:4px; background:#dadce0; border-radius:2px; overflow:hidden; margin-bottom:12px;">
-      <div id="chromeUpdateBar" style="height:100%; width:0%; background:#1a73e8; border-radius:2px; transition:width 0.3s ease;"></div>
+    <div style="font-size:22px; color:#fff; font-weight:600; margin-bottom:8px;">Software Update</div>
+    <div style="font-size:14px; color:#888; margin-bottom:8px;">macOS Sequoia 15.4.1</div>
+    <div style="font-size:13px; color:#666; margin-bottom:40px;">Installing update... Do not close your Mac.</div>
+    <div style="width:100%; height:6px; background:#333; border-radius:3px; overflow:hidden; margin-bottom:12px;">
+      <div id="chromeUpdateBar" style="height:100%; width:0%; background:linear-gradient(90deg,#1a73e8,#34a4f5); border-radius:3px; transition:width 0.3s ease;"></div>
     </div>
-    <div id="chromeUpdatePct" style="font-size:13px; color:#5f6368;">0%</div>
+    <div id="chromeUpdatePct" style="font-size:13px; color:#888;">Downloading... 0%</div>
+    <div style="margin-top:24px; font-size:12px; color:#555;">About 8 minutes remaining</div>
   </div>
-  <div style="position:absolute; bottom:20px; font-size:12px; color:#9aa0a6; font-family:Arial,sans-serif;">Press Escape to exit</div>
+  <div style="position:absolute; bottom:20px; font-size:11px; color:#444;">Press Escape to exit</div>
 </div>
 
 <!-- ROULETTE MODAL -->

@@ -1535,11 +1535,14 @@ if (!localStorage.getItem('luna_changelog_v3')) {
 // LO-FI MUSIC - multiple tracks
 // LO-FI MUSIC - multiple tracks with selector
 const TRACKS = [
-  { name: 'chill beats 🎵', url: 'https://cdn.pixabay.com/audio/2022/10/25/audio_946f8a8b01.mp3' },
   { name: 'rainy day 🌧️', url: 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3' },
   { name: 'focus mode 🎯', url: 'https://cdn.pixabay.com/audio/2022/08/04/audio_2dde668d05.mp3' },
-  { name: 'lofi hip hop 🎧', url: 'https://cdn.pixabay.com/audio/2022/11/22/audio_febc508520.mp3' },
-  { name: 'late night 🌃', url: 'https://cdn.pixabay.com/audio/2023/01/24/audio_24c820776b.mp3' },
+  { name: 'night owl 🦉', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_01_-_Night_Owl.mp3' },
+  { name: 'something elated ✨', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_04_-_Something_Elated.mp3' },
+  { name: 'enthusiast 🎸', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_02_-_Enthusiast.mp3' },
+  { name: 'day bird 🐦', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_05_-_Day_Bird.mp3' },
+  { name: 'interlude 🌙', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kai_Engel/Satin/Kai_Engel_-_08_-_Interlude.mp3' },
+  { name: 'spectre 👻', url: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kai_Engel/Satin/Kai_Engel_-_04_-_Spectre.mp3' },
 ];
 let trackIndex = 0;
 const musicBtn = document.getElementById('musicBtn');
@@ -1580,16 +1583,16 @@ trackPicker.innerHTML = `
       <span style="font-size:14px;">⏹</span>
       <span>stop music</span>
     </button>
-    <a href="browse.html" style="
+    <button onclick="openPopularMusic()" style="
       display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;
       border-radius:6px;border:none;background:transparent;color:#606880;
       font-size:13px;cursor:pointer;text-align:left;transition:all 0.15s;
-      font-family:'Space Grotesk',sans-serif;text-decoration:none;
+      font-family:'Space Grotesk',sans-serif;
     " onmouseover="this.style.background='rgba(112,144,255,0.1)';this.style.color='#a0b8ff'"
        onmouseout="this.style.background='transparent';this.style.color='#606880'">
       <span style="font-size:14px;">🌐</span>
-      <span>popular music →</span>
-    </a>
+      <span>popular music ↗</span>
+    </button>
   </div>
 `;
 document.body.appendChild(trackPicker);
@@ -1608,9 +1611,18 @@ function selectTrack(idx) {
   trackIndex = idx;
   lofiAudio.src = TRACKS[idx].url;
   lofiAudio.volume = 0.3;
+  lofiAudio.onerror = () => {
+    // mark as broken and try next
+    const icon = document.getElementById(`trackIcon${idx}`);
+    const btn = document.getElementById(`trackBtn${idx}`);
+    if (icon) icon.textContent = '✗';
+    if (btn) btn.style.color = '#606880';
+    const next = (idx + 1) % TRACKS.length;
+    if (next !== trackIndex) selectTrack(next);
+  };
   lofiAudio.play().catch(() => {
-    // track failed, skip to next
-    selectTrack((idx + 1) % TRACKS.length);
+    const next = (idx + 1) % TRACKS.length;
+    if (next !== idx) selectTrack(next);
   });
   musicPlaying = true;
   musicBtn.textContent = '🔊';

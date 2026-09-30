@@ -89,21 +89,26 @@ nav {
   </div>
   <button class="open-btn" onclick="openStealth()">open in stealth tab ↗</button>
 </div>
-<div class="frame-wrap">
-  <div class="loader" id="loader">
-    <div class="loader-ring"></div>
-    <div class="loader-text">loading...</div>
+<div class="frame-wrap" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;">
+  <div style="text-align:center;">
+    <div style="font-size:56px;margin-bottom:20px;">🌐</div>
+    <div style="font-family:'Space Mono',monospace;font-size:10px;color:#7090ff;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;">// browse</div>
+    <div style="font-size:24px;font-weight:700;color:#e8eeff;margin-bottom:8px;">movies, music & more</div>
+    <div style="font-size:14px;color:#606880;margin-bottom:32px;">opens in a stealth tab — URL stays hidden</div>
+    <button onclick="openStealth()" style="
+      padding:14px 36px;border-radius:10px;background:#7090ff;
+      border:none;color:#fff;font-size:15px;font-weight:600;
+      cursor:pointer;font-family:'Space Grotesk',sans-serif;
+      transition:all 0.2s;box-shadow:0 4px 20px rgba(112,144,255,0.3);
+      display:block;margin:0 auto 12px;
+    " onmouseover="this.style.background='#5070ee';this.style.transform='translateY(-2px)'"
+       onmouseout="this.style.background='#7090ff';this.style.transform='none'">
+      open browser ↗
+    </button>
+    <div style="font-size:11px;color:#303848;font-family:'Space Mono',monospace;">tab will show as about:blank</div>
   </div>
-  <iframe id="frame" src="https://cdn.jsdelivr.net/gh/opiumbest/svg/index.svg"
-    allow="autoplay; fullscreen; encrypted-media; pointer-lock" allowfullscreen>
-  </iframe>
 </div>
 <script>
-const frame = document.getElementById('frame');
-const loader = document.getElementById('loader');
-frame.onload = () => loader.classList.add('hidden');
-setTimeout(() => loader.classList.add('hidden'), 6000);
-
 function openStealth() {
   const w = window.open('', '_blank');
   if (!w) { alert('allow popups for Luna'); return; }

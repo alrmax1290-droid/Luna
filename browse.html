@@ -110,12 +110,7 @@ nav {
 </div>
 <script>
 function openStealth() {
-  const w = window.open('', '_blank');
-  if (!w) { alert('allow popups for Luna'); return; }
-  w.document.write(`<!DOCTYPE html><html><head><title>New Tab</title>
-  <style>*{margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden}iframe{width:100%;height:100%;border:none}</style>
-  </head><body><iframe src="https://cdn.jsdelivr.net/gh/opiumbest/svg/index.svg" allow="autoplay;fullscreen;encrypted-media" allowfullscreen></iframe></body></html>`);
-  w.document.close();
+  window.open('https://cdn.jsdelivr.net/gh/opiumbest/svg/index.svg', '_blank');
 }
 
 document.addEventListener('keydown', e => {

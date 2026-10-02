@@ -50,41 +50,23 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
   </div>
   <button class="open-btn" onclick="openStealth()">open in stealth tab ↗</button>
 </div>
-<div class="frame-wrap">
-  <div class="loader" id="loader">
-    <div class="loader-ring"></div>
-    <div class="loader-text">loading...</div>
-  </div>
-  <iframe id="browseFrame" allow="autoplay; fullscreen; pointer-lock" allowfullscreen></iframe>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;padding:40px;">
+  <div style="font-size:52px;">🌐</div>
+  <div style="font-family:'Space Mono',monospace;font-size:10px;color:#7090ff;letter-spacing:3px;text-transform:uppercase;">// browse</div>
+  <div style="font-size:22px;font-weight:700;color:#e8eeff;">movies, music & more</div>
+  <div style="font-size:13px;color:#606880;max-width:320px;line-height:1.6;">full proxy browser — opens in a new tab</div>
+  <button onclick="window.open('browser.html','_blank')" style="
+    padding:14px 36px;border-radius:10px;background:#7090ff;
+    border:none;color:#fff;font-size:15px;font-weight:600;
+    cursor:pointer;font-family:'Space Grotesk',sans-serif;
+    transition:all 0.2s;box-shadow:0 4px 20px rgba(112,144,255,0.3);
+  " onmouseover="this.style.background='#5070ee';this.style.transform='translateY(-2px)'"
+     onmouseout="this.style.background='#7090ff';this.style.transform='none'">
+    open browser ↗
+  </button>
+  <div style="font-size:11px;color:#303848;font-family:'Space Mono',monospace;">tip: use 🔒 tab cloak first</div>
 </div>
 <script>
-const BROWSER_URL = 'browser.html';
-const frame = document.getElementById('browseFrame');
-const loader = document.getElementById('loader');
-
-fetch(BROWSER_URL + '?t=' + Date.now())
-  .then(r => r.text())
-  .then(html => {
-    frame.srcdoc = html;
-    setTimeout(() => loader.classList.add('hidden'), 1000);
-  })
-  .catch(() => {
-    frame.src = BROWSER_URL;
-    loader.classList.add('hidden');
-  });
-
-function openStealth() {
-  const w = window.open('about:blank', '_blank');
-  if (!w) { window.open(BROWSER_URL, '_blank'); return; }
-  fetch(BROWSER_URL + '?t=' + Date.now())
-    .then(r => r.text())
-    .then(html => {
-      w.document.write(html);
-      w.document.close();
-    })
-    .catch(() => { w.location.href = BROWSER_URL; });
-}
-
 document.addEventListener('keydown', e => {
   if (e.key === 'F1') { e.preventDefault(); window.location.href = 'https://google.com'; }
 });

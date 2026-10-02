@@ -9,65 +9,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #04040a; --bg2: #080812;
-  --surface2: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.06);
-  --accent2: #7090ff; --accent3: #a0b8ff;
-  --moon: #e8eeff; --text: #d0d8f0; --muted: #606880;
-}
-body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+:root { --bg: #04040a; --border: rgba(255,255,255,0.06); --accent2: #7090ff; --accent3: #a0b8ff; --moon: #e8eeff; --text: #d0d8f0; --muted: #606880; --dim: #303848; }
+body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 a { text-decoration: none; color: inherit; }
-nav {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 36px; height: 58px; flex-shrink: 0;
-  background: rgba(4,4,10,0.95); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border); z-index: 10;
-}
-.nav-logo { font-family: 'Space Mono', monospace; font-size: 20px; font-weight: 700; color: var(--moon); letter-spacing: 3px; }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 0 36px; height: 58px; background: rgba(4,4,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+.nav-logo { font-family: 'Space Mono', monospace; font-size: 18px; font-weight: 700; color: var(--moon); letter-spacing: 4px; }
 .nav-logo span { color: var(--accent2); }
 .nav-links { display: flex; gap: 2px; }
 .nav-links a { padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); transition: all 0.2s; }
-.nav-links a:hover { color: var(--text); background: var(--surface2); }
+.nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
 .nav-links a.active { color: var(--accent3); }
-.topbar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 8px 20px; background: rgba(4,4,10,0.9);
-  border-bottom: 1px solid var(--border); flex-shrink: 0; gap: 10px;
-}
-.topbar-left { display: flex; align-items: center; gap: 10px; }
-.live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); animation: blink 2s ease-in-out infinite; }
-@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-.topbar-title { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent3); letter-spacing: 1px; }
-.topbar-tip { font-size: 12px; color: var(--muted); }
-.open-btn {
-  padding: 6px 14px; border-radius: 6px; background: rgba(112,144,255,0.1);
-  border: 1px solid rgba(112,144,255,0.2); color: var(--accent3);
-  font-size: 12px; font-weight: 600; cursor: pointer;
-  font-family: 'Space Grotesk', sans-serif; transition: all 0.2s;
-}
-.open-btn:hover { background: rgba(112,144,255,0.2); }
-.frame-wrap { flex: 1; position: relative; overflow: hidden; }
-.frame-wrap iframe { width: 100%; height: 100%; border: none; display: block; background: #000; }
-.loader {
-  position: absolute; inset: 0; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; background: var(--bg);
-  z-index: 5; gap: 16px; transition: opacity 0.4s;
-}
-.loader.hidden { opacity: 0; pointer-events: none; }
-.loader-ring {
-  width: 48px; height: 48px; border-radius: 50%;
-  border: 2px solid rgba(112,144,255,0.15);
-  border-top-color: var(--accent2);
-  animation: spin 0.8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.loader-text { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 2px; }
-@media (max-width: 600px) {
-  nav { padding: 0 16px; }
-  .nav-links a { padding: 5px 8px; font-size: 11px; }
-  .topbar-tip { display: none; }
-}
+.hero { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: calc(100vh - 58px); text-align: center; padding: 40px 24px; gap: 16px; }
+.hero-label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; }
+.hero-label::before { content: '// '; color: var(--dim); }
+.hero-title { font-family: 'Space Mono', monospace; font-size: 36px; font-weight: 700; color: var(--moon); margin-bottom: 8px; }
+.hero-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; max-width: 360px; }
+.btn-grid { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 280px; }
+.btn-main { padding: 14px 24px; border-radius: 10px; background: var(--accent2); border: none; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Space Grotesk', sans-serif; transition: all 0.2s; box-shadow: 0 4px 16px rgba(112,144,255,0.25); }
+.btn-main:hover { background: #5070ee; transform: translateY(-2px); }
+.btn-sec { padding: 12px 24px; border-radius: 10px; background: transparent; border: 1px solid var(--border); color: var(--muted); font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Space Grotesk', sans-serif; transition: all 0.2s; }
+.btn-sec:hover { color: var(--text); border-color: var(--dim); }
+.hint { font-size: 11px; color: var(--dim); font-family: 'Space Mono', monospace; margin-top: 8px; }
 </style>
 </head>
 <body>
@@ -81,65 +43,19 @@ nav {
     <a href="settings.html">settings</a>
   </div>
 </nav>
-<div class="topbar">
-  <div class="topbar-left">
-    <div class="live-dot"></div>
-    <div class="topbar-title">// browse</div>
-    <div class="topbar-tip">movies, music, and more</div>
+<div class="hero">
+  <div class="hero-label">browse</div>
+  <div class="hero-title">movies & music</div>
+  <div class="hero-sub">powered by opium — full proxy browser with movies, music, games and more</div>
+  <div class="btn-grid">
+    <button class="btn-main" onclick="window.location.href='browser.html'">open browser →</button>
+    <button class="btn-sec" onclick="window.open('browser.html','_blank')">open in new tab ↗</button>
   </div>
-  <button class="open-btn" onclick="openStealth()">open in stealth tab ↗</button>
-</div>
-<div class="frame-wrap" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;">
-  <div style="text-align:center;max-width:420px;">
-    <div style="font-size:52px;margin-bottom:20px;">🌐</div>
-    <div style="font-family:'Space Mono',monospace;font-size:10px;color:#7090ff;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;">// browse</div>
-    <div style="font-size:22px;font-weight:700;color:#e8eeff;margin-bottom:8px;">movies, music & more</div>
-    <div style="font-size:13px;color:#606880;margin-bottom:32px;line-height:1.6;">opens in a new tab — use tab cloak 🔒 to disguise it</div>
-    <button onclick="openStealth()" style="
-      padding:14px 36px;border-radius:10px;background:#7090ff;
-      border:none;color:#fff;font-size:15px;font-weight:600;
-      cursor:pointer;font-family:'Space Grotesk',sans-serif;
-      transition:all 0.2s;box-shadow:0 4px 20px rgba(112,144,255,0.3);
-      display:block;margin:0 auto 12px;width:100%;max-width:260px;
-    " onmouseover="this.style.background='#5070ee';this.style.transform='translateY(-2px)'"
-       onmouseout="this.style.background='#7090ff';this.style.transform='none'">
-      open browser ↗
-    </button>
-    <div style="font-size:11px;color:#303848;font-family:'Space Mono',monospace;margin-top:8px;">tab shows as about:blank</div>
-  </div>
+  <div class="hint">tip: use 🔒 tab cloak before opening</div>
 </div>
 <script>
-const frame = document.getElementById('frame');
-const loader = document.getElementById('loader');
-if (frame) frame.onload = () => loader.classList.add('hidden');
-setTimeout(() => { if (loader) loader.classList.add('hidden'); }, 6000);
-
-const browseFrame = document.getElementById('frame');
-const browseLoader = document.getElementById('loader');
-if (browseFrame) browseFrame.onload = () => browseLoader.classList.add('hidden');
-setTimeout(() => { if (browseLoader) browseLoader.classList.add('hidden'); }, 8000);
-
-function openStealth() {
-  const w = window.open('about:blank', '_blank');
-  if (!w) { window.open('https://cdn.jsdelivr.net/gh/opiumbest/svg/index.svg', '_blank'); return; }
-  w.document.write(`<!DOCTYPE html><html><head><title>New Tab</title>
-  <style>*{margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden}iframe{width:100%;height:100%;border:none;display:block}</style>
-  </head><body><iframe src="https://cdn.jsdelivr.net/gh/opiumbest/svg/index.svg" allow="autoplay;fullscreen;encrypted-media;pointer-lock" allowfullscreen></iframe></body></html>`);
-  w.document.close();
-}
-
 document.addEventListener('keydown', e => {
   if (e.key === 'F1') { e.preventDefault(); window.location.href = 'https://google.com'; }
-});
-
-// Page transitions
-document.querySelectorAll('a[href]').forEach(link => {
-  const href = link.getAttribute('href');
-  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('javascript')) return;
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    setTimeout(() => { window.location.href = href; }, 200);
-  });
 });
 </script>
 </body>

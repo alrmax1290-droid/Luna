@@ -89,37 +89,23 @@ nav {
   </div>
   <button class="open-btn" onclick="openStealth()">open in stealth tab ↗</button>
 </div>
-<div class="frame-wrap" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;">
-  <div style="text-align:center;">
-    <div style="font-size:56px;margin-bottom:20px;">🌐</div>
-    <div style="font-family:'Space Mono',monospace;font-size:10px;color:#7090ff;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;">// browse</div>
-    <div style="font-size:24px;font-weight:700;color:#e8eeff;margin-bottom:8px;">movies, music & more</div>
-    <div style="font-size:14px;color:#606880;margin-bottom:32px;">powered by opium — opens full screen</div>
-    <button onclick="window.location.href='browser.html'" style="
-      padding:14px 36px;border-radius:10px;background:#7090ff;
-      border:none;color:#fff;font-size:15px;font-weight:600;
-      cursor:pointer;font-family:'Space Grotesk',sans-serif;
-      transition:all 0.2s;box-shadow:0 4px 20px rgba(112,144,255,0.3);
-      display:block;margin:0 auto 12px;
-    " onmouseover="this.style.background='#5070ee';this.style.transform='translateY(-2px)'"
-       onmouseout="this.style.background='#7090ff';this.style.transform='none'">
-      open browser →
-    </button>
-    <button onclick="openStealth()" style="
-      padding:10px 24px;border-radius:8px;background:transparent;
-      border:1px solid rgba(112,144,255,0.2);color:#7090ff;font-size:13px;font-weight:600;
-      cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all 0.2s;
-    " onmouseover="this.style.background='rgba(112,144,255,0.1)'"
-       onmouseout="this.style.background='transparent'">
-      open in new tab ↗
-    </button>
+<div class="frame-wrap">
+  <div class="loader" id="loader">
+    <div class="loader-ring"></div>
+    <div class="loader-text">loading...</div>
   </div>
+  <iframe id="frame" src="browser.html" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>
 </div>
 <script>
 const frame = document.getElementById('frame');
 const loader = document.getElementById('loader');
 if (frame) frame.onload = () => loader.classList.add('hidden');
 setTimeout(() => { if (loader) loader.classList.add('hidden'); }, 6000);
+
+const browseFrame = document.getElementById('frame');
+const browseLoader = document.getElementById('loader');
+if (browseFrame) browseFrame.onload = () => browseLoader.classList.add('hidden');
+setTimeout(() => { if (browseLoader) browseLoader.classList.add('hidden'); }, 8000);
 
 function openStealth() {
   window.open('browser.html', '_blank');

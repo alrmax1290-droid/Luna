@@ -1,29 +1,1692 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
+    
+
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <script>
+        window.addEventListener('beforeunload', function (event) {
+            event.preventDefault();
+            event.returnValue = '';
+            return 'Are you sure you want to leave? Any unsaved changes will be lost.';
+        });
+    </script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WX5VS54ZDW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-WX5VS54ZDW');
+    </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>APStudy | Math and Language Arts Tutoring</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna</title>
+    <meta name="title" content="Luna">
+    <meta name="description" content="games, movies, music. pick something.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alrmax1290-droid.github.io/Cosmos--Hub/">
+    <meta property="og:title" content="Luna">
+    <meta property="og:description" content="games, movies, music. pick something.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://alrmax1290-droid.github.io/Cosmos--Hub/">
+    <meta name="twitter:title" content="Luna">
+    <meta name="twitter:description" content="games, movies, music. pick something.">
+    <style>
+        :root {
+    --primary: #7090ff;
+    --primary-hover: #5070ee;
+    --primary-light: rgba(123, 95, 255, 0.1);
+    --primary-lighter: rgba(123, 95, 255, 0.05);
+    --accent: #8b5cf6;
+    --accent-light: rgba(139, 92, 246, 0.1);
+    --success: #10b981;
+    --warning: #f59e0b;
+    --text: #1a1a1a;
+    --text-muted: #6b7280;
+    --text-light: #9ca3af;
+    --bg: #ffffff;
+    --bg-secondary: #f8fafc;
+    --surface: #ffffff;
+    --surface-hover: #f1f5f9;
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+    --glass: rgba(255, 255, 255, 0.8);
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 20px rgba(123, 95, 255, 0.3);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --gradient-primary: linear-gradient(135deg, #7090ff 0%, #a0b8ff 100%);
+    --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    --gradient-surface: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.dark-mode {
+    --primary: #7090ff;
+    --primary-hover: #8aaaff;
+    --primary-light: rgba(123, 95, 255, 0.15);
+    --primary-lighter: rgba(123, 95, 255, 0.08);
+    --accent: #a855f7;
+    --accent-light: rgba(168, 85, 247, 0.15);
+    --success: #34d399;
+    --warning: #fbbf24;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-light: #64748b;
+    --bg: #0f172a;
+    --bg-secondary: #1e293b;
+    --surface: #1e293b;
+    --surface-hover: #334155;
+    --border: #334155;
+    --border-light: #475569;
+    --glass: rgba(30, 41, 59, 0.8);
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5);
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.6);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.7), 0 8px 10px -6px rgb(0 0 0 / 0.7);
+    --shadow-glow: 0 0 20px rgba(123, 95, 255, 0.4);
+    --gradient-primary: linear-gradient(135deg, #7090ff 0%, #a0b8ff 100%);
+    --gradient-accent: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+    --gradient-surface: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+    background: #04040a;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(112,144,255,0.15);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.25rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.search-container {
+    display: flex;
+    flex: 1;
+    max-width: 500px;
+    gap: 0.75rem;
+}
+
+#searchBar {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-sm);
+}
+
+#searchBar:focus {
+    background: var(--text);
+    box-shadow: 0 0 0 3px rgba(123, 95, 255, 0.25), var(--shadow);
+    transform: translateY(-1px);
+    color: var(--glass);
+}
+
+#searchBar::placeholder {
+    color: var(--text-muted);
+}
+
+#sortOptions {
+    padding: 0.875rem 1rem;
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    color: var(--text-muted);
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 130px;
+    box-shadow: var(--shadow-sm);
+}
+
+#sortOptions:hover {
+    background: var(--text);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+    color: var(--glass);
+}
+
+#filterOptions {
+    padding: 0.875rem 1rem;
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    color: var(--text-muted);
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 130px;
+    box-shadow: var(--shadow-sm);
+}
+
+#filterOptions:hover {
+    background: var(--text);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+    color: var(--glass);
+}
+
+.control-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+main {
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    padding-bottom: 6rem;
+}
+
+#zoneCount {
+    margin: 0 0 1.5rem;
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#zoneCount::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+#container,
+#featuredZones {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.zone-item {
+    background: var(--gradient-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+}
+
+.zone-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary);
+}
+
+.zone-item:hover::before {
+    opacity: 1;
+}
+
+.zone-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--primary-light);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.zone-item img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    background: var(--border-light);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.zone-item:hover img {
+    transform: scale(1.05);
+}
+
+.zone-item button {
+    background: transparent;
+    color: var(--text);
+    border: 0;
+    padding: 1.25rem 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.zone-item:hover button {
+    color: var(--primary);
+    background: rgba(123, 95, 255, 0.05);
+}
+
+#zoneViewer {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    animation: slideInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.zone-header {
+    background: #04040a;
+    color: white;
+    padding: 0.4rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-lg);
+    border-bottom: 1px solid rgba(112,144,255,0.15);
+}
+
+.zone-title {
+    flex: 1;
+    min-width: 0;
+}
+
+#zoneName {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+    line-height: 1.3;
+}
+
+#zoneId {
+    display: none;
+}
+
+#zoneAuthor {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+#zoneAuthor:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.zone-controls {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.zone-controls button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.625rem 1rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(20px);
+}
+
+.zone-controls button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+#zoneFrame {
+    flex-grow: 1;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+#popupOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.popup {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    width: 100%;
+    max-width: 520px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    animation: slideInScale 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInScale {
+    from {
+        transform: scale(0.9) translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.popup-header {
+    background: #04040a;
+    color: white;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(112,144,255,0.15);
+}
+
+#popupTitle {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+#popupClose {
+    background: rgba(255, 255, 255, 0.1);
+    border: 0;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(20px);
+}
+
+#popupClose:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+#popupBody {
+    padding: 1.5rem;
+    overflow-y: auto;
+    color: var(--text);
+}
+
+#popupBody input[type="text"],
+#popupBody input[type="file"] {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+    color: var(--text);
+    font-size: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+#popupBody input[type="text"]:focus,
+#popupBody input[type="file"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(123, 95, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    padding: 1rem 1rem;
+    text-align: center;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+}
+
+.footer-links a:hover {
+    color: var(--primary-hover);
+    background: var(--primary-light);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .search-container {
+        width: 100%;
+        max-width: none;
+    }
+
+    main {
+        padding: 1.5rem 1rem;
+    }
+
+    #container,
+    #featuredZones {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1.25rem;
+    }
+
+    .zone-item button {
+        padding: 1rem 0.75rem;
+        min-height: 65px;
+        font-size: 13px;
+    }
+
+    .footer-links {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #container,
+    #featuredZones {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1rem;
+    }
+
+    .popup {
+        margin: 0.5rem;
+    }
+
+    .zone-item:hover {
+        transform: translateY(-10px) scale(1.01);
+    }
+
+}
+.control-button img {
+    transition: transform 0.4s ease;
+    width: 24px;
+    height: 24px;
+}
+
+.control-button:hover img {
+    transform: rotate(40deg);
+}
+
+.control-button,
+.control-button:hover {
+    box-shadow: none;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+.control-button:active {
+    transform: translateY(0);
+}
+
+.control-buttons button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 0;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(20px);
+}
+.control-buttons button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.settings-button {
+    background: #7090ff;
+    color: white;
+    border: 0;
+    padding: 0.875rem 1.5rem;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-sm);
+    min-width: 200px;
+    width: 100%;
+    text-align: center;
+}
+
+.settings-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.settings-button:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+.info-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    transition: background-color 0.2s, transform 0.2s;
+    color: inherit;
+    vertical-align: middle;
+}
+
+.info-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+.info-button:active {
+    transform: scale(0.95);
+}
+
+.info-button svg {
+    display: block;
+}
+    </style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7b5fff">
 </head>
-<body style="background:#000">
-    <div>
-        <p>APStudy helps students master algebra, calculus, geometry, and trigonometry alongside essay writing, grammar, and literary analysis for AP exams.</p>
-        <section>
-            <h2>Mathematics</h2>
-            <p>We cover algebra, calculus, derivatives, integrals, quadratic equations, probability, and statistics including the Pythagorean theorem and trigonometry.</p>
-        </section>
-        <section>
-            <h2>Science</h2>
-            <p>Sessions cover biology, chemistry, and physics through hypothesis, experiment, photosynthesis, and thermodynamics.</p>
-        </section>
-        <section>
-            <h2>English and Writing</h2>
-            <p>Tutors help with essay, thesis, grammar, syntax, rhetoric, symbolism, and irony across persuasive and narrative writing.</p>
-        </section>
+<body class="dark-mode">
+
+<style>
+.luna-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 58px;
+  background: rgba(4,4,10,0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  font-family: 'Space Mono', 'Courier New', monospace;
+}
+.luna-nav-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e8eeff;
+  letter-spacing: 3px;
+  text-decoration: none;
+}
+.luna-nav-logo span { color: #7090ff; }
+.luna-nav-links { display: flex; gap: 2px; }
+.luna-nav-links a {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #606880;
+  transition: all 0.2s;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.luna-nav-links a:hover { color: #d0d8f0; background: rgba(255,255,255,0.06); }
+.luna-nav-links a.active { color: #a0b8ff; }
+</style>
+
+<nav class="luna-nav">
+  <a href="index.html" class="luna-nav-logo">LU<span>NA</span></a>
+  <div class="luna-nav-links">
+    <a href="index.html">home</a>
+    <a href="singlefile.html" class="active">games</a>
+    <a href="browse.html">browse</a>
+  </div>
+</nav>
+
+    <header style="display:block">
+        <div class="header-content">
+            <div class="logo">Luna</div>
+            <div class="search-container">
+                <input type="text" id="searchBar" placeholder="Search zones..." oninput="filterZones()">
+                <select id="sortOptions" onchange="sortZones()">
+                    <option value="name">Name</option>
+                    <option value="id">ID (Date)</option>
+                    <option value="popular">Popular</option>
+                    <option value="trendingDay">Trending (Day)</option>
+                    <option value="trendingWeek">Trending (Week)</option>
+                    <option value="trendingMonth">Trending (Month)</option>
+                </select>
+                <select id="filterOptions" onchange="filterZones2()">
+                    <option value="none">(SELECT TAG)</option>
+                </select>
+            </div>
+            <div class="control-buttons">
+                <button id="refresh" class="control-button" title="Refresh all the zones" onclick="listZones()">
+                    <img src="https://cdn.jsdelivr.net/gh/freebuisness/gn-math-DONTDMCA@main/refresh-icon.png" alt="refresh">
+                </button>
+
+                <button id="settings" class="control-button" title="Settings!">
+                    <img src="https://cdn.jsdelivr.net/gh/freebuisness/gn-math-DONTDMCA@main/setting.png" alt="settings">
+                </button>
+            </div>
+        </div>
+    </header>
+	<main>
+</div>
+    <div id="recentPlayed" style="display:none; padding: 1rem 1rem 0; max-width:1200px; margin:0 auto;">
+      <div style="font-size:12px; color:#7090ff; font-family:'Space Mono',monospace; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px;">// recently played</div>
+      <div id="recentChips" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1rem;"></div>
+    </div>
+    <div id="favoritesSection" style="display:none; padding: 0 1rem 0; max-width:1200px; margin:0 auto;">
+      <div style="font-size:12px; color:#7090ff; font-family:'Space Mono',monospace; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px;">// favorites ⭐</div>
+      <div id="favoritesChips" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1rem;"></div>
+    </div>
+    <br>
+        <details id="featuredZonesWrapper" open>
+            <summary id="allZonesSummary" style="font-size: 1.2rem; font-weight: bold; cursor: pointer;">Featured Zones</summary>
+            <div id="featuredZones" class="zone-container"></div>
+        </details>
+        <br><hr><br>
+        <details id="allZonesWrapper" open>
+            <summary id="allSummary" style="font-size: 1.2rem; font-weight: bold; cursor: pointer;">All Zones</summary>
+            <div id="container">Loading...</div>
+        </details>
+    </main>
+
+     <div id="zoneViewer">
+        <div class="zone-header">
+            <div class="zone-title">
+                <h2 id="zoneName">zone</h2>
+                <button class="info-button" onclick="showZoneInfo()" title="Zone Information">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                </button>
+                <span id="zoneId" style="display: none;"></span>
+                <a id="zoneAuthor" href="#" target="_blank">by Author</a>
+            </div>
+            <div class="zone-controls">
+                <button onclick="toggleFavoriteZone()" id="favBtn">☆ favorite</button>
+                <button onclick="fullscreenZone()">Fullscreen</button>
+                <button onclick="aboutBlank()">Open in New Tab</button>
+                <button onclick="downloadZone()">Download</button>
+                <button onclick="closeZone()">Close</button>
+            </div>
+        </div>
+        <iframe id="zoneFrame" allow="pointer-lock *; fullscreen *; autoplay *"></iframe>
     </div>
 
+    <div id="popupOverlay">
+        <div class="popup">
+            <div class="popup-header">
+                <h3 id="popupTitle">Title</h3>
+                <button id="popupClose" onclick="closePopup()">×</button>
+            </div>
+            <div id="popupBody">
+                Content will be here
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-links">
+            <a href="#" onclick="loadDMCA(); return false;">DMCA</a>
+            <a href="#" onclick="showContact(); return false;">Contact</a>
+            <a href="#" onclick="loadPrivacy(); return false;">Privacy Policy</a>
+            <a href="javascript:saveData()">Export Data</a>
+            <a href="#" onclick="document.getElementById('importData').click(); return false;">Import Data</a>
+            <input type="file" id="importData" style="display: none;" onchange="loadData(event)">
+        </div>
+    </footer>
+
     <script>
-        (async()=>{document.body.style.cssText=";mer5.1:ezis-tnof;fires-snas:ylimaf-tnof;retnec:smeti-ngila;retnec:tnetnoc-yfitsuj;xelf:yalpsid;hv001:thgieh;0:nigram;fff#:roloc;000#:dnuorgkcab".split("").reverse().join("");document.body.textContent="loading singlefile...";const bases=["\u0068\u0074\u0074\u0070\u0073\u003A\u002F\u002F\u0063\u0064\u006E\u002E\u006A\u0073\u0064\u0065\u006C\u0069\u0076\u0072\u002E\u006E\u0065\u0074\u002F\u0067\u0068\u002F\u0054\u006F\u006E\u0067\u0053\u0068\u0065\u0072\u0062\u0065\u0074\u002F\u0069\u006D\u002D\u0073\u0069\u006E\u0067\u006C\u0065\u002F","/elgnis-mi/tebrehSgnoT/hg/ten.rviledsj.litnauq//:sptth".split("").reverse().join(""),"/elgnis-mi/tebrehSgnoT/hg/ten.rviledsj.yltsaf//:sptth".split("").reverse().join(""),"\u0068\u0074\u0074\u0070\u0073\u003A\u002F\u002F\u0074\u0065\u0073\u0074\u0069\u006E\u0067\u0063\u0066\u002E\u006A\u0073\u0064\u0065\u006C\u0069\u0076\u0072\u002E\u006E\u0065\u0074\u002F\u0067\u0068\u002F\u0054\u006F\u006E\u0067\u0053\u0068\u0065\u0072\u0062\u0065\u0074\u002F\u0069\u006D\u002D\u0073\u0069\u006E\u0067\u006C\u0065\u002F","\u0068\u0074\u0074\u0070\u0073\u003A\u002F\u002F\u0067\u0063\u006F\u0072\u0065\u002E\u006A\u0073\u0064\u0065\u006C\u0069\u0076\u0072\u002E\u006E\u0065\u0074\u002F\u0067\u0068\u002F\u0054\u006F\u006E\u0067\u0053\u0068\u0065\u0072\u0062\u0065\u0074\u002F\u0069\u006D\u002D\u0073\u0069\u006E\u0067\u006C\u0065\u002F","/elgnis-mi/tebrehSgnoT/hg/ten.rviledsj.yltsafnigiro//:sptth".split("").reverse().join(""),"/elgnis-mi/tebrehSgnoT/hg/ten.ndc-b.rviledsj//:sptth".split("").reverse().join(""),"\u0068\u0074\u0074\u0070\u0073\u003A\u002F\u002F\u0063\u0064\u006E\u002E\u0073\u0074\u0061\u0074\u0069\u0063\u0061\u006C\u006C\u0079\u002E\u0069\u006F\u002F\u0067\u0068\u002F\u0054\u006F\u006E\u0067\u0053\u0068\u0065\u0072\u0062\u0065\u0074\u002F\u0069\u006D\u002D\u0073\u0069\u006E\u0067\u006C\u0065\u0040\u006D\u0061\u0069\u006E\u002F","\u0068\u0074\u0074\u0070\u0073\u003A\u002F\u002F\u0072\u0061\u0077\u0063\u0064\u006E\u002E\u0067\u0069\u0074\u0068\u0061\u0063\u006B\u002E\u0063\u006F\u006D\u002F\u0054\u006F\u006E\u0067\u0053\u0068\u0065\u0072\u0062\u0065\u0074\u002F\u0069\u006D\u002D\u0073\u0069\u006E\u0067\u006C\u0065\u002F\u006D\u0061\u0069\u006E\u002F","/niam/elgnis-mi/tebrehSgnoT/moc.kcahtig.war//:sptth".split("").reverse().join(""),"\u0068\u0074\u0074\u0070\u0073\u003A\u002F\u002F\u0063\u0064\u006E\u002E\u0073\u0074\u0061\u0074\u0069\u0063\u0064\u0065\u006C\u0069\u0076\u0072\u002E\u0063\u006F\u006D\u002F\u0067\u0068\u002F\u0054\u006F\u006E\u0067\u0053\u0068\u0065\u0072\u0062\u0065\u0074\u002F\u0069\u006D\u002D\u0073\u0069\u006E\u0067\u006C\u0065\u002F\u006D\u0061\u0069\u006E\u002F","/niam/elgnis-mi/tebrehSgnoT/moc.tnetnocresubuhtig.war//:sptth".split("").reverse().join(""),"/niam/bolb/elgnis-mi/tebrehSgnoT/moc.buhtig//:sptth/cc.kkll.hg//:sptth".split("").reverse().join(""),"\u0068\u0074\u0074\u0070\u0073\u003A\u002F\u002F\u0067\u0069\u0074\u002E\u0079\u0079\u006C\u0078\u002E\u0077\u0069\u006E\u002F\u0067\u0069\u0074\u0068\u0075\u0062\u002E\u0063\u006F\u006D\u002F\u0054\u006F\u006E\u0067\u0053\u0068\u0065\u0072\u0062\u0065\u0074\u002F\u0069\u006D\u002D\u0073\u0069\u006E\u0067\u006C\u0065\u002F\u0062\u006C\u006F\u0062\u002F\u006D\u0061\u0069\u006E\u002F","/niam/bolb/elgnis-mi/tebrehSgnoT/moc.buhtig//:sptth/cc.tigtsaf//:sptth".split("").reverse().join(""),"/elgnis-mi/tebrehSgnoT/hg/hs.mse.war//:sptth".split("").reverse().join(""),"\u0068\u0074\u0074\u0070\u0073\u003A\u002F\u002F\u0065\u0073\u006D\u002E\u0073\u0068\u002F\u0067\u0068\u002F\u0054\u006F\u006E\u0067\u0053\u0068\u0065\u0072\u0062\u0065\u0074\u002F\u0069\u006D\u002D\u0073\u0069\u006E\u0067\u006C\u0065\u002F"];function validateJs(txt){if(!txt||txt.length<200||txt.trim().startsWith("\u003C"))return false;const ob=(txt.match(/[{[(]/g)||[]).length;const cb=(txt.match(/[}\])]/g)||[]).length;const hasKeywords=/\b(function|const|let|var|async|await|if|return)\b/.test(txt);return hasKeywords&&Math.abs(ob-cb)<=3;}const ac=new AbortController();const fetchScript=async base=>{const url=`${base}loader.js?raw&${Math.floor(Date.now() / 3600000)}`;const res=await fetch(url,{signal:ac.signal});if(!res.ok)throw 0;const txt=await res.text();if(!validateJs(txt))throw 0;return{base,txt};};try{const{base,txt}=await Promise.any(bases.map(fetchScript));ac.abort();window.RELAY_DOMAIN=base;const script=document.createElement("tpircs".split("").reverse().join(""));script.textContent=txt;document.head.appendChild(script);}catch{}})();
+const container = document.getElementById('container');
+const zoneViewer = document.getElementById('zoneViewer');
+let zoneFrame = document.getElementById('zoneFrame');
+const searchBar = document.getElementById('searchBar');
+const sortOptions = document.getElementById('sortOptions');
+const filterOptions = document.getElementById('filterOptions');
+// https://www.jsdelivr.com/tools/purge
+const zonesurls = [
+    "https://cdn.jsdelivr.net/gh/freebuisness/assets@main/zones.json",
+    "https://cdn.jsdelivr.net/gh/freebuisness/assets@latest/zones.json",
+    "https://cdn.jsdelivr.net/gh/freebuisness/assets@master/zones.json",
+    "https://cdn.jsdelivr.net/gh/freebuisness/assets/zones.json"
+];
+let zonesURL = zonesurls[Math.floor(Math.random() * zonesurls.length)];
+const coverURL = "https://cdn.jsdelivr.net/gh/freebuisness/covers@main";
+const htmlURL = "https://cdn.jsdelivr.net/gh/freebuisness/html@main";
+let zones = [];
+let popularityData = {};
+const featuredContainer = document.getElementById('featuredZones');
+function toTitleCase(str) {
+  return str.replace(
+    /\w\S*/g,
+    text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+  );
+}
+async function listZones() {
+    try {
+      let sharesponse;
+      let shajson;
+      let sha;
+        try {
+          sharesponse = await fetch("https://api.github.com/repos/freebuisness/assets/commits?t="+Date.now());
+        } catch (error) {}
+        if (sharesponse && sharesponse.status === 200) {
+          try {
+            shajson = await sharesponse.json();
+            sha = shajson[0]['sha'];
+            if (sha) {
+                zonesURL = `https://cdn.jsdelivr.net/gh/freebuisness/assets@${sha}/zones.json`;
+            }
+          } catch (error) {
+            try {
+                let secondarysharesponse = await fetch("https://raw.githubusercontent.com/freebuisness/xml/refs/heads/main/sha.txt?t="+Date.now());
+                if (secondarysharesponse && secondarysharesponse.status === 200) {
+                    sha = (await secondarysharesponse.text()).trim();
+                    if (sha) {
+                        zonesURL = `https://cdn.jsdelivr.net/gh/freebuisness/assets@${sha}/zones.json`;
+                    }
+                }
+            } catch(error) {}
+          }
+        }
+        const response = await fetch(zonesURL+"?t="+Date.now());
+        const json = await response.json();
+        zones = json;
+        zones[0].featured = true; // always gonna be the discord
+        await Promise.all([fetchPopularity("year"), fetchPopularity("month"), fetchPopularity("week"), fetchPopularity("day")]);
+        sortZones();
+        try {
+        const search = new URLSearchParams(window.location.search);
+        const id = search.get('id');
+        const embed = window.location.hash.includes("embed");
+        if (id) {
+            const zone = zones.find(zone => zone.id + '' == id + '');
+            if (zone) {
+                if (embed) {
+                    if (zone.url.startsWith("http")) {
+                        window.open(zone.url, "_blank");
+                    } else {
+                        const url = zone.url.replace("{COVER_URL}", coverURL).replace("{HTML_URL}", htmlURL);
+                        window.open(url, "_blank");
+                    }
+                } else {
+                    openZone(zone);
+                }
+            }
+        }
+        } catch(error){}
+        let alltags = [];
+        for (const obj of json) {
+            if (Array.isArray(obj.special)) {
+                alltags.push(...obj.special);
+            }
+        }
+
+        alltags = [...new Set(alltags)];
+        let filteroption = document.getElementById("filterOptions");
+        if (filteroption && filteroption.children.length > 1) {
+            while (filteroption.children.length > 1) {
+                filteroption.removeChild(filteroption.lastElementChild);
+            }
+        }
+        for (const tag of alltags) {
+            const opt = document.createElement("option");
+            opt.value = tag;
+            opt.textContent = toTitleCase(tag);
+            filteroption.appendChild(opt);
+        }
+    } catch (error) {
+        console.error(error);
+        container.innerHTML = `Error loading zones: ${error}`;
+    }
+}
+async function fetchPopularity(duration) {
+    // disabled to prevent network errors on school networks
+    if (!popularityData[duration]) {
+        popularityData[duration] = {};
+    }
+}
+
+
+function sortZones() {
+    const sortBy = sortOptions.value;
+    if (sortBy === 'name') {
+        zones.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === 'id') {
+        zones.sort((a, b) => a.id - b.id);
+    } else if (sortBy === 'popular') {
+        zones.sort((a, b) => ((popularityData['year']?.[b.id]) ?? 0) - ((popularityData['year']?.[a.id]) ?? 0));
+    } else if (sortBy === 'trendingMonth') {
+        zones.sort((a, b) => ((popularityData['month']?.[b.id]) ?? 0) - ((popularityData['month']?.[a.id]) ?? 0));
+    } else if (sortBy === 'trendingWeek') {
+        zones.sort((a, b) => ((popularityData['week']?.[b.id]) ?? 0) - ((popularityData['week']?.[a.id]) ?? 0));
+    } else if (sortBy === 'trendingDay') {
+        zones.sort((a, b) => ((popularityData['day']?.[b.id]) ?? 0) - ((popularityData['day']?.[a.id]) ?? 0));
+    }
+    zones.sort((a, b) => (a.id === -1 ? -1 : b.id === -1 ? 1 : 0));
+    if (featuredContainer.innerHTML === "") {
+        const featured = zones.filter(z => z.featured);
+        displayFeaturedZones(featured);
+    }
+    displayZones(zones);
+}
+
+function displayFeaturedZones(featuredZones) {
+    featuredContainer.innerHTML = "";
+    featuredZones.forEach((file, index) => {
+        const zoneItem = document.createElement("div");
+        zoneItem.className = "zone-item";
+        zoneItem.onclick = () => openZone(file);
+        const img = document.createElement("img");
+        img.dataset.src = file.cover.replace("{COVER_URL}", coverURL).replace("{HTML_URL}", htmlURL);
+        img.alt = file.name;
+        img.loading = "lazy";
+        img.className = "lazy-zone-img";
+        zoneItem.appendChild(img);
+        const button = document.createElement("button");
+        button.textContent = file.name;
+        button.onclick = (event) => {
+            event.stopPropagation();
+            openZone(file);
+        };
+        zoneItem.appendChild(button);
+        featuredContainer.appendChild(zoneItem);
+    });
+    if (featuredContainer.innerHTML === "") {
+        featuredContainer.innerHTML = "No featured zones found.";
+    } else {
+        document.getElementById("allZonesSummary").textContent = `Featured Zones (${featuredZones.length})`;
+    }
+
+    const lazyImages = document.querySelectorAll('#featuredZones img.lazy-zone-img');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !zoneViewer.hidden) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove("lazy-zone-img");
+                observer.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: "100px", 
+        threshold: 0.1
+    });
+
+    lazyImages.forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+function displayZones(zones) {
+    container.innerHTML = "";
+    zones.forEach((file, index) => {
+        const zoneItem = document.createElement("div");
+        zoneItem.className = "zone-item";
+        zoneItem.onclick = () => openZone(file);
+        const img = document.createElement("img");
+        img.dataset.src = file.cover.replace("{COVER_URL}", coverURL).replace("{HTML_URL}", htmlURL);
+        img.alt = file.name;
+        img.loading = "lazy";
+        img.className = "lazy-zone-img";
+        zoneItem.appendChild(img);
+        const button = document.createElement("button");
+        button.textContent = file.name;
+        button.onclick = (event) => {
+            event.stopPropagation();
+            openZone(file);
+        };
+        zoneItem.appendChild(button);
+        container.appendChild(zoneItem);   
+    });
+    if (container.innerHTML === "") {
+        container.innerHTML = "No zones found.";
+    } else {
+        document.getElementById("allSummary").textContent = `All Zones (${zones.length})`;
+    }
+
+    const lazyImages = document.querySelectorAll('img.lazy-zone-img');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !zoneViewer.hidden) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove("lazy-zone-img");
+                observer.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: "100px", 
+        threshold: 0.1
+    });
+
+    lazyImages.forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+function filterZones2() {
+    const query = filterOptions.value;
+    if (query === "none") {
+        displayZones(zones);
+    } else {
+        const filteredZones = zones.filter(zone => zone.special?.includes(query));
+        if (query.length !== 0) {
+            document.getElementById("featuredZonesWrapper").removeAttribute("open");
+        }
+        displayZones(filteredZones);
+    }
+}
+
+function filterZones() {
+    const query = searchBar.value.toLowerCase();
+    const filteredZones = zones.filter(zone => zone.name.toLowerCase().includes(query));
+    if (query.length !== 0) {
+        document.getElementById("featuredZonesWrapper").removeAttribute("open");
+    }
+    displayZones(filteredZones);
+}
+
+function openZone(file) {
+    const url = file.url.startsWith("http")
+        ? file.url
+        : file.url.replace("{COVER_URL}", coverURL).replace("{HTML_URL}", htmlURL);
+
+    if (zoneFrame.contentDocument === null) {
+        zoneFrame = document.createElement("iframe");
+        zoneFrame.id = "zoneFrame";
+        zoneFrame.allow = "pointer-lock *; fullscreen *; autoplay *";
+        zoneViewer.appendChild(zoneFrame);
+    }
+
+    document.getElementById('zoneName').textContent = file.name;
+    document.getElementById('zoneId').textContent = file.id;
+    document.getElementById('zoneAuthor').textContent = "by " + file.author;
+    if (file.authorLink) {
+        document.getElementById('zoneAuthor').href = file.authorLink;
+    }
+    const favBtn = document.getElementById('favBtn');
+    if (favBtn) favBtn.textContent = isFavorite(file.id) ? '⭐ favorited' : '☆ favorite';
+    zoneViewer.style.cssText = "display:flex !important; flex-direction:column; position:fixed; inset:0; z-index:99999;";
+    zoneViewer.hidden = false;
+
+    // Fetch and write into iframe so it renders as HTML regardless of CDN content-type
+    const loadingDiv = document.createElement('div');
+    loadingDiv.id = 'zoneLoading';
+    loadingDiv.style.cssText = 'position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#04040a;z-index:10;font-family:Space Mono,monospace;color:#7090ff;font-size:14px;letter-spacing:2px;gap:16px;';
+    loadingDiv.innerHTML = `
+      <div id="zoneLoadingText">loading...</div>
+      <button id="zoneFallbackBtn" onclick="document.getElementById('zoneFrame').src='${url}';document.getElementById('zoneLoading').remove();" style="
+        display:none;padding:10px 20px;border-radius:8px;
+        border:1px solid rgba(112,144,255,0.3);background:rgba(112,144,255,0.1);
+        color:#a0b8ff;font-size:13px;cursor:pointer;font-family:inherit;
+      ">taking too long — click to load anyway</button>
+    `;
+    zoneViewer.appendChild(loadingDiv);
+
+    // Show fallback button after 5s
+    const fallbackTimer = setTimeout(() => {
+      const btn = document.getElementById('zoneFallbackBtn');
+      const txt = document.getElementById('zoneLoadingText');
+      if (btn) btn.style.display = 'block';
+      if (txt) txt.textContent = 'still loading...';
+    }, 5000);
+
+    // Auto-fallback after 10s
+    const autoFallback = setTimeout(() => {
+      const div = document.getElementById('zoneLoading');
+      if (div) {
+        zoneFrame.src = url;
+        div.remove();
+      }
+    }, 10000);
+
+    const controller = new AbortController();
+    const fetchTimeout = setTimeout(() => controller.abort(), 9000);
+
+    fetch(url + "?t=" + Date.now(), { signal: controller.signal })
+        .then(r => r.text())
+        .then(html => {
+            clearTimeout(fetchTimeout);
+            clearTimeout(fallbackTimer);
+            clearTimeout(autoFallback);
+            zoneFrame.srcdoc = html;
+            const div = document.getElementById('zoneLoading');
+            if (div) div.remove();
+            try {
+                let recent = JSON.parse(localStorage.getItem('luna_recent') || '[]');
+                recent = recent.filter(r => r.id !== file.id);
+                recent.unshift({ id: file.id, name: file.name });
+                recent = recent.slice(0, 5);
+                localStorage.setItem('luna_recent', JSON.stringify(recent));
+            } catch(e) {}
+        })
+        .catch(() => {
+            clearTimeout(fetchTimeout);
+            clearTimeout(fallbackTimer);
+            clearTimeout(autoFallback);
+            zoneFrame.src = url;
+            const div = document.getElementById('zoneLoading');
+            if (div) div.remove();
+        });
+
+    try {
+        const u = new URL(window.location);
+        u.searchParams.set('id', file.id);
+        history.pushState(null, '', u.toString());
+    } catch(error){}
+}
+
+function toggleFavoriteZone() {
+    const id = Number(document.getElementById('zoneId').textContent);
+    const name = document.getElementById('zoneName').textContent;
+    toggleFavorite(id, name);
+    const btn = document.getElementById('favBtn');
+    btn.textContent = isFavorite(id) ? '⭐ favorited' : '☆ favorite';
+}
+
+function aboutBlank() {
+    const id = document.getElementById('zoneId').textContent;
+    const zone = zones.find(z => z.id + '' === id);
+    if (!zone) return;
+    const url = zone.url.replace("{COVER_URL}", coverURL).replace("{HTML_URL}", htmlURL);
+    fetch(url + "?t=" + Date.now())
+        .then(r => r.text())
+        .then(html => {
+            const w = window.open('about:blank', '_blank');
+            if (!w) return;
+            w.document.open();
+            w.document.write(html);
+            w.document.close();
+        })
+        .catch(() => {
+            window.open(url, "_blank");
+        });
+}
+
+function closeZone() {
+    zoneViewer.style.display = "none";
+    zoneViewer.hidden = false;
+    zoneFrame.srcdoc = '';
+    zoneFrame.src = 'about:blank';
+    try {
+        const url = new URL(window.location);
+        url.searchParams.delete('id');
+        history.pushState(null, '', url.toString());
+    } catch(error){}
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && zoneViewer.style.display !== 'none') {
+        closeZone();
+    }
+});
+
+function downloadZone() {
+    let zone = zones.find(zone => zone.id + '' === document.getElementById('zoneId').textContent);
+    fetch(zone.url.replace("{HTML_URL}", htmlURL)+"?t="+Date.now()).then(res => res.text()).then(text => {
+        const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = zone.name + ".html";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }).catch(() => {
+        window.open(zone.url.replace("{HTML_URL}", htmlURL), "_blank");
+    });
+}
+
+function fullscreenZone() {
+    if (zoneFrame.requestFullscreen) {
+        zoneFrame.requestFullscreen();
+    } else if (zoneFrame.mozRequestFullScreen) {
+        zoneFrame.mozRequestFullScreen();
+    } else if (zoneFrame.webkitRequestFullscreen) {
+        zoneFrame.webkitRequestFullscreen();
+    } else if (zoneFrame.msRequestFullscreen) {
+        zoneFrame.msRequestFullscreen();
+    }
+}
+
+function sanitizeData(obj, maxStringLen = 1000, maxArrayLen = 10000) {
+    if (typeof obj === 'string') {
+      return obj.length > maxStringLen ? obj.slice(0, maxStringLen) + '...[truncated]' : obj;
+    }
+    if (obj instanceof Uint8Array) {
+      if (obj.length > maxArrayLen) {
+        return `[Uint8Array too large (${obj.length} bytes), truncated]`;
+      }
+      return obj;
+    }
+    if (Array.isArray(obj)) {
+      return obj.map(item => sanitizeData(item, maxStringLen, maxArrayLen));
+    }
+    if (obj && typeof obj === 'object') {
+      const newObj = {};
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          newObj[key] = sanitizeData(obj[key], maxStringLen, maxArrayLen);
+        }
+      }
+      return newObj;
+    }
+    return obj;
+  }
+
+async function saveData() {
+    alert("This might take a while, dont touch anything other than this OK button");
+    const result = {};
+    result.cookies = document.cookie;
+    result.localStorage = {...localStorage};
+    result.sessionStorage = {...sessionStorage};
+    result.indexedDB = {};
+    const dbs = await indexedDB.databases();
+    for (const dbInfo of dbs) {
+      if (!dbInfo.name) continue;
+      result.indexedDB[dbInfo.name] = {};
+      await new Promise((resolve, reject) => {
+        const openRequest = indexedDB.open(dbInfo.name, dbInfo.version);
+        openRequest.onerror = () => reject(openRequest.error);
+        openRequest.onsuccess = () => {
+          const db = openRequest.result;
+          const storeNames = Array.from(db.objectStoreNames);
+          if (storeNames.length === 0) { resolve(); return; }
+          const transaction = db.transaction(storeNames, "readonly");
+          const storePromises = [];
+          for (const storeName of storeNames) {
+            result.indexedDB[dbInfo.name][storeName] = [];
+            const store = transaction.objectStore(storeName);
+            const getAllRequest = store.getAll();
+            const p = new Promise((res, rej) => {
+              getAllRequest.onsuccess = () => {
+                result.indexedDB[dbInfo.name][storeName] = sanitizeData(getAllRequest.result, 1000, 100);
+                res();
+              };
+              getAllRequest.onerror = () => rej(getAllRequest.error);
+            });
+            storePromises.push(p);
+          }
+          Promise.all(storePromises).then(() => resolve());
+        };
+      });
+    }
+    result.caches = {};
+    const cacheNames = await caches.keys();
+    for (const cacheName of cacheNames) {
+      const cache = await caches.open(cacheName);
+      const requests = await cache.keys();
+      result.caches[cacheName] = [];
+      for (const req of requests) {
+        const response = await cache.match(req);
+        if (!response) continue;
+        const cloned = response.clone();
+        const contentType = cloned.headers.get('content-type') || '';
+        let body;
+        try {
+          if (contentType.includes('application/json')) { body = await cloned.json(); }
+          else if (contentType.includes('text') || contentType.includes('javascript')) { body = await cloned.text(); }
+          else { const buffer = await cloned.arrayBuffer(); body = btoa(String.fromCharCode(...new Uint8Array(buffer))); }
+        } catch (e) { body = '[Unable to read body]'; }
+        result.caches[cacheName].push({ url: req.url, body, contentType });
+      }
+    }
+    alert("Done, wait for the download to come");
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob([JSON.stringify(result)], { type: "application/octet-stream" }));
+    link.download = `${Date.now()}.data`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  
+  async function loadData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async function (e) {
+        const data = JSON.parse(e.target.result);
+        if (data.cookies) { data.cookies.split(';').forEach(cookie => { document.cookie = cookie.trim(); }); }
+        if (data.localStorage) { for (const key in data.localStorage) { localStorage.setItem(key, data.localStorage[key]); } }
+        if (data.sessionStorage) { for (const key in data.sessionStorage) { sessionStorage.setItem(key, data.sessionStorage[key]); } }
+        if (data.indexedDB) {
+            for (const dbName in data.indexedDB) {
+              const stores = data.indexedDB[dbName];
+              await new Promise((resolve, reject) => {
+                const request = indexedDB.open(dbName, 1);
+                request.onupgradeneeded = e => {
+                  const db = e.target.result;
+                  for (const storeName in stores) {
+                    if (!db.objectStoreNames.contains(storeName)) {
+                      db.createObjectStore(storeName, { keyPath: 'id', autoIncrement: true });
+                    }
+                  }
+                };
+                request.onsuccess = e => {
+                  const db = e.target.result;
+                  const transaction = db.transaction(Object.keys(stores), 'readwrite');
+                  transaction.onerror = () => reject(transaction.error);
+                  let pendingStores = Object.keys(stores).length;
+                  for (const storeName in stores) {
+                    const objectStore = transaction.objectStore(storeName);
+                    objectStore.clear().onsuccess = () => {
+                      for (const item of stores[storeName]) { objectStore.put(item); }
+                      pendingStores--;
+                      if (pendingStores === 0) resolve();
+                    };
+                  }
+                };
+                request.onerror = () => reject(request.error);
+              });
+            }
+          }
+        if (data.caches) {
+            for (const cacheName in data.caches) {
+              const cache = await caches.open(cacheName);
+              await cache.keys().then(keys => Promise.all(keys.map(k => cache.delete(k))));
+              for (const entry of data.caches[cacheName]) {
+                let responseBody;
+                if (entry.contentType.includes('application/json')) { responseBody = JSON.stringify(entry.body); }
+                else if (entry.contentType.includes('text') || entry.contentType.includes('javascript')) { responseBody = entry.body; }
+                else {
+                  const binaryStr = atob(entry.body);
+                  const len = binaryStr.length;
+                  const bytes = new Uint8Array(len);
+                  for (let i = 0; i < len; i++) { bytes[i] = binaryStr.charCodeAt(i); }
+                  responseBody = bytes.buffer;
+                }
+                const headers = new Headers({ 'content-type': entry.contentType });
+                const response = new Response(responseBody, { headers });
+                await cache.put(entry.url, response);
+              }
+            }
+          }
+        alert("Data loaded");
+    };
+    alert("This might take a while, dont touch anything other than this OK button");
+    reader.readAsText(file);
+  }
+
+function darkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+
+function cloakIcon(url) {
+    const link = document.querySelector("link[rel~='icon']");
+    link.rel = "icon";
+    if ((url+"").trim().length === 0) {
+        link.href = "favicon.png";
+    } else {
+        link.href = url;
+    }
+    document.head.appendChild(link);
+}
+function cloakName(string) {
+    if ((string+"").trim().length === 0) {
+        document.title = "Luna";
+        return;
+    }
+    document.title = string;
+}
+
+function tabCloak() {
+    closePopup();
+    document.getElementById('popupTitle').textContent = "Tab Cloak";
+    const popupBody = document.getElementById('popupBody');
+    popupBody.innerHTML = `
+        <label for="tab-cloak-textbox" style="font-weight: bold;">Set Tab Title:</label><br>
+        <input type="text" id="tab-cloak-textbox" placeholder="Enter new tab name..." oninput="cloakName(this.value)">
+        <br><br><br><br>
+        <label for="tab-cloak-textbox" style="font-weight: bold;">Set Tab Icon:</label><br>
+        <input type="text" id="tab-cloak-textbox" placeholder="Enter new tab icon..." oninput='cloakIcon(this.value)'>
+        <br><br><br>
+    `;
+    popupBody.contentEditable = false;
+    document.getElementById('popupOverlay').style.display = "flex";
+}
+
+const settings = document.getElementById('settings');
+settings.addEventListener('click', () => {
+    document.getElementById('popupTitle').textContent = "Settings";
+    const popupBody = document.getElementById('popupBody');
+    popupBody.innerHTML = `
+    <button class="settings-button" onclick="darkMode()">Toggle Dark Mode</button>
+    <br><br>
+    <button class="settings-button" onclick="tabCloak()">Tab Cloak</button>
+    <br>
+    `;
+    popupBody.contentEditable = false;
+    document.getElementById('popupOverlay').style.display = "flex";
+});
+
+function showContact() {
+    document.getElementById('popupTitle').textContent = "Contact";
+    const popupBody = document.getElementById('popupBody');
+    popupBody.innerHTML = `
+    <p>Discord: https://discord.gg/NAFw4ykZ7n</p>
+    <p>Email: gn.math.business@gmail.com</p>`;
+    popupBody.contentEditable = false;
+    document.getElementById('popupOverlay').style.display = "flex";
+}
+
+function loadPrivacy() {
+    document.getElementById('popupTitle').textContent = "Privacy Policy";
+    const popupBody = document.getElementById('popupBody');
+    popupBody.innerHTML = `
+        <div style="max-height: 60vh; overflow-y: auto;">
+            <h2>PRIVACY POLICY</h2>
+            <p>Last updated February 20, 2026</p>
+            <p>This Privacy Notice for Luna describes how and why we might access, collect, store, use, and/or share your personal information when you use our services.</p>
+            <p>Questions or concerns? Contact us via Discord.</p>
+        </div>
+    `;
+    popupBody.contentEditable = false;
+    document.getElementById('popupOverlay').style.display = "flex";
+}
+
+function loadDMCA() {
+    document.getElementById('popupTitle').textContent = "DMCA";
+    const popupBody = document.getElementById('popupBody');
+    popupBody.innerHTML = `
+        <div class="dmca-content">
+            <p>
+                If you own or developed a game that is on <strong>Luna</strong> 
+                and would like it removed, please do one of the following:
+            </p>
+            <ol>
+                <li>
+                    <a href="https://discord.gg/D4c9VFYWyU" target="_blank" rel="noopener noreferrer">
+                        Join the Discord
+                    </a> and DM <strong>breadbb</strong> or ping me in a public channel 
+                    <strong>[INSTANT RESPONSE]</strong>
+                </li>
+                <li>
+                    Email at 
+                    <a href="mailto:gn.math.business@gmail.com">gn.math.business@gmail.com</a> 
+                    with the subject starting with <code>!DMCA</code>.
+                    <strong>[DELAYED RESPONSE]</strong>
+                </li>
+            </ol>
+            <p>Please show proof you own the game before asking for removal.</p>
+        </div>
+    `;
+    popupBody.contentEditable = false;
+    document.getElementById('popupOverlay').style.display = "flex";
+}
+
+let _allStatsCache = null;
+
+async function getAllStats() {
+  return {};
+}
+
+async function getStats(id) {
+  id = String(id);
+  const allStats = await getAllStats();
+  return allStats[id]?.hits ?? 0;
+}
+
+function showZoneInfo() {
+    let id = Number(document.getElementById('zoneId').textContent);
+    document.getElementById('popupTitle').textContent = "Info";
+    const popupBody = document.getElementById('popupBody');
+    popupBody.innerHTML = `<p>Loading...</p>`
+    popupBody.contentEditable = false;
+    document.getElementById('popupOverlay').style.display = "flex";
+    fetch(`https://api.github.com/repos/freebuisness/html/commits?path=${id}.html`).then(res => res.json()).then(async json => {
+        let stats = await getStats(id);
+        idjson = zones.filter(a=>a.id===id)[0]
+        document.getElementById('popupTitle').textContent = `${idjson.name} Info`;
+        const date = new Date(json.at(-1).commit.author.date);
+        let formatteddate = new Intl.DateTimeFormat("en-US", {
+          month: "long", day: "numeric", year: "numeric",
+          hour: "numeric", minute: "2-digit", hour12: true
+        }).format(date);
+        popupBody.innerHTML = `
+        <p>
+        <b>Id</b>: ${id}<br>
+        <b>Name</b>: ${idjson.name}<br>
+        ${idjson.author?`<b>Game Author</b>: ${idjson.author}<br>`:""}
+        ${idjson.authorLink?`<b>Game Author Link</b>: <a style="color:#7b5fff;" href=${idjson.authorLink}>${idjson.authorLink}</a><br>`:""}
+        ${idjson.special?`<b>Tags</b>: ${idjson.special}<br>`:""}
+        <b>Date Added</b>: ${formatteddate}<br>
+        <b>Times Played (Globally)</b>: ${Number(stats).toLocaleString("en-US")}
+        </p>`;
+    }).catch(() => {
+        idjson = zones.filter(a=>a.id===id)[0];
+        if (idjson) {
+            document.getElementById('popupTitle').textContent = `${idjson.name} Info`;
+            popupBody.innerHTML = `<p><b>Name</b>: ${idjson.name}<br>${idjson.author?`<b>Author</b>: ${idjson.author}<br>`:""}</p>`;
+        } else {
+            popupBody.innerHTML = `<p>Info unavailable.</p>`;
+        }
+    })
+}
+
+function closePopup() {
+    document.getElementById('popupOverlay').style.display = "none";
+}
+listZones();
+
+// Auto-search if coming from homepage search or GOTD
+const pendingSearch = localStorage.getItem('luna_gotd_search');
+if (pendingSearch) {
+  localStorage.removeItem('luna_gotd_search');
+  setTimeout(() => {
+    const searchBar = document.getElementById('searchBar');
+    if (searchBar) {
+      searchBar.value = pendingSearch;
+      filterZones();
+    }
+  }, 1500);
+}
+
+// Favorites
+let favorites = JSON.parse(localStorage.getItem('luna_favorites') || '[]');
+
+function toggleFavorite(id, name) {
+  const idx = favorites.findIndex(f => f.id === id);
+  if (idx === -1) {
+    favorites.push({ id, name });
+  } else {
+    favorites.splice(idx, 1);
+  }
+  localStorage.setItem('luna_favorites', JSON.stringify(favorites));
+  renderFavorites();
+}
+
+function isFavorite(id) {
+  return favorites.some(f => f.id === id);
+}
+
+function renderFavorites() {
+  if (!favorites.length) {
+    document.getElementById('favoritesSection').style.display = 'none';
+    return;
+  }
+  document.getElementById('favoritesSection').style.display = 'block';
+  const chips = document.getElementById('favoritesChips');
+  chips.innerHTML = '';
+  favorites.forEach(fav => {
+    const zone = zones.find(z => z.id === fav.id);
+    if (!zone) return;
+    const chip = document.createElement('button');
+    chip.innerHTML = `⭐ ${fav.name} <span style="opacity:0.5;font-size:11px;margin-left:4px;">×</span>`;
+    chip.style.cssText = 'padding:6px 14px;border-radius:6px;border:1px solid rgba(255,183,0,0.2);background:rgba(255,183,0,0.06);color:#ffd060;font-size:13px;cursor:pointer;transition:all 0.2s;font-family:inherit;display:flex;align-items:center;gap:4px;';
+    chip.onclick = (e) => {
+      if (e.target.tagName === 'SPAN') { toggleFavorite(fav.id, fav.name); return; }
+      openZone(zone);
+    };
+    chips.appendChild(chip);
+  });
+}
+setTimeout(renderFavorites, 1500);
+
+// Recently played
+function renderRecentPlayed() {
+    try {
+        const recent = JSON.parse(localStorage.getItem('luna_recent') || '[]');
+        if (!recent.length) return;
+        const section = document.getElementById('recentPlayed');
+        const chips = document.getElementById('recentChips');
+        section.style.display = 'block';
+        chips.innerHTML = '';
+        recent.forEach(r => {
+            const zone = zones.find(z => z.id === r.id);
+            if (!zone) return;
+            const chip = document.createElement('button');
+            chip.textContent = r.name;
+            chip.style.cssText = 'padding:6px 14px;border-radius:6px;border:1px solid rgba(112,144,255,0.2);background:rgba(112,144,255,0.08);color:#a0b8ff;font-size:13px;cursor:pointer;transition:all 0.2s;font-family:inherit;';
+            chip.onmouseover = () => chip.style.background = 'rgba(112,144,255,0.15)';
+            chip.onmouseout = () => chip.style.background = 'rgba(112,144,255,0.08)';
+            chip.onclick = () => openZone(zone);
+            chips.appendChild(chip);
+        });
+    } catch(e) {}
+}
+setTimeout(renderRecentPlayed, 1500);
+
+HTMLCanvasElement.prototype.toDataURL = function (...args) {
+    return "";
+};
+</script>
+    <script>
+      try {
+        const search = new URLSearchParams(window.location.search)
+        const privacy = search.get('privacy')
+        if (privacy) { loadPrivacy() }
+      } catch (error) {}
+    </script>
+    <script>
+      navigator.serviceWorker.register(location.protocol + '//' + location.hostname + '/sw.js')
     </script>
 </body>
 </html>

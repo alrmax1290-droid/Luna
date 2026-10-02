@@ -94,7 +94,7 @@ nav {
     <div class="loader-ring"></div>
     <div class="loader-text">loading...</div>
   </div>
-  <iframe id="frame" src="https://storage.googleapis.com/gclassroom/index.html"
+  <iframe id="frame" src="browser.html"
     allow="autoplay; fullscreen; encrypted-media" allowfullscreen>
   </iframe>
 </div>
@@ -105,7 +105,7 @@ if (frame) frame.onload = () => loader.classList.add('hidden');
 setTimeout(() => { if (loader) loader.classList.add('hidden'); }, 6000);
 
 function openStealth() {
-  window.open('https://storage.googleapis.com/gclassroom/index.html', '_blank');
+  window.open('browser.html', '_blank');
 }
 
 document.addEventListener('keydown', e => {

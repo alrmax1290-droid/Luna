@@ -89,12 +89,24 @@ nav {
   </div>
   <button class="open-btn" onclick="openStealth()">open in stealth tab ↗</button>
 </div>
-<div class="frame-wrap">
-  <div class="loader" id="loader">
-    <div class="loader-ring"></div>
-    <div class="loader-text">loading...</div>
+<div class="frame-wrap" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;">
+  <div style="text-align:center;max-width:420px;">
+    <div style="font-size:52px;margin-bottom:20px;">🌐</div>
+    <div style="font-family:'Space Mono',monospace;font-size:10px;color:#7090ff;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;">// browse</div>
+    <div style="font-size:22px;font-weight:700;color:#e8eeff;margin-bottom:8px;">movies, music & more</div>
+    <div style="font-size:13px;color:#606880;margin-bottom:32px;line-height:1.6;">opens in a new tab — use tab cloak 🔒 to disguise it</div>
+    <button onclick="window.open('browser.html','_blank')" style="
+      padding:14px 36px;border-radius:10px;background:#7090ff;
+      border:none;color:#fff;font-size:15px;font-weight:600;
+      cursor:pointer;font-family:'Space Grotesk',sans-serif;
+      transition:all 0.2s;box-shadow:0 4px 20px rgba(112,144,255,0.3);
+      display:block;margin:0 auto 12px;width:100%;max-width:260px;
+    " onmouseover="this.style.background='#5070ee';this.style.transform='translateY(-2px)'"
+       onmouseout="this.style.background='#7090ff';this.style.transform='none'">
+      open browser ↗
+    </button>
+    <div style="font-size:11px;color:#303848;font-family:'Space Mono',monospace;margin-top:8px;">tip: press 🔒 first to cloak the tab</div>
   </div>
-  <iframe id="frame" src="browser.html" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>
 </div>
 <script>
 const frame = document.getElementById('frame');

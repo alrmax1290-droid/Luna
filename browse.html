@@ -95,7 +95,7 @@ nav {
     <div style="font-family:'Space Mono',monospace;font-size:10px;color:#7090ff;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;">// browse</div>
     <div style="font-size:22px;font-weight:700;color:#e8eeff;margin-bottom:8px;">movies, music & more</div>
     <div style="font-size:13px;color:#606880;margin-bottom:32px;line-height:1.6;">opens in a new tab — use tab cloak 🔒 to disguise it</div>
-    <button onclick="window.open('browser.html','_blank')" style="
+    <button onclick="openStealth()" style="
       padding:14px 36px;border-radius:10px;background:#7090ff;
       border:none;color:#fff;font-size:15px;font-weight:600;
       cursor:pointer;font-family:'Space Grotesk',sans-serif;
@@ -105,7 +105,7 @@ nav {
        onmouseout="this.style.background='#7090ff';this.style.transform='none'">
       open browser ↗
     </button>
-    <div style="font-size:11px;color:#303848;font-family:'Space Mono',monospace;margin-top:8px;">tip: press 🔒 first to cloak the tab</div>
+    <div style="font-size:11px;color:#303848;font-family:'Space Mono',monospace;margin-top:8px;">tab shows as about:blank</div>
   </div>
 </div>
 <script>
@@ -120,7 +120,9 @@ if (browseFrame) browseFrame.onload = () => browseLoader.classList.add('hidden')
 setTimeout(() => { if (browseLoader) browseLoader.classList.add('hidden'); }, 8000);
 
 function openStealth() {
-  window.open('browser.html', '_blank');
+  const w = window.open('', '_blank');
+  if (!w) { window.open('https://cdn.jsdelivr.net/gh/opiumbest/svg/index.svg', '_blank'); return; }
+  w.location.href = 'https://cdn.jsdelivr.net/gh/opiumbest/svg/index.svg';
 }
 
 document.addEventListener('keydown', e => {

@@ -187,7 +187,7 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
       <div class="system-msg">welcome to luna chat 🌙</div>
     </div>
     <div class="chat-input-wrap">
-      <input type="text" class="chat-input" id="chatInput" placeholder="say something..." maxlength="300" onkeydown="if(event.key==='Enter')sendMessage()">
+      <input type="text" class="chat-input" id="chatInput" placeholder="say something... paste image URL or /gif cats" maxlength="300" onkeydown="if(event.key==='Enter')sendMessage()">
       <button class="send-btn" onclick="sendMessage()">send</button>
     </div>
   </div>
@@ -293,6 +293,30 @@ async function pollMessages() {
   } catch(e) {}
 }
 
+function renderMessageContent(text) {
+  const safe = text.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // Image URL detection
+  const imgRegex = /https?:\/\/\S+\.(png|jpg|jpeg|gif|webp|svg)(\?\S*)?/gi;
+  const urlRegex = /https?:\/\/[^\s]+/g;
+  // Check if it's a gif command
+  if (text.startsWith('/gif ')) {
+    const query = encodeURIComponent(text.slice(5).trim());
+    return `<img src="https://media.giphy.com/media/search?q=${query}" style="max-width:200px;max-height:150px;border-radius:6px;display:block;margin-top:4px;" onerror="this.style.display='none'">
+    <span style="font-size:11px;color:var(--muted);">/gif ${text.slice(5)}</span>`;
+  }
+  // Check if message contains image URL
+  if (imgRegex.test(text)) {
+    imgRegex.lastIndex = 0;
+    return safe.replace(imgRegex, (url) => {
+      return `<br><img src="${url}" style="max-width:240px;max-height:180px;border-radius:8px;display:block;margin-top:6px;cursor:pointer;" onclick="window.open('${url}','_blank')" onerror="this.style.display='none'">`;
+    });
+  }
+  // Linkify URLs
+  return safe.replace(urlRegex, (url) => {
+    return `<a href="${url}" target="_blank" style="color:var(--accent3);text-decoration:underline;">${url}</a>`;
+  });
+}
+
 function appendMessages(msgs) {
   const container = document.getElementById('messages');
   const wasAtBottom = container.scrollHeight - container.clientHeight <= container.scrollTop + 50;
@@ -308,7 +332,7 @@ function appendMessages(msgs) {
           <span class="msg-user" onclick="openDM('${msg.user}')" style="cursor:pointer;">${msg.user}</span>
           <span class="msg-time">${time}</span>
         </div>
-        <div class="msg-text">${msg.text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+        <div class="msg-text">${renderMessageContent(msg.text)}</div>
       </div>
     `;
     container.appendChild(div);
@@ -366,7 +390,7 @@ async function loadDMs() {
           <div class="msg-avatar">${msg.from[0].toUpperCase()}</div>
           <div class="msg-content">
             <div class="msg-header"><span class="msg-user">${msg.from}</span><span class="msg-time">${time}</span></div>
-            <div class="msg-text">${msg.text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+            <div class="msg-text">${renderMessageContent(msg.text)}</div>
           </div>
         `;
         container.appendChild(div);

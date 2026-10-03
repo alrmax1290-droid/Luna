@@ -294,25 +294,40 @@ async function pollMessages() {
 }
 
 function renderMessageContent(text) {
-  const safe = text.replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  // Image URL detection
-  const imgRegex = /https?:\/\/\S+\.(png|jpg|jpeg|gif|webp|svg)(\?\S*)?/gi;
-  const urlRegex = /https?:\/\/[^\s]+/g;
-  // Check if it's a gif command
+  const imgRegex = /https?:\/\/\S+\.(png|jpg|jpeg|gif|webp)(\?\S*)?/gi;
+
+  // /gif command — fetch from Giphy API
   if (text.startsWith('/gif ')) {
     const query = encodeURIComponent(text.slice(5).trim());
-    return `<img src="https://media.giphy.com/media/search?q=${query}" style="max-width:200px;max-height:150px;border-radius:6px;display:block;margin-top:4px;" onerror="this.style.display='none'">
-    <span style="font-size:11px;color:var(--muted);">/gif ${text.slice(5)}</span>`;
+    const id = 'gif_' + Math.random().toString(36).slice(2);
+    setTimeout(async () => {
+      try {
+        const res = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=${query}&limit=1&rating=g`);
+        const data = await res.json();
+        const el = document.getElementById(id);
+        if (el && data.data && data.data[0]) {
+          const url = data.data[0].images.fixed_height.url;
+          el.innerHTML = `<img src="${url}" style="max-width:240px;border-radius:8px;display:block;margin-top:6px;" onclick="window.open('${url}','_blank')">`;
+        } else if (el) {
+          el.textContent = 'no gif found';
+        }
+      } catch(e) {}
+    }, 0);
+    return `<span style="font-size:11px;color:var(--muted);">/gif ${text.slice(5)}</span><div id="${id}" style="margin-top:4px;"><span style="font-size:11px;color:var(--dim);">loading gif...</span></div>`;
   }
-  // Check if message contains image URL
+
+  // Image URL — embed directly
   if (imgRegex.test(text)) {
     imgRegex.lastIndex = 0;
-    return safe.replace(imgRegex, (url) => {
-      return `<br><img src="${url}" style="max-width:240px;max-height:180px;border-radius:8px;display:block;margin-top:6px;cursor:pointer;" onclick="window.open('${url}','_blank')" onerror="this.style.display='none'">`;
+    const safe = text.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return safe.replace(/https?:\/\/\S+\.(png|jpg|jpeg|gif|webp)(\?\S*)?/gi, (url) => {
+      return `<a href="${url}" target="_blank" style="color:var(--accent3);">${url}</a><br><img src="${url}" style="max-width:240px;max-height:200px;border-radius:8px;display:block;margin-top:6px;cursor:pointer;" onclick="window.open('${url}','_blank')" onerror="this.style.display='none'">`;
     });
   }
-  // Linkify URLs
-  return safe.replace(urlRegex, (url) => {
+
+  // Regular URLs — linkify
+  const safe = text.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return safe.replace(/https?:\/\/[^\s]+/g, (url) => {
     return `<a href="${url}" target="_blank" style="color:var(--accent3);text-decoration:underline;">${url}</a>`;
   });
 }

@@ -325,19 +325,39 @@ function appendMessages(msgs) {
     div.className = 'msg' + (msg.user === username ? ' own' : '');
     const initial = (msg.user || '?')[0].toUpperCase();
     const time = new Date(msg.time).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    const isOwn = msg.user === username;
     div.innerHTML = `
       <div class="msg-avatar">${initial}</div>
       <div class="msg-content">
         <div class="msg-header">
           <span class="msg-user" onclick="openDM('${msg.user}')" style="cursor:pointer;">${msg.user}</span>
           <span class="msg-time">${time}</span>
+          ${isOwn ? `<button onclick="deleteMsg('${msg.id}')" style="background:none;border:none;color:var(--dim);cursor:pointer;font-size:11px;padding:0 4px;opacity:0;transition:opacity 0.2s;" class="del-btn">✕</button>` : ''}
         </div>
         <div class="msg-text">${renderMessageContent(msg.text)}</div>
       </div>
     `;
+    div.addEventListener('mouseenter', () => { const b = div.querySelector('.del-btn'); if(b) b.style.opacity='1'; });
+    div.addEventListener('mouseleave', () => { const b = div.querySelector('.del-btn'); if(b) b.style.opacity='0'; });
     container.appendChild(div);
   });
   if (wasAtBottom) container.scrollTop = container.scrollHeight;
+}
+
+async function deleteMsg(id) {
+  try {
+    await fetch(`${WORKER}/chat/delete`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ room: currentRoom, id, user: username })
+    });
+    // Remove from DOM immediately
+    document.querySelectorAll('.msg').forEach(el => {
+      if (el.querySelector('.del-btn') && el.querySelector('.del-btn').getAttribute('onclick').includes(id)) {
+        el.remove();
+      }
+    });
+  } catch(e) {}
 }
 
 async function sendMessage() {

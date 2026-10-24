@@ -590,6 +590,71 @@ body.alt-theme {
   }
 }
 .menu-toggle { display: none; }
+
+/* OCCASIONAL ECLIPSE */
+.hero-right.eclipse-mode::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  width: 148px;
+  height: 148px;
+  top: 15%;
+  right: 12%;
+  display: block;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 35%, #fffde8 0%, #ffe8ad 42%, #e9a96b 74%, rgba(233,169,107,.1) 100%);
+  box-shadow: 0 0 30px 10px rgba(255,220,157,.42), 0 0 90px 28px rgba(255,193,119,.2);
+  animation: sunReveal 1.2s ease-out both;
+}
+.hero-right.eclipse-mode .moon {
+  z-index: 2;
+  background:
+    radial-gradient(circle at 32% 27%, rgba(235,239,250,.22), transparent 19%),
+    radial-gradient(ellipse at 72% 72%, rgba(0,0,0,.72) 0%, transparent 52%),
+    radial-gradient(circle at 38% 35%, #555a69 0%, #353a49 35%, #1c202b 68%, #05060b 100%);
+  box-shadow:
+    inset -34px -28px 58px rgba(0,0,0,.84),
+    inset 11px 9px 25px rgba(255,255,255,.11),
+    0 0 0 2px rgba(233,236,245,.78),
+    0 0 24px 8px rgba(236,233,218,.72),
+    0 0 72px 24px rgba(255,199,128,.42);
+  animation: eclipseGlow 1.2s ease-out both, moonFloat 8s ease-in-out 1.2s infinite;
+}
+.hero-right.eclipse-mode .moon::before {
+  background: rgba(0,0,0,.22);
+  box-shadow:
+    50px 60px 0 8px rgba(0,0,0,.14),
+    -20px 80px 0 5px rgba(0,0,0,.12),
+    80px -10px 0 12px rgba(0,0,0,.14),
+    30px 120px 0 6px rgba(0,0,0,.12);
+}
+@keyframes sunReveal {
+  from { opacity: 0; transform: translate(18px, -8px) scale(.88); }
+  to { opacity: 1; transform: translate(0,0) scale(1); }
+}
+@keyframes eclipseGlow {
+  from { filter: brightness(.35); }
+  to { filter: brightness(1); }
+}
+@media (max-width: 600px) {
+  .hero-right.eclipse-mode::before { width: 112px; height: 112px; top: 13%; right: 10%; }
+}
+
+/* Search feedback and lighter touch-device effects */
+.search-empty {
+  padding: 12px 14px;
+  color: #8f9ab5;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.nav-mobile-menu a:focus-visible {
+  outline: 2px solid var(--accent3);
+  outline-offset: 3px;
+  color: var(--text);
+}
+@media (max-width: 600px), (pointer: coarse) {
+  .cursor-dot, .cursor-ring, .cursor-trail { display: none !important; }
+}
 </style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#04040a">
@@ -625,15 +690,15 @@ body.alt-theme {
       <a href="suggestions.html">suggestions</a>
       <a href="settings.html">settings</a>
     </div>
-    <button class="theme-btn menu-toggle" id="menuToggle" onclick="toggleMobileMenu()" title="menu">☰</button>
+    <button type="button" class="theme-btn menu-toggle" id="menuToggle" onclick="toggleMobileMenu()" title="Open menu" aria-label="Open navigation menu" aria-controls="mobileMenu" aria-expanded="false">☰</button>
     <button class="theme-btn" id="musicBtn" title="lo-fi music">🎵</button>
-    <button class="theme-btn" onclick="showChromeUpdate()" title="fake chromebook update">💻</button>
+    <button class="theme-btn" onclick="showChromeUpdate()" title="macOS update demo">💻</button>
     <button class="theme-btn" id="changelogBtn" title="whats new">📋</button>
     <button class="theme-btn" id="cloakBtn" title="tab cloak">🔒</button>
     <button class="theme-btn" id="themeBtn" title="switch theme">🌙</button>
   </div>
 </nav>
-<div class="nav-mobile-menu" id="mobileMenu" style="display:none;">
+<div class="nav-mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation" aria-hidden="true" style="display:none;">
   <a href="index.html" onclick="closeMobileMenu()">home</a>
   <a href="singlefile.html" onclick="closeMobileMenu()">games</a>
   <a href="browse.html" onclick="closeMobileMenu()">browse</a>
@@ -680,7 +745,7 @@ body.alt-theme {
           ✦ favorites system in games<br>
           ✦ notes widget + class timer<br>
           ✦ page transitions on all pages<br>
-          ✦ fake chromebook update screen 💻<br>
+          ✦ macOS update animation demo 💻<br>
           ✦ game roulette wheel 🎰<br>
           ✦ suggestions page added<br>
           ✦ visitor counter<br>
@@ -726,14 +791,14 @@ body.alt-theme {
       <button onclick="spinRoulette()" class="btn-sec">🎰 spin roulette</button>
     </div>
     <div style="margin-top:16px; position:relative; max-width:340px;">
-      <input id="heroSearch" type="text" placeholder="search games..." style="
+      <input id="heroSearch" type="search" aria-label="Search games" aria-controls="heroSearchResults" autocomplete="off" placeholder="search games..." style="
         width:100%; padding:10px 16px 10px 36px;
         background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06);
         border-radius:8px; color:#d0d8f0; font-size:13px;
         font-family:'Space Grotesk',sans-serif; outline:none; transition:all 0.2s;
       " oninput="heroSearchGames(this.value)" onfocus="this.style.borderColor='rgba(112,144,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.06)'">
       <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#606880;font-size:14px;">🔍</span>
-      <div id="heroSearchResults" style="
+      <div id="heroSearchResults" aria-live="polite" aria-atomic="true" style="
         display:none; position:absolute; top:100%; left:0; right:0; margin-top:4px;
         background:#080812; border:1px solid rgba(112,144,255,0.2);
         border-radius:8px; overflow:hidden; z-index:100;
@@ -742,7 +807,7 @@ body.alt-theme {
     </div>
     <div style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-family:'Space Mono',monospace;font-size:11px;color:#606880;letter-spacing:1px;">
       <div style="width:5px;height:5px;border-radius:50%;background:#7090ff;animation:blink 2s ease-in-out infinite;"></div>
-      <span id="visitorCount">...</span> ppl been here
+      <span id="visitorCount">...</span> site visits
     </div>
   </div>
   <div class="hero-right">
@@ -814,7 +879,7 @@ body.alt-theme {
   <!-- STATS -->
   <div class="stats-row">
     <div class="stat"><div class="stat-n">800+</div><div class="stat-l">games</div></div>
-    <div class="stat"><div class="stat-n" id="onlineCount">--</div><div class="stat-l">playing right now</div></div>
+    <div class="stat"><div class="stat-n" id="onlineCount">--</div><div class="stat-l">online now</div></div>
     <div class="stat"><div class="stat-n">🔒</div><div class="stat-l">no tracking</div></div>
     <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">always up</div></div>
   </div>
@@ -1423,9 +1488,18 @@ renderSpeedDial();
 // HERO SEARCH
 function heroSearchGames(query) {
   const results = document.getElementById('heroSearchResults');
-  if (!query.trim()) { results.style.display = 'none'; return; }
-  const matches = GAMES.filter(g => g.title.toLowerCase().includes(query.toLowerCase())).slice(0, 6);
-  if (!matches.length) { results.style.display = 'none'; return; }
+  if (!query.trim()) { results.style.display = 'none'; results.replaceChildren(); return; }
+  const normalizedQuery = query.trim().toLowerCase();
+  const matches = GAMES.filter(g => g.title.toLowerCase().includes(normalizedQuery)).slice(0, 6);
+  if (!matches.length) {
+    const emptyState = document.createElement('div');
+    emptyState.className = 'search-empty';
+    emptyState.setAttribute('role', 'status');
+    emptyState.textContent = `No games found for “${query.trim()}”. Try another title.`;
+    results.replaceChildren(emptyState);
+    results.style.display = 'block';
+    return;
+  }
   results.style.display = 'block';
   results.innerHTML = matches.map(g => `
     <a href="singlefile.html" onclick="localStorage.setItem('luna_gotd_search','${g.title.replace(/'/g,"\\'")}');" style="
@@ -1437,7 +1511,6 @@ function heroSearchGames(query) {
     </a>
   `).join('');
 }
-
 document.addEventListener('click', e => {
   if (!e.target.closest('#heroSearch') && !e.target.closest('#heroSearchResults')) {
     const r = document.getElementById('heroSearchResults');
@@ -1445,51 +1518,117 @@ document.addEventListener('click', e => {
   }
 });
 
-// PEOPLE ONLINE (fake but realistic fluctuating)
-(function() {
-  const base = 23 + Math.floor(Math.random() * 40);
-  let current = base;
-  function update() {
-    current += Math.floor(Math.random() * 7) - 3;
-    current = Math.max(8, Math.min(120, current));
-    const el = document.getElementById('onlineCount');
-    if (el) el.textContent = current;
-    setTimeout(update, 4000 + Math.random() * 4000);
-  }
-  update();
-})();
-
 // VISITOR COUNTER
+function updateVisitCountDisplays(value) {
+  const el = document.getElementById('visitorCount');
+  if (el) el.textContent = value;
+}
+
 async function loadCount() {
+  const countUrl = 'https://cosmoshub.alrmax1290.workers.dev/count';
   try {
-    const res = await fetch('https://cosmoshub.alrmax1290.workers.dev/count');
-    const data = await res.json();
-    const el = document.getElementById('visitorCount');
-    if (el && data.count) {
-      let c = 0;
-      const step = Math.max(1, Math.ceil(data.count / 40));
-      const t = setInterval(() => {
-        c = Math.min(c + step, data.count);
-        el.textContent = c.toLocaleString();
-        if (c >= data.count) clearInterval(t);
-      }, 30);
+    // The Worker increments visitor_count on POST and returns { count }.
+    const response = await fetch(countUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: '{}',
+      cache: 'no-store'
+    });
+    if (!response.ok) throw new Error(`Counter request failed: ${response.status}`);
+    const data = await response.json();
+    const rawCount = data?.count;
+    const count = typeof rawCount === 'number' ? rawCount : Number(rawCount);
+    if (rawCount === null || rawCount === undefined || rawCount === '' || !Number.isSafeInteger(count) || count < 0) {
+      throw new Error('Counter response did not contain a valid visit total.');
     }
-  } catch(e) {
+
+    const duration = 900;
+    const startedAt = performance.now();
+    function animateCount(now) {
+      const progress = Math.min((now - startedAt) / duration, 1);
+      updateVisitCountDisplays(Math.floor(count * progress).toLocaleString());
+      if (progress < 1) requestAnimationFrame(animateCount);
+    }
+    requestAnimationFrame(animateCount);
+  } catch (error) {
+    updateVisitCountDisplays('—');
     const el = document.getElementById('visitorCount');
-    if (el) el.parentElement.style.display = 'none';
+    if (el) el.title = 'Visit count is temporarily unavailable.';
+    console.warn('Luna visit counter unavailable:', error);
   }
 }
 loadCount();
 
+// ONLINE VISITOR PRESENCE: the Worker expires entries after 30 seconds.
+let lunaPresenceId;
+try {
+  lunaPresenceId = sessionStorage.getItem('luna_presence_id');
+  if (!lunaPresenceId) {
+    const randomPart = globalThis.crypto?.randomUUID?.() || `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+    lunaPresenceId = `guest-${randomPart}`.slice(0, 24);
+    sessionStorage.setItem('luna_presence_id', lunaPresenceId);
+  }
+} catch {
+  lunaPresenceId = `guest-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`.slice(0, 24);
+}
+
+let onlineCountWarningShown = false;
+async function updateOnlineCount() {
+  const el = document.getElementById('onlineCount');
+  if (!el) return;
+  try {
+    const response = await fetch('https://cosmoshub.alrmax1290.workers.dev/online', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user: lunaPresenceId }),
+      cache: 'no-store'
+    });
+    if (!response.ok) throw new Error(`Presence request failed: ${response.status}`);
+    const data = await response.json();
+    if (!Array.isArray(data?.online)) throw new Error('Presence response did not include an online list.');
+    const count = new Set(data.online.map(String)).size;
+    el.textContent = count.toLocaleString();
+    el.title = `${count} visitors active within the last 30 seconds.`;
+    onlineCountWarningShown = false;
+  } catch (error) {
+    el.textContent = '—';
+    el.title = 'Online count is temporarily unavailable.';
+    if (!onlineCountWarningShown) console.warn('Luna online counter unavailable:', error);
+    onlineCountWarningShown = true;
+  }
+}
+function refreshOnlineCountWhenVisible() {
+  if (document.visibilityState === 'visible') updateOnlineCount();
+}
+refreshOnlineCountWhenVisible();
+window.setInterval(refreshOnlineCountWhenVisible, 15000);
+document.addEventListener('visibilitychange', refreshOnlineCountWhenVisible);
 // MOBILE MENU
 function toggleMobileMenu() {
   const menu = document.getElementById('mobileMenu');
-  menu.style.display = menu.style.display === 'none' ? 'flex' : 'none';
+  const button = document.getElementById('menuToggle');
+  const isOpen = menu.style.display !== 'flex';
+  menu.style.display = isOpen ? 'flex' : 'none';
+  menu.setAttribute('aria-hidden', String(!isOpen));
+  button.setAttribute('aria-expanded', String(isOpen));
+  button.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+  button.title = isOpen ? 'Close menu' : 'Open menu';
+  button.textContent = isOpen ? '×' : '☰';
+  if (isOpen) menu.querySelector('a')?.focus();
 }
 function closeMobileMenu() {
-  document.getElementById('mobileMenu').style.display = 'none';
+  const menu = document.getElementById('mobileMenu');
+  const button = document.getElementById('menuToggle');
+  if (!menu || !button) return;
+  const wasOpen = menu.style.display === 'flex';
+  menu.style.display = 'none';
+  menu.setAttribute('aria-hidden', 'true');
+  button.setAttribute('aria-expanded', 'false');
+  button.setAttribute('aria-label', 'Open navigation menu');
+  button.title = 'Open menu';
+  button.textContent = '☰';
+  if (wasOpen) button.focus();
 }
-
 // PANIC + ESCAPE
 document.addEventListener('keydown', e => {
   if (e.key === 'F1' && localStorage.getItem('luna_panic') !== 'false') {
@@ -1500,6 +1639,9 @@ document.addEventListener('keydown', e => {
     hideChromeUpdate();
     closeChangelog();
     document.getElementById('rouletteModal').style.display = 'none';
+    closeMobileMenu();
+    const searchResults = document.getElementById('heroSearchResults');
+    if (searchResults) searchResults.style.display = 'none';
   }
 });
 
@@ -1749,7 +1891,8 @@ applyCloak(cloakIndex);
   window.addEventListener('resize', () => { resize(); initNodes(); });
 
   function initNodes() {
-    const count = Math.floor((w * h) / 14000);
+    const lowMotionScreen = window.matchMedia('(max-width: 600px), (pointer: coarse)').matches;
+    const count = Math.floor((w * h) / (lowMotionScreen ? 36000 : 14000));
     nodes = Array.from({ length: count }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
@@ -1985,7 +2128,8 @@ function createDebris() {
   };
 }
 
-for (let i = 0; i < 50; i++) particles.push(createDebris());
+const debrisCount = window.matchMedia('(max-width: 600px), (pointer: coarse)').matches ? 12 : 50;
+for (let i = 0; i < debrisCount; i++) particles.push(createDebris());
 
 function drawPolygon(ctx, x, y, sides, size) {
   ctx.beginPath();
@@ -2175,7 +2319,7 @@ function startTimer() {
   timerInterval = setInterval(update, 1000);
 }
 
-// FAKE CHROMEBOOK UPDATE SCREEN
+// MACOS UPDATE ANIMATION
 let chromeUpdateTimer = null;
 function showChromeUpdate() {
   const overlay = document.getElementById('chromeUpdateOverlay');
@@ -2233,7 +2377,7 @@ function spinRoulette() {
 }
 </script>
 
-<!-- MACBOOK UPDATE OVERLAY -->
+<!-- MACOS UPDATE ANIMATION OVERLAY -->
 <div id="chromeUpdateOverlay" style="display:none; position:fixed; inset:0; z-index:999999; background:#1e1e1e; flex-direction:column; align-items:center; justify-content:center; font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;">
   <div style="text-align:center; max-width:420px;">
     <div style="width:80px; height:80px; margin:0 auto 24px; background:linear-gradient(135deg,#1a73e8,#34a4f5); border-radius:20px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,0.4);">
@@ -2246,7 +2390,7 @@ function spinRoulette() {
       <div id="chromeUpdateBar" style="height:100%; width:0%; background:linear-gradient(90deg,#1a73e8,#34a4f5); border-radius:3px; transition:width 0.3s ease;"></div>
     </div>
     <div id="chromeUpdatePct" style="font-size:13px; color:#888;">Downloading... 0%</div>
-    <div style="margin-top:24px; font-size:12px; color:#555;">About 8 minutes remaining</div>
+    <div style="margin-top:24px; font-size:12px; color:#555;">Demo screen only</div>
   </div>
   <div style="position:absolute; bottom:20px; font-size:11px; color:#444;">Press Escape to exit</div>
 </div>
@@ -2264,5 +2408,17 @@ function spinRoulette() {
   </div>
 </div>
 
+<script>
+// One in four page loads gets a short eclipse.
+(() => {
+  const sky = document.querySelector('.hero-right');
+  if (!sky || Math.random() >= 0.25) return;
+  window.setTimeout(() => sky.classList.add('eclipse-mode'), 450);
+  window.setTimeout(() => sky.classList.remove('eclipse-mode'), 9000);
+})();
+</script>
 </body>
 </html>
+
+
+

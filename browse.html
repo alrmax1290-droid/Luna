@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,54 +8,218 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-:root { --bg: #04040a; --border: rgba(255,255,255,0.06); --accent2: #7090ff; --accent3: #a0b8ff; --moon: #e8eeff; --text: #d0d8f0; --muted: #606880; --dim: #303848; }
-body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
-a { text-decoration: none; color: inherit; }
-nav { display: flex; align-items: center; justify-content: space-between; padding: 0 36px; height: 58px; flex-shrink: 0; background: rgba(4,4,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
-.nav-logo { font-family: 'Space Mono', monospace; font-size: 18px; font-weight: 700; color: var(--moon); letter-spacing: 4px; }
-.nav-logo span { color: var(--accent2); }
-.nav-links { display: flex; gap: 2px; }
-.nav-links a { padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); transition: all 0.2s; }
-.nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
-.nav-links a.active { color: var(--accent3); }
-.hero { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; text-align: center; padding: 40px 24px; gap: 16px; }
-.hero-label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; }
-.hero-label::before { content: '// '; color: var(--dim); }
-.hero-title { font-family: 'Space Mono', monospace; font-size: 36px; font-weight: 700; color: var(--moon); margin-bottom: 8px; }
-.hero-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; max-width: 360px; }
-.btn-main { padding: 14px 36px; border-radius: 10px; background: var(--accent2); border: none; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'Space Grotesk', sans-serif; transition: all 0.2s; box-shadow: 0 4px 20px rgba(112,144,255,0.3); }
-.btn-main:hover { background: #5070ee; transform: translateY(-2px); }
-.hint { font-size: 11px; color: var(--dim); font-family: 'Space Mono', monospace; margin-top: 8px; }
+
+:root {
+    --bg: #04040a;
+    --border: rgba(255,255,255,0.06);
+    --accent2: #7090ff;
+    --accent3: #a0b8ff;
+    --moon: #e8eeff;
+    --text: #d0d8f0;
+    --muted: #606880;
+    --dim: #303848;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 36px;
+    height: 58px;
+    flex-shrink: 0;
+    background: rgba(4,4,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--moon);
+    letter-spacing: 4px;
+}
+
+.nav-logo span {
+    color: var(--accent2);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2px;
+}
+
+.nav-links a {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    transition: all 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--text);
+    background: rgba(255,255,255,0.06);
+}
+
+.nav-links a.active {
+    color: var(--accent3);
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+    padding: 40px 24px;
+    gap: 16px;
+}
+
+.hero-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.hero-label::before {
+    content: '// ';
+    color: var(--dim);
+}
+
+.hero-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--moon);
+    margin-bottom: 8px;
+}
+
+.hero-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    line-height: 1.6;
+    max-width: 360px;
+}
+
+.btn-main {
+    padding: 14px 36px;
+    border-radius: 10px;
+    background: var(--accent2);
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(112,144,255,0.3);
+}
+
+.btn-main:hover {
+    background: #5070ee;
+    transform: translateY(-2px);
+}
+
+.hint {
+    font-size: 11px;
+    color: var(--dim);
+    font-family: 'Space Mono', monospace;
+    margin-top: 8px;
+}
+
+@media (max-width: 700px) {
+    nav {
+        padding: 0 16px;
+        height: auto;
+        min-height: 58px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+    }
+
+    .nav-links a {
+        padding: 6px 9px;
+        font-size: 12px;
+    }
+
+    .hero-title {
+        font-size: 27px;
+    }
+}
 </style>
 </head>
+
 <body>
+
 <nav>
-  <a href="index.html" class="nav-logo">LU<span>NA</span></a>
-  <div class="nav-links">
-    <a href="index.html">home</a>
-    <a href="singlefile.html">games</a>
-    <a href="browse.html" class="active">browse</a>
-    <a href="chat.html">chat</a>
-    <a href="suggestions.html">suggestions</a>
-    <a href="settings.html">settings</a>
-  </div>
+    <a href="index.html" class="nav-logo">LU<span>NA</span></a>
+
+    <div class="nav-links">
+        <a href="index.html">home</a>
+        <a href="singlefile.html">games</a>
+        <a href="browse.html" class="active">browse</a>
+        <a href="chat.html">chat</a>
+        <a href="suggestions.html">suggestions</a>
+        <a href="settings.html">settings</a>
+    </div>
 </nav>
+
 <div class="hero">
-  <div class="hero-label">browse</div>
-  <div class="hero-title">movies & music</div>
-  <div class="hero-sub">full proxy browser — movies, music, games and more</div>
-  <button class="btn-main" onclick="openBrowser()">open browser ↗</button>
-  <div class="hint">opens in a new tab</div>
+    <div class="hero-label">browse</div>
+    <div class="hero-title">movies &amp; music</div>
+    <div class="hero-sub">
+        full proxy browser — movies, music, games and more
+    </div>
+
+    <button class="btn-main" onclick="openBrowser()">
+        open browser ↗
+    </button>
+
+    <div class="hint">opens in this tab</div>
 </div>
+
 <script>
 function openBrowser() {
-  window.open('https://cdn.jsdelivr.net/gh/opiumbest/svg/index.svg', '_blank');
+    window.location.href = 'https://s3.us-east-2.amazonaws.com/youngbanana53/index.html';
 }
+
 document.addEventListener('keydown', e => {
-  if (e.key === 'F1') { e.preventDefault(); window.location.href = 'https://google.com'; }
+    if (e.key === 'F1') {
+        e.preventDefault();
+        window.location.href = 'https://google.com';
+    }
 });
 </script>
+
 </body>
 </html>
+```

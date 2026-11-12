@@ -164,6 +164,96 @@ to{filter:brightness(1)}}
 .search-empty{padding:12px 14px;color:#8f9ab5;font-size:13px;line-height:1.5}
 .nav-mobile-menu a:focus-visible{outline:2px solid var(--accent3);outline-offset:3px;color:var(--text)}
 @media (max-width: 600px), (pointer: coarse){.cursor-dot, .cursor-ring, .cursor-trail{display:none!important}}
+
+/* SEASONAL THEMES */
+body[data-theme="thanksgiving"]{
+  --bg:#120b08;--bg2:#1c100b;--surface:rgba(255,220,170,.045);--surface2:rgba(255,220,170,.085);
+  --border:rgba(237,164,91,.17);--accent:#ffe0ad;--accent2:#d97732;--accent3:#f0ad62;
+  --moon:#fff0d9;--text:#ead8c2;--muted:#a88b72;--dim:#68432e;
+  background:radial-gradient(ellipse at 15% 5%,rgba(154,75,30,.20),transparent 38%),radial-gradient(ellipse at 85% 35%,rgba(116,42,37,.14),transparent 42%),var(--bg);
+}
+body[data-theme="thanksgiving"] nav{background:rgba(18,11,8,.86);box-shadow:0 1px 0 rgba(217,119,50,.12)}
+body[data-theme="thanksgiving"] .moon-glow{background:radial-gradient(circle,rgba(217,119,50,.15),transparent 70%)}
+body[data-theme="thanksgiving"] .btn-main,body[data-theme="thanksgiving"] .gotd-play{background:linear-gradient(135deg,#d97732,#a94e2a);box-shadow:0 5px 22px rgba(190,91,42,.24)}
+body[data-theme="thanksgiving"] .btn-main:hover,body[data-theme="thanksgiving"] .gotd:hover .gotd-play{background:linear-gradient(135deg,#eb9148,#bd6036)}
+body[data-theme="thanksgiving"] .hero-title .accent,body[data-theme="thanksgiving"] .nav-logo span{color:#e99a50}
+body[data-theme="thanksgiving"] .quick-card:hover,body[data-theme="thanksgiving"] .gotd:hover{border-color:rgba(233,154,80,.36)}
+body[data-theme="christmas"]{
+  --bg:#07110e;--bg2:#0c1b16;--surface:rgba(222,244,224,.04);--surface2:rgba(222,244,224,.08);
+  --border:rgba(132,190,151,.17);--accent:#f4e7c4;--accent2:#b83d4b;--accent3:#e0a5a6;
+  --moon:#f2f4e9;--text:#d8e7dc;--muted:#829b8b;--dim:#345b48;
+  background:radial-gradient(ellipse at 18% 8%,rgba(32,105,72,.24),transparent 40%),radial-gradient(ellipse at 88% 30%,rgba(151,39,54,.16),transparent 42%),var(--bg);
+}
+body[data-theme="christmas"] nav{background:rgba(7,17,14,.88);box-shadow:0 1px 0 rgba(184,61,75,.14)}
+body[data-theme="christmas"] .moon-glow{background:radial-gradient(circle,rgba(184,61,75,.14),transparent 70%)}
+body[data-theme="christmas"] .btn-main,body[data-theme="christmas"] .gotd-play{background:linear-gradient(135deg,#b83d4b,#8f2938);box-shadow:0 5px 22px rgba(184,61,75,.23)}
+body[data-theme="christmas"] .btn-main:hover,body[data-theme="christmas"] .gotd:hover .gotd-play{background:linear-gradient(135deg,#ce5360,#a93646)}
+body[data-theme="christmas"] .hero-title .accent,body[data-theme="christmas"] .nav-logo span{color:#d9b66e}
+body[data-theme="christmas"] .quick-card:hover,body[data-theme="christmas"] .gotd:hover{border-color:rgba(184,61,75,.38)}
+body[data-theme="christmas"] .hero-tag::before{background:linear-gradient(90deg,transparent,#b83d4b)}
+body[data-theme="classic"]{--bg:#04040a;--bg2:#080812;--surface:rgba(255,255,255,.03);--surface2:rgba(255,255,255,.06);--border:rgba(255,255,255,.06);--accent:#c8d8ff;--accent2:#7090ff;--accent3:#a0b8ff;--moon:#e8eeff;--text:#d0d8f0;--muted:#606880;--dim:#303848}
+body[data-theme="classic"] nav{background:rgba(4,4,10,.85)}
+body[data-theme="forest"]{--bg:#071009;--bg2:#0c1a10;--surface:rgba(210,245,215,.035);--surface2:rgba(210,245,215,.075);--border:rgba(120,190,130,.15);--accent:#d5f0d8;--accent2:#4b9b62;--accent3:#8bd49a;--moon:#e4f5e6;--text:#cfe3d1;--muted:#78927c;--dim:#31543a;background:radial-gradient(ellipse at 15% 8%,rgba(54,125,69,.18),transparent 42%),var(--bg)}
+body[data-theme="forest"] nav{background:rgba(7,16,9,.88)}
+.theme-picker{position:relative}
+.theme-picker-menu{position:absolute;right:0;top:44px;width:224px;padding:9px;background:rgba(15,16,23,.97);border:1px solid rgba(255,255,255,.12);border-radius:14px;box-shadow:0 18px 55px rgba(0,0,0,.48);backdrop-filter:blur(22px);z-index:500;display:none}
+.theme-picker-menu.open{display:block;animation:themeMenuIn .16s ease-out}
+@keyframes themeMenuIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+.theme-picker-heading{font:10px 'Space Mono',monospace;letter-spacing:2px;text-transform:uppercase;color:#8990a3;padding:8px 10px 10px}
+.theme-option{display:flex;align-items:center;gap:11px;width:100%;padding:10px;border:0;border-radius:9px;background:transparent;color:#e6e8ef;text-align:left;font:500 13px 'Space Grotesk',sans-serif;cursor:pointer;transition:background .15s}
+.theme-option:hover{background:rgba(255,255,255,.08)}
+.theme-option[aria-checked="true"]{background:rgba(255,255,255,.10);color:#fff}
+.theme-swatch{width:27px;height:27px;flex:none;border-radius:8px;border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.theme-option-check{margin-left:auto;color:#e5c58a;opacity:0}
+.theme-option[aria-checked="true"] .theme-option-check{opacity:1}
+body[data-theme="thanksgiving"] .theme-picker-menu{background:rgba(31,19,13,.98);border-color:rgba(217,119,50,.28)}
+body[data-theme="christmas"] .theme-picker-menu{background:rgba(10,27,21,.98);border-color:rgba(184,61,75,.3)}
+@media(max-width:600px){.theme-picker-menu{right:-48px;width:210px}}
+
+
+
+/* FULL SEASONAL EXPERIENCES — not just palette swaps */
+#seasonalDecor{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.season-particle{position:absolute;top:-12vh;left:var(--x);font-size:var(--size);opacity:0;animation:seasonFall var(--duration) linear var(--delay) infinite;filter:drop-shadow(0 4px 7px rgba(0,0,0,.22));}
+@keyframes seasonFall{0%{transform:translate3d(0,-5vh,0) rotate(0deg);opacity:0}8%{opacity:var(--opacity)}85%{opacity:var(--opacity)}100%{transform:translate3d(var(--drift),115vh,0) rotate(var(--spin));opacity:0}}
+.seasonal-hero-art{isolation:isolate;}
+.seasonal-hero-art .moon,.seasonal-hero-art .moon-ring,.seasonal-hero-art .moon-ring2{display:none;}
+.seasonal-pumpkin,.seasonal-tree{display:none;position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);}
+.seasonal-pumpkin{width:210px;height:164px;border-radius:48% 48% 44% 44%;background:radial-gradient(ellipse at 34% 24%,rgba(255,224,158,.95),transparent 17%),repeating-linear-gradient(90deg,rgba(105,43,19,.18) 0 7%,rgba(255,183,91,.08) 10% 17%,rgba(94,37,18,.25) 21% 24%),linear-gradient(145deg,#ffbd68 0%,#e8792f 42%,#9f3d20 100%);box-shadow:inset 12px 4px 20px rgba(255,238,191,.24),inset -18px -18px 25px rgba(74,24,12,.42),0 28px 60px rgba(0,0,0,.4),0 0 75px var(--season-glow);animation:seasonalFloat 6s ease-in-out infinite;}
+.seasonal-pumpkin:before,.seasonal-pumpkin:after{content:'';position:absolute;top:5px;bottom:3px;width:38%;border-radius:50%;border:2px solid rgba(111,45,17,.17);box-shadow:inset 5px 0 12px rgba(255,224,163,.16);}
+.seasonal-pumpkin:before{left:13%;}.seasonal-pumpkin:after{right:13%;}
+.pumpkin-stem{position:absolute;z-index:2;width:22px;height:38px;left:calc(50% - 11px);top:-28px;border-radius:45% 45% 20% 20%;background:linear-gradient(90deg,#394b25,#718343 50%,#26391e);transform:rotate(7deg);}
+.pumpkin-leaf{position:absolute;z-index:3;width:52px;height:23px;left:calc(50% + 5px);top:-22px;border-radius:100% 0 100% 0;background:linear-gradient(135deg,#a7a64f,#465e2b);transform:rotate(-24deg);}
+.seasonal-tree{width:250px;height:285px;filter:drop-shadow(0 24px 28px rgba(0,0,0,.4)) drop-shadow(0 0 38px var(--season-glow));animation:seasonalFloat 7s ease-in-out infinite;}
+.seasonal-tree:before,.seasonal-tree:after,.seasonal-tree i{content:'';position:absolute;left:50%;transform:translateX(-50%);clip-path:polygon(50% 0,100% 100%,0 100%);background:linear-gradient(105deg,#0b4a35,#16734c 52%,#073c2c);}
+.seasonal-tree:before{top:28px;width:115px;height:120px;}.seasonal-tree:after{top:82px;width:180px;height:140px;background:linear-gradient(105deg,#0b573b,#167d50 55%,#06422f);}.seasonal-tree i:nth-of-type(1){top:145px;width:245px;height:130px;background:linear-gradient(105deg,#0a4a34,#126b46 55%,#063a2b);}
+.tree-trunk{position:absolute;left:calc(50% - 13px);bottom:0;width:26px;height:48px;background:linear-gradient(90deg,#58331e,#a56a3b,#50301e);}
+.tree-star{position:absolute;z-index:4;top:0;left:50%;transform:translateX(-50%);font-size:36px;color:#f8d98a;text-shadow:0 0 12px #ffda82,0 0 32px #e4b95f;}
+.seasonal-tree b{position:absolute;z-index:3;width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff2cb,#e6b74e 45%,#a66a26);box-shadow:0 0 14px rgba(255,209,113,.65);}
+.seasonal-tree b:nth-of-type(1){top:102px;left:91px}.seasonal-tree b:nth-of-type(2){top:167px;left:164px;background:radial-gradient(circle at 30% 25%,#ffe0e0,#d34d56 50%,#7b202d)}.seasonal-tree b:nth-of-type(3){top:210px;left:75px;background:radial-gradient(circle at 30% 25%,#ffe0e0,#d34d56 50%,#7b202d)}
+.seasonal-art-caption{position:absolute;bottom:3px;left:50%;transform:translateX(-50%);white-space:nowrap;font:9px 'Space Mono',monospace;letter-spacing:3px;color:var(--season-highlight);opacity:.82;}
+@keyframes seasonalFloat{0%,100%{translate:0 0}50%{translate:0 -12px}}
+body[data-theme="thanksgiving"]{--season-border:rgba(241,170,99,.3);--season-pill:rgba(105,48,25,.38);--season-highlight:#f3b66f;--season-shadow:rgba(190,91,42,.12);--season-glow:rgba(227,117,48,.23);}
+body[data-theme="christmas"]{--season-border:rgba(220,188,126,.3);--season-pill:rgba(17,68,48,.42);--season-highlight:#e8ce91;--season-shadow:rgba(37,130,87,.16);--season-glow:rgba(220,187,112,.2);}
+body[data-theme="forest"]{--season-border:rgba(139,212,154,.25);--season-pill:rgba(25,78,43,.35);--season-highlight:#a5dcae;--season-shadow:rgba(54,125,69,.12);--season-glow:rgba(76,165,101,.2);}
+body[data-theme="classic"]{--season-border:rgba(160,184,255,.25);--season-pill:rgba(40,54,100,.3);--season-highlight:#c8d8ff;--season-shadow:rgba(80,100,200,.12);--season-glow:rgba(100,120,220,.2);}
+body[data-theme="thanksgiving"] .seasonal-pumpkin{display:block;}
+body[data-theme="christmas"] .seasonal-tree{display:block;}
+body[data-theme="forest"] .seasonal-tree{display:block;filter:hue-rotate(18deg) saturate(.8) drop-shadow(0 24px 28px rgba(0,0,0,.4));}
+body[data-theme="classic"] .seasonal-hero-art .moon{display:block;width:220px;height:220px;}
+body[data-theme="classic"] .seasonal-hero-art .moon-ring,body[data-theme="classic"] .seasonal-hero-art .moon-ring2{display:block;}
+body[data-theme="thanksgiving"] .hero-title .dim{color:#a96c45;}
+body[data-theme="christmas"] .hero-title .dim{color:#719b83;}
+body[data-theme="thanksgiving"] .quick-card,body[data-theme="thanksgiving"] .gotd,body[data-theme="thanksgiving"] .stat{box-shadow:inset 0 1px rgba(255,220,180,.035),0 14px 35px rgba(0,0,0,.14);}
+body[data-theme="christmas"] .quick-card,body[data-theme="christmas"] .gotd,body[data-theme="christmas"] .stat{box-shadow:inset 0 1px rgba(220,255,230,.035),0 14px 35px rgba(0,0,0,.16);}
+body[data-theme="thanksgiving"] #announcementBar{background:linear-gradient(90deg,rgba(217,119,50,.2),rgba(115,48,28,.12),rgba(217,119,50,.2))!important;border-color:rgba(217,119,50,.3)!important;color:#efb06d!important;}
+body[data-theme="christmas"] #announcementBar{background:linear-gradient(90deg,rgba(35,115,76,.24),rgba(150,40,55,.16),rgba(35,115,76,.24))!important;border-color:rgba(184,61,75,.3)!important;color:#e7c98c!important;}
+body[data-theme="thanksgiving"] #announcementBar button,body[data-theme="christmas"] #announcementBar button{color:inherit!important;}
+body[data-theme="thanksgiving"] #heroSearch,body[data-theme="christmas"] #heroSearch{border-color:var(--border)!important;background:var(--surface)!important;color:var(--text)!important;}
+@media(max-width:900px){.seasonal-pumpkin{transform:translate(-50%,-50%) scale(.82)}.seasonal-tree{transform:translate(-50%,-50%) scale(.82)}}
+@media(max-width:600px){.seasonal-art-caption{font-size:8px;letter-spacing:2px}.seasonal-pumpkin{transform:translate(-50%,-50%) scale(.72)}.seasonal-tree{transform:translate(-50%,-50%) scale(.72)}}
+@media(prefers-reduced-motion:reduce){.season-particle,.seasonal-pumpkin,.seasonal-tree{animation:none!important}}
+
 </style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#04040a">
@@ -183,6 +273,7 @@ to{filter:brightness(1)}}
 <div class="screen-flash" id="screenFlash"></div>
 <canvas id="constellationCanvas"></canvas>
 <div class="moon-glow"></div>
+<div id="seasonalDecor" aria-hidden="true"></div>
 <nav>
   <a href="index.html" class="nav-logo">LU<span>NA</span></a>
   <div class="nav-right">
@@ -199,7 +290,16 @@ to{filter:brightness(1)}}
     <button class="theme-btn" onclick="showChromeUpdate()" title="macOS update demo">💻</button>
     <button class="theme-btn" id="changelogBtn" title="whats new">📋</button>
     <button class="theme-btn" id="cloakBtn" title="tab cloak">🔒</button>
-    <button class="theme-btn" id="themeBtn" title="switch theme">🌙</button>
+    <div class="theme-picker" id="themePicker">
+      <button class="theme-btn" id="themeBtn" type="button" title="Choose appearance" aria-label="Choose appearance" aria-haspopup="true" aria-expanded="false">🍂</button>
+      <div class="theme-picker-menu" id="themePickerMenu" role="radiogroup" aria-label="Choose a theme">
+        <div class="theme-picker-heading">Choose your atmosphere</div>
+        <button class="theme-option" type="button" data-theme-choice="thanksgiving" role="radio" aria-checked="true"><span class="theme-swatch" style="background:linear-gradient(135deg,#d97732,#7d3425 55%,#f0bd72)"></span><span>Thanksgiving</span><span class="theme-option-check">✓</span></button>
+        <button class="theme-option" type="button" data-theme-choice="christmas" role="radio" aria-checked="false"><span class="theme-swatch" style="background:linear-gradient(135deg,#176342,#b83d4b 58%,#d9b66e)"></span><span>Christmas</span><span class="theme-option-check">✓</span></button>
+        <button class="theme-option" type="button" data-theme-choice="forest" role="radio" aria-checked="false"><span class="theme-swatch" style="background:linear-gradient(135deg,#173f27,#4b9b62)"></span><span>Evergreen</span><span class="theme-option-check">✓</span></button>
+        <button class="theme-option" type="button" data-theme-choice="classic" role="radio" aria-checked="false"><span class="theme-swatch" style="background:linear-gradient(135deg,#080812,#7090ff)"></span><span>Midnight</span><span class="theme-option-check">✓</span></button>
+      </div>
+    </div>
   </div>
 </nav>
 <div class="nav-mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation" aria-hidden="true" style="display:none;">
@@ -306,10 +406,13 @@ to{filter:brightness(1)}}
       <span id="visitorCount">...</span> site visits
     </div>
   </div>
-  <div class="hero-right">
+  <div class="hero-right seasonal-hero-art">
     <div class="moon-ring"></div>
     <div class="moon-ring2"></div>
     <div class="moon"></div>
+    <div class="seasonal-pumpkin" aria-hidden="true"><span class="pumpkin-stem"></span><span class="pumpkin-leaf"></span></div>
+    <div class="seasonal-tree" aria-hidden="true"><span class="tree-star">✦</span><span class="tree-trunk"></span><i></i><i></i><i></i><b></b><b></b><b></b></div>
+    <div class="seasonal-art-caption" id="seasonalArtCaption">GATHER · PLAY · UNWIND</div>
   </div>
 </section>
 <div class="divider"></div>
@@ -783,19 +886,83 @@ document.addEventListener('mousemove', e => {
   cursorRing.style.top = ry + 'px';
   requestAnimationFrame(loop);
 })();
-// THEME TOGGLE
+// SEASONAL THEME SYSTEM
 const themeBtn = document.getElementById('themeBtn');
-if (localStorage.getItem('luna_theme') === 'alt') {
-  document.body.classList.add('alt-theme');
-  themeBtn.textContent = '🌿';
+const themeMenu = document.getElementById('themePickerMenu');
+const themePicker = document.getElementById('themePicker');
+const seasonalDecor = document.getElementById('seasonalDecor');
+const themeIcons = { thanksgiving: '🍂', christmas: '🎄', forest: '🌲', classic: '🌙' };
+const seasonalCopy = {
+  thanksgiving: { caption: 'GATHER · PLAY · UNWIND', particles: ['🍂','🍁','✦','🍃'] },
+  christmas: { kicker: 'WINTER LIGHTS · HOLIDAY MODE', caption: 'SNOWFALL · GAMES · GOOD TIMES', particles: ['❄','✧','❅','✦'] },
+  forest: { kicker: 'THE GREAT OUTDOORS · CALM MODE', caption: 'TAKE A BREATH · THEN PLAY', particles: ['🌿','✦','🍃'] },
+  classic: { kicker: 'A LITTLE SPACE · A LOT TO PLAY', caption: 'EXPLORE YOUR UNIVERSE', particles: ['✦','·','✧'] }
+};
+function buildSeasonalDecor(theme) {
+  if (!seasonalDecor) return;
+  seasonalDecor.innerHTML = '';
+  if (theme === 'classic') return;
+  const copy = seasonalCopy[theme];
+  const count = theme === 'thanksgiving' ? 19 : theme === 'christmas' ? 25 : 13;
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement('span');
+    particle.className = 'season-particle';
+    particle.textContent = copy.particles[i % copy.particles.length];
+    particle.style.setProperty('--x', (Math.random() * 100) + 'vw');
+    particle.style.setProperty('--size', (theme === 'christmas' ? 10 + Math.random() * 13 : 12 + Math.random() * 13) + 'px');
+    particle.style.setProperty('--duration', (12 + Math.random() * 17) + 's');
+    particle.style.setProperty('--delay', (-Math.random() * 24) + 's');
+    particle.style.setProperty('--drift', ((Math.random() - .5) * 190) + 'px');
+    particle.style.setProperty('--spin', ((Math.random() > .5 ? 1 : -1) * (240 + Math.random() * 600)) + 'deg');
+    particle.style.setProperty('--opacity', (theme === 'christmas' ? .42 : .35 + Math.random() * .25));
+    seasonalDecor.appendChild(particle);
+  }
 }
-themeBtn.addEventListener('click', () => {
-  triggerExplosion(() => {
-    document.body.classList.toggle('alt-theme');
-    const isAlt = document.body.classList.contains('alt-theme');
-    themeBtn.textContent = isAlt ? '🌿' : '🌙';
-    localStorage.setItem('luna_theme', isAlt ? 'alt' : 'dark');
+function applyLunaTheme(theme) {
+  const validThemes = ['thanksgiving', 'christmas', 'forest', 'classic'];
+  const selected = validThemes.includes(theme) ? theme : 'thanksgiving';
+  document.body.dataset.theme = selected;
+  document.body.classList.remove('alt-theme');
+  themeBtn.textContent = themeIcons[selected];
+  themeBtn.title = 'Current theme: ' + selected.charAt(0).toUpperCase() + selected.slice(1);
+  document.querySelectorAll('[data-theme-choice]').forEach(option => {
+    option.setAttribute('aria-checked', String(option.dataset.themeChoice === selected));
   });
+  const copy = seasonalCopy[selected];
+  const caption = document.getElementById('seasonalArtCaption');
+  if (caption) caption.textContent = copy.caption;
+  buildSeasonalDecor(selected);
+  try { localStorage.setItem('luna_seasonal_theme', selected); } catch (e) {}
+  const themeColor = { thanksgiving: '#120b08', christmas: '#07110e', forest: '#071009', classic: '#04040a' }[selected];
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) metaTheme.setAttribute('content', themeColor);
+}
+let savedTheme = 'thanksgiving';
+try { savedTheme = localStorage.getItem('luna_seasonal_theme') || 'thanksgiving'; } catch (e) {}
+applyLunaTheme(savedTheme);
+themeBtn.addEventListener('click', event => {
+  event.stopPropagation();
+  const open = themeMenu.classList.toggle('open');
+  themeBtn.setAttribute('aria-expanded', String(open));
+});
+themeMenu.querySelectorAll('[data-theme-choice]').forEach(option => {
+  option.addEventListener('click', () => {
+    applyLunaTheme(option.dataset.themeChoice);
+    themeMenu.classList.remove('open');
+    themeBtn.setAttribute('aria-expanded', 'false');
+  });
+});
+document.addEventListener('click', event => {
+  if (!themePicker.contains(event.target)) {
+    themeMenu.classList.remove('open');
+    themeBtn.setAttribute('aria-expanded', 'false');
+  }
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    themeMenu.classList.remove('open');
+    themeBtn.setAttribute('aria-expanded', 'false');
+  }
 });
 function triggerExplosion(cb) {
   const overlay = document.getElementById('explosionOverlay');
